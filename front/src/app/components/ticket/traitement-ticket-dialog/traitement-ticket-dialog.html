@@ -1,0 +1,155 @@
+<div class="traitement-ticket-dialog">
+  <div class="dialog-header">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="ticket-icon-wrapper">
+          <mat-icon class="header-icon">build</mat-icon>
+        </div>
+        <div class="header-info">
+          <h2 class="dialog-title">Traitement du Ticket</h2>
+          <p class="ticket-id">Ticket #{{ ticket.id }}</p>
+        </div>
+      </div>
+      <button mat-icon-button 
+              (click)="closeDialog()" 
+              class="close-button"
+              matTooltip="Fermer">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <mat-dialog-content class="dialog-content">
+    <div class="tab-content">
+      <!-- Infos ticket -->
+      <mat-card class="info-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="card-avatar">title</mat-icon>
+          <mat-card-title>Titre et Description</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="ticket-title-section">
+            <h3 class="ticket-main-title">{{ ticket.titre }}</h3>
+            <div class="ticket-type">
+              <mat-icon class="type-icon">{{ getTypeIcon(ticket.type) }}</mat-icon>
+              <span>{{ ticket.type }}</span>
+            </div>
+          </div>
+          <mat-divider class="section-divider"></mat-divider>
+          <div class="ticket-description-section">
+            <h4>Description</h4>
+            <p class="description-text">{{ ticket.description }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Pièce jointe -->
+      <mat-card class="attachment-card" *ngIf="ticket.pieceJointe">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="card-avatar attachment-avatar">attach_file</mat-icon>
+          <mat-card-title>Pièce jointe</mat-card-title>
+          <mat-card-subtitle>Fichier attaché au ticket</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="attachment-section">
+            <div class="attachment-preview">
+              <div class="file-icon-wrapper">
+                <mat-icon class="file-icon">{{ getFileIcon(ticket.pieceJointe.typeDuFichier || '') }}</mat-icon>
+              </div>
+              <div class="file-info">
+                <h4 class="file-name">{{ ticket.pieceJointe.nomDuFichier || 'Fichier joint' }}</h4>
+                <div class="file-meta">
+                  <span class="file-type" *ngIf="ticket.pieceJointe?.typeDuFichier">
+                    <mat-icon class="meta-icon">description</mat-icon>
+                    {{ ticket.pieceJointe.typeDuFichier }}
+                  </span>
+                  <span class="file-size" *ngIf="ticket.pieceJointe?.taille">
+                    <mat-icon class="meta-icon">storage</mat-icon>
+                    {{ formatFileSize(ticket.pieceJointe.taille!) }}
+                  </span>
+                </div>
+              </div>
+              <div class="attachment-actions">
+                <button mat-raised-button 
+                        color="primary" 
+                        class="download-btn"
+                        (click)="downloadFile()"
+                        matTooltip="Télécharger le fichier">
+                  <mat-icon>download</mat-icon>
+                  <span>Télécharger</span>
+                </button>
+                <button mat-stroked-button 
+                        color="primary" 
+                        class="preview-btn"
+                        (click)="previewFile()"
+                        *ngIf="isPreviewable(ticket.pieceJointe?.typeDuFichier || '')"
+                        matTooltip="Aperçu du fichier">
+                  <mat-icon>visibility</mat-icon>
+                  <span>Aperçu</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Message si pas de pièce jointe -->
+      <mat-card class="no-attachment-card" *ngIf="!ticket.pieceJointe">
+        <mat-card-content>
+          <div class="no-attachment-content">
+            <mat-icon class="no-attachment-icon">attach_file_off</mat-icon>
+            <h4>Aucune pièce jointe</h4>
+            <p>Ce ticket ne contient pas de fichier attaché.</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Zone de saisie de la solution -->
+      <mat-card class="solution-input-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="card-avatar">edit_note</mat-icon>
+          <mat-card-title>Solution du ticket</mat-card-title>
+          <mat-card-subtitle>Décrivez la solution apportée</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="form">
+            <div class="solution-editor-label">
+              <span class="mat-label">Écrire la solution</span>
+            </div>
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+            <ngx-editor
+              [editor]="editor"
+              formControlName="solution"
+              [placeholder]="'Décrivez la solution apportée au ticket...'"
+              class="solution-editor"
+              >
+            </ngx-editor>
+            <div class="solution-editor-hint">
+              {{ solution.length || 0 }}/1000
+            </div>
+            <div class="solution-input-actions">
+              <button mat-button
+                      type="button"
+                      (click)="form.get('solution')?.setValue('')"
+                      [disabled]="!solution.trim() || sendingSolution"
+                      class="clear-btn">
+                <mat-icon>clear</mat-icon>
+                Effacer
+              </button>
+              <button mat-raised-button
+                      color="primary"
+                      type="button"
+                      (click)="sendSolution()"
+                      [disabled]="!solution.trim() || sendingSolution"
+                      class="send-btn">
+                <mat-icon *ngIf="!sendingSolution">send</mat-icon>
+                <mat-spinner *ngIf="sendingSolution" diameter="20"></mat-spinner>
+                {{ sendingSolution ? 'Envoi...' : 'Envoyer' }}
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-dialog-content>
+</div>

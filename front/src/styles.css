@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Styles pour les dialogs accessibles */
+.accessible-dialog .mat-mdc-dialog-container {
+  /* S'assurer que le dialog reste accessible */
+  position: relative;
+  z-index: 1050;
+}
+
+
+
+/* Empêcher le problème aria-hidden sur les conteneurs de dialog */
+.cdk-overlay-container {
+  z-index: 1000;
+}
+
+/* S'assurer que les boutons dans les dialogs sont correctement accessibles */
+.cdk-overlay-pane:not([aria-hidden="true"]) button:focus {
+  outline: 2px solid #6366f1 !important;
+}
+
+/* Améliorer la visibilité du focus pour l'accessibilité */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}

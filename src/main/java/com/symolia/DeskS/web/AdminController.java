@@ -4,6 +4,7 @@ import com.symolia.DeskS.entities.Departement;
 import com.symolia.DeskS.entities.Utilisateur;
 import com.symolia.DeskS.enums.Role;
 import com.symolia.DeskS.services.DepartementService;
+import com.symolia.DeskS.services.TicketService;
 import com.symolia.DeskS.services.UtilisateurService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,18 +23,22 @@ public class AdminController {
 
     private final UtilisateurService utilisateurService;
     private final DepartementService departementService;
+    private final TicketService ticketService;
 
     @PostMapping("/creer-utilisateur")
     @PreAuthorize("hasAuthority('ROLE_ADMINISTRATEUR')")
     public ResponseEntity<Map<String, String>> creerUtilisateur(@RequestBody Map<String, String> payload) {
+        System.out.println("Payload reçu: " + payload);
+        
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setEmail(payload.get("email"));
         utilisateur.setMotDePasse(payload.get("motDePasse"));
         utilisateur.setNom(payload.get("nom"));
         utilisateur.setPrenom(payload.get("prenom"));
         utilisateur.setRole(Role.valueOf(payload.get("role").toUpperCase()));
-        Long departmentId = payload.get("departmentId") != null ? Long.parseLong(payload.get("departmentId")) : null;
-
+        
+        Long departmentId = payload.get("departementId") != null ? Long.parseLong(payload.get("departementId")) : null;
+        
         utilisateurService.createUtilisateur(utilisateur, departmentId);
 
         return ResponseEntity.ok(Map.of("message", "Utilisateur créé avec succès"));
@@ -82,13 +87,18 @@ public class AdminController {
     @PreAuthorize("hasAuthority('ROLE_ADMINISTRATEUR')")
     public ResponseEntity<Map<String, String>> modifierUtilisateur(
             @PathVariable Long id, @RequestBody Map<String, String> payload) {
+        System.out.println("Payload reçu pour modification: " + payload); 
+        
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setEmail(payload.get("email"));
-        utilisateur.setMotDePasse(payload.get("motDePasse"));
+        if (payload.get("motDePasse") != null && !payload.get("motDePasse").isEmpty()) {
+            utilisateur.setMotDePasse(payload.get("motDePasse"));
+        }
         utilisateur.setNom(payload.get("nom"));
         utilisateur.setPrenom(payload.get("prenom"));
         utilisateur.setRole(Role.valueOf(payload.get("role").toUpperCase()));
-        Long departmentId = payload.get("departmentId") != null ? Long.parseLong(payload.get("departmentId")) : null;
+        
+        Long departmentId = payload.get("departementId") != null ? Long.parseLong(payload.get("departementId")) : null;
 
         utilisateurService.updateUtilisateur(id, utilisateur, departmentId);
 
@@ -120,14 +130,22 @@ public class AdminController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(required = false) String nom) {
+        
+        System.out.println("Récupération des départements - page: " + page + ", size: " + size + ", nom: " + nom);
+        
         Pageable pageable = PageRequest.of(page, size);
         Page<Departement> departements = departementService.getAllDepartements(pageable, nom);
-
+        
+        System.out.println("Nombre de départements trouvés: " + departements.getContent().size());
+        
         Map<String, Object> response = new HashMap<>();
         response.put("departements", departements.getContent());
         response.put("totalElements", departements.getTotalElements());
         response.put("totalPages", departements.getTotalPages());
         response.put("currentPage", page);
+        
+        System.out.println("Réponse envoyée: " + response);
+        
         return ResponseEntity.ok(response);
     }
 
@@ -149,5 +167,16 @@ public class AdminController {
     public ResponseEntity<Map<String, String>> supprimerDepartement(@PathVariable Long id) {
         departementService.deleteDepartement(id);
         return ResponseEntity.ok(Map.of("message", "Département supprimé avec succès"));
+    }
+
+    @GetMapping("/dashboard-stats")
+    @PreAuthorize("hasAuthority('ROLE_ADMINISTRATEUR')")
+    public ResponseEntity<Map<String, Object>> getDashboardStats() {
+        Map<String, Object> stats = new HashMap<>();
+        stats.put("totalUsers", utilisateurService.countAll());
+        stats.put("activeTickets", ticketService.countActiveTickets());
+        stats.put("openIncidents", ticketService.countOpenIncidents());
+        stats.put("closedTickets", ticketService.countClosedTickets());
+        return ResponseEntity.ok(stats);
     }
 }

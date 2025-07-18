@@ -1,0 +1,714 @@
+.modern-ticket-dialog {
+  width: 100%;
+  max-width: 1100px; /* Largeur augmentée pour un format rectangulaire */
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden; /* Empêche tout débordement du dialog */
+}
+
+/* Header Styles */
+.dialog-header {
+  background: #2563eb;
+  color: white;
+  margin: -24px -24px 0 -24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dialog-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%), 
+              linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%), 
+              linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%), 
+              linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+  background-size: 20px 20px;
+  opacity: 0.3;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 32px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-wrapper {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-icon {
+  font-size: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.dialog-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.dialog-subtitle {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.close-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 2;
+}
+
+/* Content Styles */
+.dialog-content {
+  padding: 24px;
+  background: #f8faff;
+  max-height: 70vh; /* Définit une hauteur maximale pour le contenu */
+  overflow-y: auto; /* Active la scrollbar verticale si nécessaire */
+  overflow-x: hidden; /* Empêche la scrollbar horizontale */
+}
+
+.modern-form {
+  grid-template-columns: repeat(3, 1fr); /* Crée 3 colonnes de taille égale */
+  gap: 24px; /* Espace entre les colonnes */
+  align-items: start; /* Aligne les éléments en haut de chaque colonne */
+}
+
+/* Step Styles */
+.form-step {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #e6f2ff;
+  height: 100%; /* Fait en sorte que les cartes aient la même hauteur */
+  display: flex;
+  flex-direction: column;
+}
+
+.form-step:hover {
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.12);
+  transform: translateY(-2px);
+}
+
+.step-header {
+  background: #f8faff;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid #e6f2ff;
+}
+
+.step-number {
+  background: #2563eb;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.step-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin: 0 0 4px 0;
+}
+
+.step-description {
+  color: #64748b;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.step-content {
+  padding: 24px;
+  flex-grow: 1; /* Permet au contenu de remplir l'espace disponible */
+}
+
+/* Form Field Styles */
+.modern-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modern-field .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.modern-field .mat-form-field-fill {
+  background: #f8faff;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.modern-field .mat-form-field-fill:hover {
+  background: #eff6ff;
+}
+
+.modern-field.mat-focused .mat-form-field-fill {
+  background: white;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.field-icon {
+  margin-right: 8px;
+  color: #2563eb;
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.title-input {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.description-textarea {
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 120px; /* Augmente la hauteur pour mieux s'adapter au layout large */
+}
+
+.char-counter {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.fields-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.half-field {
+  margin-bottom: 0;
+}
+
+/* User Option Styles */
+.user-option-modern {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.user-avatar {
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #1e40af;
+  font-size: 1rem;
+}
+
+.user-dept {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.dept-icon {
+  font-size: 0.9rem;
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+/* Type and Priority Options */
+.type-option, .priority-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  position: relative;
+}
+
+.type-icon, .priority-icon {
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #2563eb;
+}
+
+.priority-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: auto;
+}
+
+.priority-faible .priority-indicator {
+  background: #10b981;
+}
+
+.priority-moyenne .priority-indicator {
+  background: #f59e0b;
+}
+
+.priority-haute .priority-indicator {
+  background: #ef4444;
+}
+
+.priority-critique .priority-indicator {
+  background: #dc2626;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* File Upload Styles */
+.file-upload-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: #f8faff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Occupe toute la hauteur disponible dans sa colonne */
+  min-height: 200px; /* Hauteur minimale pour un bon affichage */
+}
+
+.file-upload-zone:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.file-upload-zone.drag-over {
+  border-color: #2563eb;
+  background: rgba(37, 99, 235, 0.05);
+  transform: scale(1.02);
+}
+
+.file-upload-zone.has-file {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.upload-icon {
+  font-size: 2.5rem; /* Taille ajustée pour le layout */
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.upload-content h4 {
+  margin: 0;
+  color: #1e40af;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.upload-content p {
+  margin: 0;
+  color: #64748b;
+}
+
+.upload-button {
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 500;
+  background: #2563eb !important;
+  color: white !important;
+}
+
+.upload-hint {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+/* File Preview */
+.file-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+  border: 1px solid #e6f2ff;
+}
+
+.file-icon {
+  font-size: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #2563eb;
+}
+
+.file-details {
+  flex: 1;
+}
+
+.file-name {
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 4px;
+}
+
+.file-size {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.file-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #10b981;
+  font-weight: 500;
+}
+
+.success-icon {
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Actions */
+.dialog-actions {
+  background: #f8faff;
+  margin: 0 -24px -24px -24px;
+  padding: 24px 32px;
+  border-top: 1px solid #e6f2ff;
+  position: relative;
+  bottom: 0;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: flex-end; /* Déjà présent - garde le bouton à droite */
+  gap: 16px;
+  width: 100%; /* Assure que le container prend toute la largeur */
+}
+
+.submit-button {
+  border-radius: 12px;
+  padding: 20px 20px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  background: #2563eb !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-left: auto; /* Force le bouton à droite */
+}
+
+/* Si vous voulez encore plus d'espace à droite */
+.submit-button {
+  border-radius: 12px;
+  padding: 20px 20px;
+  margin-bottom: 5px;
+  margin-right: 0; /* Assure qu'il n'y a pas de marge droite */
+  font-weight: 600;
+  background: #2563eb !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Responsive - maintenir l'alignement à droite */
+@media (max-width: 768px) {
+  .actions-container {
+    flex-direction: row; /* Garde horizontal même sur mobile */
+    justify-content: flex-end; /* Maintient à droite */
+  }
+  
+  .submit-button {
+    width: auto; /* Enlève la largeur 100% sur mobile */
+    margin-left: auto; /* Force à droite */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modern-ticket-dialog {
+    max-width: 100vw;
+    margin: 0;
+  }
+  
+  .header-content {
+    padding: 20px;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .dialog-content {
+    padding: 20px;
+  }
+  
+  .step-header {
+    padding: 16px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .step-content {
+    padding: 16px;
+  }
+  
+  .fields-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .actions-container {
+    flex-direction: column;
+  }
+  
+  .submit-button, .cancel-button {
+    width: 100%;
+  }
+}
+
+/* Responsive Design - Ajustement pour le layout large */
+@media (max-width: 1024px) {
+  .modern-form {
+    grid-template-columns: 1fr; /* Passe à une seule colonne sur les écrans plus petits */
+    gap: 16px;
+  }
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-step {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.form-step:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.form-step:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+/* Focus States */
+.modern-field input:focus,
+.modern-field textarea:focus {
+  outline: none;
+}
+
+/* Error States */
+.modern-field.mat-form-field-invalid .mat-form-field-fill {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+/* Custom Scrollbar - Rétabli pour la navigation verticale */
+.dialog-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dialog-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.dialog-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.dialog-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Ajouter ces styles : */
+
+.department-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.department-info mat-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.employee-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.employee-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1976d2, #2196f3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.employee-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.employee-name {
+  font-weight: 600;
+  color: #212121;
+  font-size: 0.95rem;
+}
+
+.employee-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.employee-email {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.employee-department {
+  font-size: 0.75rem;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  justify-content: center;
+  color: #666;
+}
+
+.no-employees {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  color: #666;
+  text-align: center;
+}
+
+.no-employees mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #ccc;
+}
+
+.no-employees p {
+  margin: 0;
+  font-size: 0.9rem;
+}

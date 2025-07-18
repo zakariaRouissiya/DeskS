@@ -1,15 +1,19 @@
 package com.symolia.DeskS.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.symolia.DeskS.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "utilisateur")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Utilisateur {
 
     @Id
@@ -32,11 +36,17 @@ public class Utilisateur {
     @Column(name = "role", nullable = false, columnDefinition = "text")
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
-    @JsonIgnore
     private Departement department;
 
     @Column(name = "date_inscription", nullable = false)
     private LocalDateTime dateInscription;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Ticket> tickets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "auteur", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Commentaire> commentaires;
 }

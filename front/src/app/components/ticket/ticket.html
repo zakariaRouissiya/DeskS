@@ -1,0 +1,451 @@
+<div class="ticket-dashboard">
+  <header class="main-header">
+    <div class="header-left">
+      <h1 class="header-title">
+        <mat-icon class="title-icon">confirmation_number</mat-icon>
+        {{ headerTitle }}
+      </h1>
+      <p class="header-subtitle">{{ headerSubtitle }}</p>
+    </div>
+    <div class="header-actions">
+      <button *ngIf="isManager" 
+              mat-stroked-button 
+              (click)="openDelegationManagement()"
+              matTooltip="Gérer les demandes de délégation"
+              class="delegation-management-btn">
+        <mat-icon>assignment_ind</mat-icon>
+        <span>Délégations</span>
+      </button>
+
+      <button *ngIf="isManager && unassignedTicketsCount > 0" 
+              mat-stroked-button 
+              (click)="autoDispatchAllTickets()"
+              matTooltip="Répartir automatiquement {{ unassignedTicketsCount }} tickets non assignés"
+              class="auto-dispatch-btn">
+        <mat-icon>auto_fix_high</mat-icon>
+        <span>Auto-dispatch</span>
+        <span matBadge="{{ unassignedTicketsCount }}" matBadgeColor="warn" matBadgeSize="small"></span>
+      </button>
+
+      <button mat-icon-button (click)="openUserProfile()" matTooltip="Mon Profil" class="profile-btn">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <button mat-icon-button (click)="logout()" matTooltip="Déconnexion" class="logout-btn">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <div class="stats-container">
+    <mat-card class="stat-card stat-card-total">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>assignment</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number">{{ dataSource.data.length }}</div>
+            <div class="stat-label">
+              <span *ngIf="isEmployee">Mes Tickets</span>
+              <span *ngIf="isManager">Tickets Département</span>
+              <span *ngIf="isTechnician">Tickets Assignés</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card stat-card-open">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>hourglass_empty</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number">{{ getTicketsByStatus('OUVERT').length }}</div>
+            <div class="stat-label">Ouverts</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card stat-card-progress">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>sync</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number">{{ getTicketsByStatus('EN_COURS').length }}</div>
+            <div class="stat-label">En cours</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card stat-card-resolved">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>check_circle</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number">{{ getTicketsByStatus('RESOLU').length }}</div>
+            <div class="stat-label">Résolus</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="isManager" class="stat-card stat-card-unassigned">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>person_off</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number">{{ unassignedTicketsCount }}</div>
+            <div class="stat-label">Non assignés</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="table-container">
+    <mat-card class="table-card">
+      <mat-card-header class="table-header">
+        <div class="table-title">
+          <mat-icon class="table-icon">list</mat-icon>
+          <span>Liste des tickets</span>
+        </div>
+        <div class="table-actions">
+          <!-- Filtre Statut -->
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Statut</mat-label>
+            <mat-select [(ngModel)]="selectedStatus" (selectionChange)="applyFilters()">
+              <mat-option value="">Tous</mat-option>
+              <mat-option value="OUVERT">Ouvert</mat-option>
+              <mat-option value="EN_COURS">En cours</mat-option>
+              <mat-option value="RESOLU">Résolu</mat-option>
+              <mat-option value="FERME">Fermé</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Filtre Type -->
+          <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Type</mat-label>
+            <mat-select [(ngModel)]="selectedType" (selectionChange)="applyFilters()">
+              <mat-option value="">Tous</mat-option>
+              <mat-option value="Matériel">Matériel</mat-option>
+              <mat-option value="Logiciel">Logiciel</mat-option>
+              <mat-option value="Réseau">Réseau</mat-option>
+              <mat-option value="Compte">Compte</mat-option>
+              <mat-option value="Autre">Autre</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Recherche -->
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Rechercher</mat-label>
+            <input matInput 
+                   [(ngModel)]="searchText"
+                   (keyup)="applyFilters()" 
+                   placeholder="Rechercher un ticket...">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          
+          <!-- Bouton créer ticket (employés seulement) -->
+          <button *ngIf="isEmployee" 
+                  mat-fab 
+                  class="create-fab-black" 
+                  (click)="createTicket()"
+                  matTooltip="Créer un nouveau ticket">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content class="table-content">
+        <div class="table-wrapper" [class.has-empty-state]="!loading && dataSource.data.length === 0">
+          <mat-table [dataSource]="dataSource" 
+                     class="tickets-table" 
+                     matSort
+                     [class.loading]="loading">
+
+            <ng-container matColumnDef="titre">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-icon class="column-icon">title</mat-icon>
+                Titre
+              </mat-header-cell>
+              <mat-cell *matCellDef="let ticket">
+                <div class="ticket-title">
+                  <div class="title-text">{{ ticket.titre }}</div>
+                  <div class="title-type">
+                    <mat-icon class="type-icon">{{ getTypeIcon(ticket.type) }}</mat-icon>
+                    {{ ticket.type }}
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="utilisateur">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-icon class="column-icon">person</mat-icon>
+                Utilisateur
+              </mat-header-cell>
+              <mat-cell *matCellDef="let ticket">
+                <div class="user-info">
+                  <div class="user-name">{{ getUserFullName(ticket.user) }}</div>
+                  <div class="user-dept" *ngIf="ticket.user?.department">
+                    <mat-icon class="dept-icon">business</mat-icon>
+                    {{ ticket.user.department.nom }}
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <mat-header-cell *matHeaderCellDef>
+                <mat-icon class="column-icon">description</mat-icon>
+                Description
+              </mat-header-cell>
+              <mat-cell *matCellDef="let ticket">
+                <div class="ticket-description" 
+                     [matTooltip]="ticket.description">
+                  {{ ticket.description | slice:0:50 }}{{ ticket.description.length > 50 ? '...' : '' }}
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="priorite">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-icon class="column-icon">priority_high</mat-icon>
+                Priorité
+              </mat-header-cell>
+              <mat-cell *matCellDef="let ticket">
+                <mat-chip [class]="getPriorityClass(ticket.priorite)" selected>
+                  <mat-icon matChipAvatar>{{ getPriorityIcon(ticket.priorite) }}</mat-icon>
+                  {{ ticket.priorite }}
+                </mat-chip>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="statut">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-icon class="column-icon">flag</mat-icon>
+                Statut
+              </mat-header-cell>
+              <mat-cell *matCellDef="let ticket">
+                <mat-chip [class]="getStatusClass(ticket.statut)" selected>
+                  <mat-icon matChipAvatar>{{ getStatusIcon(ticket.statut) }}</mat-icon>
+                  {{ getStatusLabel(ticket.statut) }}
+                </mat-chip>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="assignation">
+              <mat-header-cell *matHeaderCellDef>
+                <mat-icon class="column-icon">assignment_ind</mat-icon>
+                Assignation
+              </mat-header-cell>
+              <mat-cell *matCellDef="let ticket">
+                <div class="assignment-info">
+                  <mat-chip [class]="getAssignmentClass(ticket)" class="assignment-chip">
+                    <mat-icon matChipAvatar>{{ getAssignmentIcon(ticket) }}</mat-icon>
+                    {{ getAssignmentStatus(ticket) }}
+                  </mat-chip>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dateCreation">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-icon class="column-icon">schedule</mat-icon>
+                Date
+              </mat-header-cell>
+              <mat-cell *matCellDef="let ticket">
+                <div class="date-cell">
+                  <div class="date-main">{{ ticket.dateCreation | date:'dd/MM/yyyy' }}</div>
+                  <div class="date-time">{{ ticket.dateCreation | date:'HH:mm' }}</div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <mat-header-cell *matHeaderCellDef>
+                <mat-icon class="column-icon">settings</mat-icon>
+                Actions
+              </mat-header-cell>
+              <mat-cell *matCellDef="let ticket">
+                <div class="action-buttons">
+                  <button mat-mini-fab 
+                          color="primary" 
+                          (click)="viewTicketDetails(ticket)"
+                          matTooltip="Voir les détails"
+                          class="action-btn view-btn">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                  
+                  <button *ngIf="isManager && !ticket.assignedTo" 
+                          mat-mini-fab 
+                          color="accent" 
+                          (click)="openAssignmentDialog(ticket)"
+                          matTooltip="Assigner le ticket"
+                          class="action-btn assign-btn">
+                    <mat-icon>assignment_ind</mat-icon>
+                  </button>
+                  
+                  <button *ngIf="isEmployee" 
+                          mat-mini-fab 
+                          color="accent" 
+                          (click)="updateTicket(ticket)"
+                          matTooltip="Modifier"
+                          class="action-btn edit-btn">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  
+                  <button *ngIf="isEmployee" 
+                          mat-mini-fab 
+                          color="warn" 
+                          (click)="confirmDeleteTicket(ticket)"
+                          matTooltip="Supprimer"
+                          class="action-btn delete-btn">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+
+                  <button *ngIf="isTechnician" 
+                          mat-mini-fab 
+                          color="primary" 
+                          (click)="processTicket(ticket)"
+                          matTooltip="Traiter le ticket"
+                          class="action-btn process-btn">
+                    <mat-icon>build</mat-icon>
+                  </button>
+
+                  <button *ngIf="isTechnician && ticket.assignedTo?.id === currentUser?.id" 
+                          mat-mini-fab 
+                          color="warn" 
+                          (click)="delegateTicket(ticket)"
+                          matTooltip="Déléguer le ticket"
+                          class="action-btn delegate-btn">
+                    <mat-icon>forward</mat-icon>
+                  </button>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" 
+                     class="table-row"
+                     [class.highlight]="row.priorite === 'CRITIQUE'"></mat-row>
+          </mat-table>
+
+          <div class="loading-overlay" *ngIf="loading">
+            <mat-spinner diameter="40"></mat-spinner>
+            <p>Chargement des tickets...</p>
+          </div>
+
+          <div class="empty-state" *ngIf="!loading && dataSource.data.length === 0">
+            <mat-icon class="empty-icon">inbox</mat-icon>
+            <h3>Aucun ticket trouvé</h3>
+            <p>{{ emptyStateMessage }}</p>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="isEmployee ? createTicket() : refreshTickets()"
+                    class="empty-action-btn">
+              <mat-icon>{{ isEmployee ? 'add' : 'refresh' }}</mat-icon>
+              {{ emptyStateButtonText }}
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="pagination-container">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" 
+                   showFirstLastButtons
+                   class="custom-paginator">
+    </mat-paginator>
+  </div>
+
+  <div *ngIf="ticketToDelete && isEmployee" class="mat-dialog-backdrop custom-backdrop">
+    <div class="delete-dialog-container">
+      <h2 mat-dialog-title class="dialog-title">
+        <mat-icon class="warning-icon">warning</mat-icon>
+        Confirmer la suppression
+      </h2>
+
+      <mat-dialog-content class="dialog-content">
+        <p class="warning-message">
+          Êtes-vous sûr de vouloir supprimer ce ticket ? Cette action est irréversible.
+        </p>
+        
+        <div class="ticket-details-card">
+          <div class="ticket-header">
+            <mat-icon class="ticket-icon">confirmation_number</mat-icon>
+            <div class="ticket-info">
+              <h3>{{ ticketToDelete.titre }}</h3>
+              <p class="ticket-description">{{ ticketToDelete.description }}</p>
+            </div>
+          </div>
+          
+          <div class="ticket-details">
+            <div class="detail-item">
+              <mat-icon class="detail-icon">category</mat-icon>
+              <span class="detail-label">Type :</span>
+              <span class="detail-value">{{ ticketToDelete.type }}</span>
+            </div>
+            
+            <div class="detail-item">
+              <mat-icon class="detail-icon">priority_high</mat-icon>
+              <span class="detail-label">Priorité :</span>
+              <span class="detail-value priority-chip" [class]="getPriorityClass(ticketToDelete.priorite)">
+                {{ ticketToDelete.priorite }}
+              </span>
+            </div>
+
+            <div class="detail-item">
+              <mat-icon class="detail-icon">flag</mat-icon>
+              <span class="detail-label">Statut :</span>
+              <span class="detail-value status-chip" [class]="getStatusClass(ticketToDelete.statut)">
+                {{ getStatusLabel(ticketToDelete.statut) }}
+              </span>
+            </div>
+
+            <div class="detail-item">
+              <mat-icon class="detail-icon">schedule</mat-icon>
+              <span class="detail-label">Créé le :</span>
+              <span class="detail-value">{{ ticketToDelete.dateCreation | date:'dd/MM/yyyy à HH:mm' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="consequences-warning">
+          <mat-icon class="info-icon">info</mat-icon>
+          <div class="consequences-text">
+            <strong>Conséquences de la suppression :</strong>
+            <ul>
+              <li>Le ticket sera définitivement supprimé de la base de données</li>
+              <li>Tous les commentaires associés seront perdus</li>
+              <li>L'historique des modifications sera effacé</li>
+              <li>Cette action ne peut pas être annulée</li>
+            </ul>
+          </div>
+        </div>
+      </mat-dialog-content>
+
+      <mat-dialog-actions class="dialog-actions">
+        <button mat-button (click)="cancelDeleteTicket()" class="cancel-button">
+          <mat-icon>close</mat-icon>
+          Annuler
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteTicketConfirmed()" class="delete-button">
+          <mat-icon>delete_forever</mat-icon>
+          Supprimer définitivement
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

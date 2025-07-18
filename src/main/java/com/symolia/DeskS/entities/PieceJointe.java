@@ -1,5 +1,6 @@
 package com.symolia.DeskS.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,13 +18,12 @@ public class PieceJointe {
     @Column(nullable = false)
     private String nomDuFichier;
 
-    @Column(nullable = false)
     private String typeDuFichier;
-
-    @Column(nullable = false)
     private String url;
+    private Long taille;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ticket_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticket_id", nullable = false)
+    @JsonIgnore
     private Ticket ticket;
 }

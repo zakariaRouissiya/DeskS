@@ -1,0 +1,149 @@
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>account_circle</mat-icon>
+  Mon Profil
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <mat-tab-group animationDuration="300ms">
+    <!-- Onglet Informations Personnelles -->
+    <mat-tab label="Informations Personnelles">
+      <div class="tab-content" *ngIf="currentUser">
+        <div class="user-info-header">
+          <div class="user-details">
+            <h2 class="user-name">{{ currentUser.prenom }} {{ currentUser.nom }}</h2>
+            <span class="user-role">{{ currentUser.role }}</span>
+            <p class="user-email">
+              <mat-icon>email</mat-icon>
+              {{ currentUser.email }}
+            </p>
+          </div>
+        </div>
+
+        <form [formGroup]="profileForm" class="profile-form">
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Prénom</mat-label>
+              <input matInput formControlName="prenom">
+              <mat-error *ngIf="profileForm.get('prenom')?.hasError('required')">
+                Ce champ est requis
+              </mat-error>
+              <mat-error *ngIf="profileForm.get('prenom')?.hasError('minlength')">
+                Le prénom doit comporter au moins 2 caractères
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input matInput formControlName="nom">
+              <mat-error *ngIf="profileForm.get('nom')?.hasError('required')">
+                Ce champ est requis
+              </mat-error>
+              <mat-error *ngIf="profileForm.get('nom')?.hasError('minlength')">
+                Le nom doit comporter au moins 2 caractères
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <!-- Champ département en lecture seule -->
+            <mat-form-field appearance="outline">
+              <mat-label>Département</mat-label>
+              <input matInput [value]="currentUser?.department?.nom || 'Aucun département'" readonly>
+              <mat-icon matSuffix>business</mat-icon>
+              <mat-hint>Le département ne peut pas être modifié</mat-hint>
+            </mat-form-field>
+
+            <!-- Remplacer le champ email existant -->
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" readonly>
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-hint>L'adresse email ne peut pas être modifiée</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="form-actions">
+            <button mat-button class="cancel-btn" (click)="closeDialog()">Annuler</button>
+            <button mat-raised-button class="save-btn" [class.loading]="loading" 
+              (click)="updateProfile()" [disabled]="profileForm.invalid || loading">
+              <mat-icon>save</mat-icon>
+              Enregistrer les modifications
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="loading-container" *ngIf="!currentUser">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Chargement de vos informations...</p>
+      </div>
+    </mat-tab>
+
+    <!-- Onglet Mot de passe -->
+    <mat-tab label="Mot de passe">
+      <div class="tab-content">
+        <div class="security-info">
+          <mat-icon>security</mat-icon>
+          <div class="security-text">
+            <h3>Sécurité du mot de passe</h3>
+            <p>Votre mot de passe doit contenir au moins 8 caractères, avec une majuscule, une minuscule, un chiffre et un caractère spécial.</p>
+          </div>
+        </div>
+
+        <form [formGroup]="passwordForm" class="password-form">
+          <!-- Mot de passe actuel - pleine largeur -->
+          <mat-form-field appearance="outline">
+            <mat-label>Mot de passe actuel</mat-label>
+            <input matInput [type]="hideCurrentPassword ? 'password' : 'text'" formControlName="currentPassword">
+            <button mat-icon-button matSuffix (click)="hideCurrentPassword = !hideCurrentPassword" type="button">
+              <mat-icon>{{hideCurrentPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="passwordForm.get('currentPassword')?.hasError('required')">
+              Ce champ est requis
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Nouveau mot de passe et confirmation côte à côte -->
+          <div class="password-fields-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Nouveau mot de passe</mat-label>
+              <input matInput [type]="hideNewPassword ? 'password' : 'text'" formControlName="newPassword">
+              <button mat-icon-button matSuffix (click)="hideNewPassword = !hideNewPassword" type="button">
+                <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordForm.get('newPassword')?.hasError('required')">
+                Ce champ est requis
+              </mat-error>
+              <mat-error *ngIf="passwordForm.get('newPassword')?.hasError('minlength')">
+                Le mot de passe doit contenir au moins 8 caractères
+              </mat-error>
+              <mat-error *ngIf="passwordForm.get('newPassword')?.hasError('pattern')">
+                Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Confirmer le mot de passe</mat-label>
+              <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword">
+              <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" type="button">
+                <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordForm.get('confirmPassword')?.hasError('required')">
+                Ce champ est requis
+              </mat-error>
+              <mat-error *ngIf="passwordForm.hasError('notMatching')">
+                Les mots de passe ne correspondent pas
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-actions">
+            <button mat-raised-button color="primary" (click)="updatePassword()" [disabled]="passwordForm.invalid || loading">
+              <mat-icon>lock_reset</mat-icon>
+              Mettre à jour le mot de passe
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>

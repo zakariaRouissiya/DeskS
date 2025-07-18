@@ -1,0 +1,803 @@
+<div class="ticket-details-dialog">
+  <!-- Header -->
+  <div class="dialog-header">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="ticket-icon-wrapper">
+          <mat-icon class="header-icon">confirmation_number</mat-icon>
+        </div>
+        <div class="header-info">
+          <h2 class="dialog-title">Détails du Ticket</h2>
+          <p class="ticket-id">Ticket #{{ ticket.id }}</p>
+        </div>
+      </div>
+      <button mat-icon-button 
+              mat-dialog-close 
+              class="close-button"
+              matTooltip="Fermer">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Content avec onglets -->
+  <mat-dialog-content class="dialog-content">
+    <mat-tab-group class="details-tabs" animationDuration="300ms">
+      
+      <!-- Onglet Informations générales -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">info</mat-icon>
+          <span>Informations</span>
+          <mat-icon class="attachment-indicator" *ngIf="ticket.pieceJointe">attach_file</mat-icon>
+        </ng-template>
+        
+        <div class="tab-content">
+          <!-- Titre et Description -->
+          <mat-card class="info-card">
+            <mat-card-header>
+              <mat-icon mat-card-avatar class="card-avatar">title</mat-icon>
+              <mat-card-title>Titre et Description</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="ticket-title-section">
+                <h3 class="ticket-main-title">{{ ticket.titre }}</h3>
+                <div class="ticket-type">
+                  <mat-icon class="type-icon">{{ getTypeIcon(ticket.type) }}</mat-icon>
+                  <span>{{ ticket.type }}</span>
+                </div>
+              </div>
+              <mat-divider class="section-divider"></mat-divider>
+              <div class="ticket-description-section">
+                <h4>Description</h4>
+                <p class="description-text">{{ ticket.description }}</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Statut et Priorité -->
+          <div class="status-priority-row">
+            <mat-card class="status-card">
+              <mat-card-header>
+                <mat-icon mat-card-avatar class="card-avatar status-avatar">flag</mat-icon>
+                <mat-card-title>Statut</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-chip [class]="getStatusClass(ticket.statut)" class="status-chip-large">
+                  <mat-icon matChipAvatar>{{ getStatusIcon(ticket.statut) }}</mat-icon>
+                  {{ getStatusLabel(ticket.statut) }}
+                </mat-chip>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="priority-card">
+              <mat-card-header>
+                <mat-icon mat-card-avatar class="card-avatar priority-avatar">priority_high</mat-icon>
+                <mat-card-title>Priorité</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-chip [class]="getPriorityClass(ticket.priorite)" class="priority-chip-large">
+                  <mat-icon matChipAvatar>{{ getPriorityIcon(ticket.priorite) }}</mat-icon>
+                  {{ ticket.priorite }}
+                </mat-chip>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- Dates -->
+          <mat-card class="dates-card">
+            <mat-card-header>
+              <mat-icon mat-card-avatar class="card-avatar">schedule</mat-icon>
+              <mat-card-title>Informations temporelles</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="dates-grid">
+                <div class="date-item">
+                  <mat-icon class="date-icon">event</mat-icon>
+                  <div class="date-info">
+                    <span class="date-label">Date de création</span>
+                    <span class="date-value">{{ ticket.dateCreation | date:'dd/MM/yyyy à HH:mm' }}</span>
+                    <span class="date-relative">{{ getTimeSince((ticket.dateCreation || '') + '') }}</span>
+                  </div>
+                </div>
+                
+                <div class="date-item" *ngIf="ticket.dateResolution">
+                  <mat-icon class="date-icon">event_available</mat-icon>
+                  <div class="date-info">
+                    <span class="date-label">Date de résolution</span>
+                    <span class="date-value">{{ ticket.dateResolution | date:'dd/MM/yyyy à HH:mm' }}</span>
+                    <span class="date-relative">{{ getTimeSince((ticket.dateResolution || '') + '') }}</span>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Pièce jointe -->
+          <mat-card class="attachment-card" *ngIf="ticket.pieceJointe">
+            <mat-card-header>
+              <mat-icon mat-card-avatar class="card-avatar attachment-avatar">attach_file</mat-icon>
+              <mat-card-title>Pièce jointe</mat-card-title>
+              <mat-card-subtitle>Fichier attaché au ticket</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="attachment-section">
+                <div class="attachment-preview">
+                  <div class="file-icon-wrapper">
+                    <mat-icon class="file-icon">{{ getFileIcon(ticket.pieceJointe.typeDuFichier || '') }}</mat-icon>
+                  </div>
+                  <div class="file-info">
+                    <h4 class="file-name">{{ ticket.pieceJointe.nomDuFichier || 'Fichier joint' }}</h4>
+                    <div class="file-meta">
+                      <span class="file-type" *ngIf="ticket.pieceJointe?.typeDuFichier">
+                        <mat-icon class="meta-icon">description</mat-icon>
+                        {{ ticket.pieceJointe.typeDuFichier }}
+                      </span>
+                      <span class="file-size" *ngIf="ticket.pieceJointe?.taille">
+                        <mat-icon class="meta-icon">storage</mat-icon>
+                        {{ formatFileSize(ticket.pieceJointe.taille!) }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="attachment-actions">
+                    <button mat-raised-button 
+                            color="primary" 
+                            class="download-btn"
+                            (click)="downloadFile()"
+                            matTooltip="Télécharger le fichier">
+                      <mat-icon>download</mat-icon>
+                      <span>Télécharger</span>
+                    </button>
+                    
+                    <button mat-stroked-button 
+                            color="primary" 
+                            class="preview-btn"
+                            (click)="previewFile()"
+                            *ngIf="isPreviewable(ticket.pieceJointe?.typeDuFichier || '')"
+                            matTooltip="Aperçu du fichier">
+                      <mat-icon>visibility</mat-icon>
+                      <span>Aperçu</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Message si pas de pièce jointe -->
+          <mat-card class="no-attachment-card" *ngIf="!ticket.pieceJointe">
+            <mat-card-content>
+              <div class="no-attachment-content">
+                <mat-icon class="no-attachment-icon">attach_file_off</mat-icon>
+                <h4>Aucune pièce jointe</h4>
+                <p>Ce ticket ne contient pas de fichier attaché.</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-tab>
+
+      <!-- Onglet Assignation -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">people</mat-icon>
+          <span>Assignation</span>
+          <span *ngIf="getAssignmentCount() > 0"
+                matBadge="{{ getAssignmentCount() }}"
+                matBadgeColor="primary"
+                matBadgeSize="small"
+                class="mat-badge-wrapper">
+          </span>
+        </ng-template>
+        
+        <div class="tab-content">
+          <!-- Créateur du ticket -->
+          <mat-card class="person-card" *ngIf="ticket.user">
+            <mat-card-header>
+              <div mat-card-avatar class="person-avatar creator-avatar">
+                {{ getInitials(ticket.user.nom || '', ticket.user.prenom || '') }}
+              </div>
+              <mat-card-title>Créateur du ticket</mat-card-title>
+              <mat-card-subtitle>
+                <mat-icon class="role-icon">person_add</mat-icon>
+                <span>{{ ticket.user.role || 'Utilisateur' }}</span>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="person-info">
+                <h4>{{ ticket.user.prenom || 'Prénom' }} {{ ticket.user.nom || 'Nom' }}</h4>
+                <p class="person-email" *ngIf="ticket.user.email">{{ ticket.user.email }}</p>
+                <div class="person-department" *ngIf="ticket.user.department?.nom">
+                  <mat-icon>business</mat-icon>
+                  <span>{{ ticket.user.department?.nom }}</span>
+                </div>
+                <div class="person-date">
+                  <mat-icon>schedule</mat-icon>
+                  <span>Créé le {{ ticket.dateCreation | date:'dd/MM/yyyy à HH:mm' }}</span>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Personne assignée au ticket -->
+          <mat-card class="person-card" *ngIf="ticket.assignedTo">
+            <mat-card-header>
+              <div mat-card-avatar class="person-avatar assigned-avatar">
+                {{ getInitials(ticket.assignedTo.nom || '', ticket.assignedTo.prenom || '') }}
+              </div>
+              <mat-card-title>Assigné à</mat-card-title>
+              <mat-card-subtitle>
+                <mat-icon class="role-icon">assignment_ind</mat-icon>
+                <span>{{ ticket.assignedTo.role || 'Technicien' }}</span>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="person-info">
+                <h4>{{ ticket.assignedTo.prenom || 'Prénom' }} {{ ticket.assignedTo.nom || 'Nom' }}</h4>
+                <p class="person-email" *ngIf="ticket.assignedTo.email">{{ ticket.assignedTo.email }}</p>
+                <div class="person-department" *ngIf="ticket.assignedTo.department?.nom">
+                  <mat-icon>business</mat-icon>
+                  <span>{{ ticket.assignedTo.department?.nom }}</span>
+                </div>
+                <div class="assignment-status">
+                  <mat-chip class="assignment-chip assigned-chip">
+                    <mat-icon matChipAvatar>person</mat-icon>
+                    Responsable du traitement
+                  </mat-chip>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Personne déléguée (si différente de l'assigné) -->
+          <mat-card class="person-card" *ngIf="ticket.delegatedTo && ticket.delegatedTo.id !== ticket.assignedTo?.id">
+            <mat-card-header>
+              <div mat-card-avatar class="person-avatar delegated-avatar">
+                {{ getInitials(ticket.delegatedTo.nom || '', ticket.delegatedTo.prenom || '') }}
+              </div>
+              <mat-card-title>Délégué à</mat-card-title>
+              <mat-card-subtitle>
+                <mat-icon class="role-icon">forward</mat-icon>
+                <span>{{ ticket.delegatedTo.role || 'Technicien délégué' }}</span>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="person-info">
+                <h4>{{ ticket.delegatedTo.prenom || 'Prénom' }} {{ ticket.delegatedTo.nom || 'Nom' }}</h4>
+                <p class="person-email" *ngIf="ticket.delegatedTo.email">{{ ticket.delegatedTo.email }}</p>
+                <div class="person-department" *ngIf="ticket.delegatedTo.department?.nom">
+                  <mat-icon>business</mat-icon>
+                  <span>{{ ticket.delegatedTo.department?.nom }}</span>
+                </div>
+                <div class="assignment-status">
+                  <mat-chip class="assignment-chip delegated-chip">
+                    <mat-icon matChipAvatar>forward</mat-icon>
+                    Ticket délégué
+                  </mat-chip>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Message si pas d'assignation -->
+          <mat-card class="no-assignment-card" *ngIf="!ticket.assignedTo && !ticket.delegatedTo">
+            <mat-card-content>
+              <div class="no-assignment-content">
+                <mat-icon class="no-assignment-icon">assignment_late</mat-icon>
+                <h3>Ticket non assigné</h3>
+                <p>Ce ticket n'a pas encore été assigné à un technicien pour traitement.</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Historique des assignations (si disponible) -->
+          <mat-card class="assignment-history-card" *ngIf="hasAssignmentHistory()">
+            <mat-card-header>
+              <mat-icon mat-card-avatar class="card-avatar">history</mat-icon>
+              <mat-card-title>Historique des assignations</mat-card-title>
+              <mat-card-subtitle>Transferts et délégations du ticket</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="assignment-timeline">
+                <!-- Création du ticket -->
+                <div class="timeline-item">
+                  <div class="timeline-marker created-marker">
+                    <mat-icon>add_circle</mat-icon>
+                  </div>
+                  <div class="timeline-content">
+                    <h5>Ticket créé</h5>
+                    <p>Par {{ ticket.user?.prenom }} {{ ticket.user?.nom }}</p>
+                    <span class="timeline-date">{{ ticket.dateCreation | date:'dd/MM/yyyy à HH:mm' }}</span>
+                  </div>
+                </div>
+
+                <!-- Assignation initiale -->
+                <div class="timeline-item" *ngIf="ticket.assignedTo">
+                  <div class="timeline-marker assigned-marker">
+                    <mat-icon>assignment_ind</mat-icon>
+                  </div>
+                  <div class="timeline-content">
+                    <h5>Assigné à {{ ticket.assignedTo.prenom }} {{ ticket.assignedTo.nom }}</h5>
+                    <p>{{ ticket.assignedTo.department?.nom || 'Département non spécifié' }}</p>
+                    <span class="timeline-date">{{ getAssignmentDate() }}</span>
+                  </div>
+                </div>
+
+                <!-- Délégation -->
+                <div class="timeline-item" *ngIf="ticket.delegatedTo">
+                  <div class="timeline-marker delegated-marker">
+                    <mat-icon>forward</mat-icon>
+                  </div>
+                  <div class="timeline-content">
+                    <h5>Délégué à {{ ticket.delegatedTo.prenom }} {{ ticket.delegatedTo.nom }}</h5>
+                    <p>{{ ticket.delegatedTo.department?.nom || 'Département non spécifié' }}</p>
+                    <span class="timeline-date">{{ getDelegationDate() }}</span>
+                  </div>
+                </div>
+
+                <!-- Résolution -->
+                <div class="timeline-item" *ngIf="ticket.dateResolution">
+                  <div class="timeline-marker resolved-marker">
+                    <mat-icon>check_circle</mat-icon>
+                  </div>
+                  <div class="timeline-content">
+                    <h5>Ticket résolu</h5>
+                    <p>Traité par {{ getCurrentHandler()?.prenom }} {{ getCurrentHandler()?.nom }}</p>
+                    <span class="timeline-date">{{ ticket.dateResolution | date:'dd/MM/yyyy à HH:mm' }}</span>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Si aucun créateur -->
+          <mat-card class="no-assignment-card" *ngIf="!ticket.user">
+            <mat-card-content>
+              <div class="no-assignment-content">
+                <mat-icon class="no-assignment-icon">person_off</mat-icon>
+                <h3>Informations utilisateur non disponibles</h3>
+                <p>Les informations sur le créateur du ticket ne sont pas disponibles.</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-tab>
+
+      <!-- Onglet Délégations - Visible pour TOUS les utilisateurs -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">share</mat-icon>
+          <span>Délégations</span>
+          <span *ngIf="getDelegationCount() > 0"
+                matBadge="{{ getDelegationCount() }}"
+                matBadgeColor="warn"
+                matBadgeSize="small"
+                class="mat-badge-wrapper">
+          </span>
+        </ng-template>
+        
+        <div class="tab-content">
+          <!-- Chargement des délégations -->
+          <div *ngIf="loadingDelegations" class="loading-container">
+            <mat-spinner></mat-spinner>
+            <p>Chargement des délégations...</p>
+          </div>
+
+          <!-- Délégation actuelle (approuvée) -->
+          <mat-card class="delegation-card current-delegation" *ngIf="getCurrentDelegation() && !loadingDelegations">
+            <mat-card-header>
+              <mat-icon mat-card-avatar class="card-avatar delegation-avatar current">share</mat-icon>
+              <mat-card-title>Délégation actuelle</mat-card-title>
+              <mat-card-subtitle>
+                <mat-chip class="delegation-status-chip approved">
+                  <mat-icon matChipAvatar>check_circle</mat-icon>
+                  Approuvée
+                </mat-chip>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="delegation-info">
+                <div class="delegation-transfer">
+                  <div class="transfer-from">
+                    <div class="person-avatar-small">
+                      {{ getInitials(getCurrentDelegation()?.fromTechnician?.nom || '', getCurrentDelegation()?.fromTechnician?.prenom || '') }}
+                    </div>
+                    <div class="person-details">
+                      <h4>{{ getCurrentDelegation()?.fromTechnician?.prenom }} {{ getCurrentDelegation()?.fromTechnician?.nom }}</h4>
+                      <p>{{ getCurrentDelegation()?.fromTechnician?.departmentNom }}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="transfer-arrow">
+                    <mat-icon>arrow_forward</mat-icon>
+                  </div>
+                  
+                  <div class="transfer-to">
+                    <div class="person-avatar-small">
+                      {{ getInitials(getCurrentDelegation()?.toTechnician?.nom || '', getCurrentDelegation()?.toTechnician?.prenom || '') }}
+                    </div>
+                    <div class="person-details">
+                      <h4>{{ getCurrentDelegation()?.toTechnician?.prenom }} {{ getCurrentDelegation()?.toTechnician?.nom }}</h4>
+                      <p>{{ getCurrentDelegation()?.toTechnician?.departmentNom }}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <mat-divider class="delegation-divider"></mat-divider>
+                
+                <div class="delegation-details">
+                  <div class="delegation-dates">
+                    <div class="date-item">
+                      <mat-icon>schedule</mat-icon>
+                      <span>Demandée le {{ getCurrentDelegation()?.dateDemande | date:'dd/MM/yyyy à HH:mm' }}</span>
+                    </div>
+                    <div class="date-item" *ngIf="getCurrentDelegation()?.dateReponse">
+                      <mat-icon>done</mat-icon>
+                      <span>Approuvée le {{ getCurrentDelegation()?.dateReponse | date:'dd/MM/yyyy à HH:mm' }}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="delegation-justification">
+                    <h5>Justification</h5>
+                    <p>{{ getCurrentDelegation()?.justification }}</p>
+                  </div>
+                  
+                  <div class="delegation-manager-comment" *ngIf="getCurrentDelegation()?.commentaireReponse">
+                    <h5>Commentaire du manager</h5>
+                    <p>{{ getCurrentDelegation()?.commentaireReponse }}</p>
+                    <div class="manager-info" *ngIf="getCurrentDelegation()?.approvedBy">
+                      <mat-icon>person</mat-icon>
+                      <span>{{ getCurrentDelegation()?.approvedBy?.prenom }} {{ getCurrentDelegation()?.approvedBy?.nom }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Délégation en attente -->
+          <mat-card class="delegation-card pending-delegation" *ngIf="getPendingDelegation() && !loadingDelegations">
+            <mat-card-header>
+              <mat-icon mat-card-avatar class="card-avatar delegation-avatar pending">hourglass_empty</mat-icon>
+              <mat-card-title>Délégation en attente</mat-card-title>
+              <mat-card-subtitle>
+                <mat-chip class="delegation-status-chip pending">
+                  <mat-icon matChipAvatar>hourglass_empty</mat-icon>
+                  En attente de validation
+                </mat-chip>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="delegation-info">
+                <div class="delegation-transfer">
+                  <div class="transfer-from">
+                    <div class="person-avatar-small">
+                      {{ getInitials(getPendingDelegation()?.fromTechnician?.nom || '', getPendingDelegation()?.fromTechnician?.prenom || '') }}
+                    </div>
+                    <div class="person-details">
+                      <h4>{{ getPendingDelegation()?.fromTechnician?.prenom }} {{ getPendingDelegation()?.fromTechnician?.nom }}</h4>
+                      <p>{{ getPendingDelegation()?.fromTechnician?.departmentNom }}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="transfer-arrow">
+                    <mat-icon>arrow_forward</mat-icon>
+                  </div>
+                  
+                  <div class="transfer-to">
+                    <div class="person-avatar-small">
+                      {{ getInitials(getPendingDelegation()?.toTechnician?.nom || '', getPendingDelegation()?.toTechnician?.prenom || '') }}
+                    </div>
+                    <div class="person-details">
+                      <h4>{{ getPendingDelegation()?.toTechnician?.prenom }} {{ getPendingDelegation()?.toTechnician?.nom }}</h4>
+                      <p>{{ getPendingDelegation()?.toTechnician?.departmentNom }}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <mat-divider class="delegation-divider"></mat-divider>
+                
+                <div class="delegation-details">
+                  <div class="delegation-dates">
+                    <div class="date-item">
+                      <mat-icon>schedule</mat-icon>
+                      <span>Demandée le {{ getPendingDelegation()?.dateDemande | date:'dd/MM/yyyy à HH:mm' }}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="delegation-justification">
+                    <h5>Justification</h5>
+                    <p>{{ getPendingDelegation()?.justification }}</p>
+                  </div>
+                  
+                  <div class="pending-info">
+                    <mat-icon class="pending-icon">info</mat-icon>
+                    <p>Cette délégation est en attente de validation par un manager.</p>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Historique des délégations -->
+          <mat-card class="delegation-history-card" *ngIf="hasDelegations() && !loadingDelegations">
+            <mat-card-header>
+              <mat-icon mat-card-avatar class="card-avatar">history</mat-icon>
+              <mat-card-title>Historique des délégations</mat-card-title>
+              <mat-card-subtitle>Toutes les demandes de délégation pour ce ticket</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="delegation-timeline">
+                <div class="timeline-item" *ngFor="let delegation of delegations; let i = index">
+                  <div class="timeline-marker" [class]="getDelegationStatusClass(delegation.statut)">
+                    <mat-icon>{{ getDelegationStatusIcon(delegation.statut) }}</mat-icon>
+                  </div>
+                  <div class="timeline-content">
+                    <div class="timeline-header">
+                      <h5>Délégation {{ getDelegationStatusLabel(delegation.statut) }}</h5>
+                      <mat-chip [class]="getDelegationStatusClass(delegation.statut)" class="timeline-status-chip">
+                        <mat-icon matChipAvatar>{{ getDelegationStatusIcon(delegation.statut) }}</mat-icon>
+                        {{ getDelegationStatusLabel(delegation.statut) }}
+                      </mat-chip>
+                    </div>
+                    
+                    <div class="timeline-delegation-info">
+                      <div class="delegation-participants">
+                        <span class="participant">
+                          <mat-icon>person</mat-icon>
+                          {{ delegation.fromTechnician.prenom }} {{ delegation.fromTechnician.nom }}
+                        </span>
+                        <mat-icon class="arrow">arrow_forward</mat-icon>
+                        <span class="participant">
+                          <mat-icon>person</mat-icon>
+                          {{ delegation.toTechnician.prenom }} {{ delegation.toTechnician.nom }}
+                        </span>
+                      </div>
+                      
+                      <div class="delegation-justification-timeline">
+                        <strong>Justification:</strong> {{ delegation.justification }}
+                      </div>
+                      
+                      <div class="delegation-manager-response" *ngIf="delegation.commentaireReponse">
+                        <strong>Commentaire du manager:</strong> {{ delegation.commentaireReponse }}
+                        <div class="manager-signature" *ngIf="delegation.approvedBy">
+                          <mat-icon>person</mat-icon>
+                          {{ delegation.approvedBy.prenom }} {{ delegation.approvedBy.nom }}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="timeline-dates">
+                      <span class="timeline-date">
+                        <mat-icon>schedule</mat-icon>
+                        Demandée le {{ delegation.dateDemande | date:'dd/MM/yyyy à HH:mm' }}
+                      </span>
+                      <span class="timeline-date" *ngIf="delegation.dateReponse">
+                        <mat-icon>done</mat-icon>
+                        Traitée le {{ delegation.dateReponse | date:'dd/MM/yyyy à HH:mm' }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Message si aucune délégation -->
+          <mat-card class="no-delegation-card" *ngIf="!hasDelegations() && !loadingDelegations">
+            <mat-card-content>
+              <div class="no-delegation-content">
+                <mat-icon class="no-delegation-icon">share_off</mat-icon>
+                <h3>Aucune délégation</h3>
+                <p>Ce ticket n'a fait l'objet d'aucune demande de délégation.</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-tab>
+
+      <!-- Onglet Chat/Commentaires -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">chat</mat-icon>
+          <span>Chat</span>
+          <span *ngIf="getCommentaireCount() > 0"
+                matBadge="{{ getCommentaireCount() }}"
+                matBadgeColor="accent"
+                matBadgeSize="small"
+                class="mat-badge-wrapper">
+          </span>
+        </ng-template>
+        
+        <div class="tab-content">
+          <!-- Zone de chat -->
+          <div class="chat-container">
+            
+            <!-- Header du chat -->
+            <mat-card class="chat-header-card">
+              <mat-card-header>
+                <mat-icon mat-card-avatar class="card-avatar chat-avatar">chat</mat-icon>
+                <mat-card-title>Discussion du ticket</mat-card-title>
+                <mat-card-subtitle>
+                  Échanges entre le créateur, les techniciens et les managers
+                </mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+
+            <!-- Loading des commentaires -->
+            <div *ngIf="loadingCommentaires" class="loading-container">
+              <mat-spinner></mat-spinner>
+              <p>Chargement des commentaires...</p>
+            </div>
+
+            <!-- Liste des commentaires -->
+            <div class="comments-list" *ngIf="!loadingCommentaires">
+              
+              <!-- Message si aucun commentaire -->
+              <mat-card class="no-comments-card" *ngIf="!hasCommentaires()">
+                <mat-card-content>
+                  <div class="no-comments-content">
+                    <mat-icon class="no-comments-icon">chat_bubble_outline</mat-icon>
+                    <h3>Aucun commentaire</h3>
+                    <p>Soyez le premier à écrire un commentaire sur ce ticket.</p>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+
+              <!-- Commentaires -->
+              <div class="comment-item" *ngFor="let commentaire of commentaires">
+                <mat-card class="comment-card">
+                  <mat-card-header>
+                    <div mat-card-avatar class="comment-avatar" [class]="getRoleClass(commentaire.auteur.role)">
+                      {{ getInitials(commentaire.auteur.nom, commentaire.auteur.prenom) }}
+                    </div>
+                    <mat-card-title>
+                      {{ commentaire.auteur.prenom }} {{ commentaire.auteur.nom }}
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                      <div class="comment-metadata">
+                        <div class="comment-role">
+                          <mat-icon class="role-icon">{{ getRoleIcon(commentaire.auteur.role) }}</mat-icon>
+                          <span>{{ getRoleLabel(commentaire.auteur.role) }}</span>
+                        </div>
+                        <div class="comment-date">
+                          <mat-icon>schedule</mat-icon>
+                          <span>{{ getTimeSince(commentaire.dateCreation) }}</span>
+                          <span *ngIf="commentaire.modifie" class="modified-indicator">
+                            <mat-icon matTooltip="Commentaire modifié">edit</mat-icon>
+                          </span>
+                        </div>
+                      </div>
+                    </mat-card-subtitle>
+                    
+                    <!-- Menu d'actions -->
+                    <button mat-icon-button 
+                            [matMenuTriggerFor]="commentMenu" 
+                            *ngIf="canEditComment(commentaire) || canDeleteComment(commentaire)"
+                            class="comment-menu-button">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    
+                    <mat-menu #commentMenu="matMenu">
+                      <button mat-menu-item 
+                              *ngIf="canEditComment(commentaire)"
+                              (click)="startEditComment(commentaire)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Modifier</span>
+                      </button>
+                      <button mat-menu-item 
+                              *ngIf="canDeleteComment(commentaire)"
+                              (click)="deleteComment(commentaire.id)"
+                              class="delete-menu-item">
+                        <mat-icon>delete</mat-icon>
+                        <span>Supprimer</span>
+                      </button>
+                    </mat-menu>
+                  </mat-card-header>
+                  
+                  <mat-card-content>
+                    <!-- Mode normal -->
+                    <div class="comment-content" *ngIf="editingCommentId !== commentaire.id">
+                      <div class="comment-text" [innerHTML]="commentaire.commentaire"></div>
+                      <div class="comment-department" *ngIf="commentaire.auteur.department">
+                        <mat-icon>business</mat-icon>
+                        <span>{{ commentaire.auteur.department.nom }}</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Mode édition -->
+                    <div class="comment-edit-form" *ngIf="editingCommentId === commentaire.id">
+                      <ngx-editor-menu [editor]="editEditor" [toolbar]="toolbar"></ngx-editor-menu>
+                      <ngx-editor
+                        [editor]="editEditor"
+                        [(ngModel)]="editingCommentText"
+                        [placeholder]="'Modifier le commentaire...'"
+                        class="edit-comment-rich"
+                      ></ngx-editor>
+                      <div class="comment-edit-actions">
+                        <button mat-button 
+                                (click)="cancelEditComment()"
+                                class="cancel-edit-btn">
+                          <mat-icon>close</mat-icon>
+                          Annuler
+                        </button>
+                        <button mat-raised-button 
+                                color="primary"
+                                (click)="saveEditComment()"
+                                [disabled]="!editingCommentText.trim()"
+                                class="save-edit-btn">
+                          <mat-icon>save</mat-icon>
+                          Enregistrer
+                        </button>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+
+            <!-- Zone de saisie -->
+            <mat-card class="comment-input-card" *ngIf="canSendComments()">
+              <mat-card-content>
+                <div class="comment-input-section">
+                  <div class="input-header">
+                    <div class="current-user-info">
+                      <div class="current-user-avatar" [class]="getRoleClass(currentUser?.role)">
+                        {{ getInitials(currentUser?.nom || '', currentUser?.prenom || '') }}
+                      </div>
+                      <div class="current-user-details">
+                        <span class="user-name">{{ currentUser?.prenom }} {{ currentUser?.nom }}</span>
+                        <span class="user-role">{{ getRoleLabel(currentUser?.role) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <mat-form-field class="comment-input-field" appearance="outline">
+                    <mat-label>Écrire un commentaire</mat-label>
+                    <textarea matInput 
+                              [(ngModel)]="newCommentaire"
+                              placeholder="Tapez votre commentaire..."
+                              rows="3"
+                              maxlength="1000"
+                              (keydown.ctrl.enter)="sendCommentaire()"></textarea>
+                    <mat-hint align="end">{{ newCommentaire.length }}/1000</mat-hint>
+                  </mat-form-field>
+                  
+                  <div class="comment-input-actions">
+                    <button mat-button 
+                            (click)="newCommentaire = ''"
+                            [disabled]="!newCommentaire.trim() || sendingComment"
+                            class="clear-btn">
+                      <mat-icon>clear</mat-icon>
+                      Effacer
+                    </button>
+                    <button mat-raised-button 
+                            color="primary"
+                            (click)="sendCommentaire()"
+                            [disabled]="!newCommentaire.trim() || sendingComment"
+                            class="send-btn">
+                      <mat-icon *ngIf="!sendingComment">send</mat-icon>
+                      <mat-spinner *ngIf="sendingComment" diameter="20"></mat-spinner>
+                      {{ sendingComment ? 'Envoi...' : 'Envoyer' }}
+                    </button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <!-- Message si l'utilisateur ne peut pas commenter -->
+            <mat-card class="no-comment-permission-card" *ngIf="!canSendComments()">
+              <mat-card-content>
+                <div class="no-comment-permission-content">
+                  <mat-icon class="no-permission-icon">block</mat-icon>
+                  <h3>Commentaires non autorisés</h3>
+                  <p>Vous ne pouvez pas commenter ce ticket car vous n'êtes pas impliqué dans son traitement.</p>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-dialog-content>
+</div>

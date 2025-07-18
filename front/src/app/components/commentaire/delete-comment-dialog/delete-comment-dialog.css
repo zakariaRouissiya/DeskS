@@ -1,0 +1,30 @@
+.delete-comment-dialog {
+  padding: 24px;
+  min-width: 350px;
+  max-width: 420px;
+  text-align: center;
+}
+
+.warning-icon {
+  font-size: 20px;
+  color: #e53935;
+  margin-bottom: 8px;
+}
+
+.comment-preview {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+mat-dialog-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

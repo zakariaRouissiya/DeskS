@@ -25,4 +25,13 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
             "AND (:prenom IS NULL OR u.prenom LIKE :prenom || '%') " +
             "AND (:email IS NULL OR u.email LIKE :email || '%')")
     Page<Utilisateur> findByFilters(Role role, Long departmentId, String nom, String prenom, String email, Pageable pageable);
+    
+    Page<Utilisateur> findByRole(Role role, Pageable pageable);
+    
+    List<Utilisateur> findByRoleAndDepartment_Id(Role role, Long departmentId);
+    Page<Utilisateur> findByRoleAndDepartment_Id(Role role, Long departmentId, Pageable pageable);
+    
+    @Query("SELECT u FROM Utilisateur u WHERE u.role = :role AND u.department.id IN " +
+           "(SELECT d.id FROM Utilisateur user JOIN user.department d WHERE user.id = :userId)")
+    List<Utilisateur> findByRoleAndUserDepartment(Role role, Long userId);
 }

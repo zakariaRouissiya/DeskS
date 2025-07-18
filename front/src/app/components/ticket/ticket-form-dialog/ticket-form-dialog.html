@@ -1,0 +1,255 @@
+<div class="modern-ticket-dialog">
+  <!-- Header avec gradient -->
+  <div class="dialog-header">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="icon-wrapper">
+          <mat-icon class="header-icon">
+            {{ formMode === 'create' ? 'add_circle_outline' : 'edit' }}
+          </mat-icon>
+        </div>
+        <div class="header-text">
+          <h2 class="dialog-title">
+            {{ formMode === 'create' ? 'Nouveau Ticket' : 'Modifier le Ticket' }}
+          </h2>
+          <p class="dialog-subtitle">
+            {{ formMode === 'create' ? 'Créez une nouvelle demande de support' : 'Modifiez les informations du ticket' }}
+          </p>
+        </div>
+      </div>
+      <button mat-icon-button 
+              mat-dialog-close 
+              class="close-button"
+              matTooltip="Fermer">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    
+    <!-- Progress bar -->
+    <mat-progress-bar *ngIf="loading" 
+                      mode="indeterminate" 
+                      class="progress-bar">
+    </mat-progress-bar>
+  </div>
+
+  <!-- Content avec stepper-like design -->
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="ticketForm" class="modern-form">
+      
+      <!-- Step 1: User Selection (Create mode only) -->
+      <div class="form-step" *ngIf="formMode === 'create'">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <div class="step-info">
+            <h3 class="step-title">
+              <mat-icon>person</mat-icon>
+              Utilisateur concerné
+            </h3>
+            <p class="step-description">Sélectionnez l'employé pour qui créer le ticket</p>
+          </div>
+        </div>
+        
+        <div class="step-content">
+          <mat-form-field appearance="fill" class="modern-field">
+            <mat-label>
+              <mat-icon class="field-icon">groups</mat-icon>
+              Choisir un employé
+            </mat-label>
+            <mat-select formControlName="userId" class="user-select">
+              <mat-option *ngFor="let user of employees" [value]="user.id">
+                <div class="user-option-modern">
+                  <div class="user-details">
+                    <div class="user-name">{{ user.prenom }} {{ user.nom }}</div>
+                  </div>
+                </div>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="ticketForm.get('userId')?.invalid && ticketForm.get('userId')?.touched">
+              {{ userIdError }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Step 2: Ticket Information -->
+      <div class="form-step">
+        <div class="step-header">
+          <div class="step-number">{{ formMode === 'create' ? '2' : '1' }}</div>
+          <div class="step-info">
+            <h3 class="step-title">
+              <mat-icon>info</mat-icon>
+              Informations du ticket
+            </h3>
+            <p class="step-description">Décrivez votre problème en détail</p>
+          </div>
+        </div>
+        
+        <div class="step-content">
+          <!-- Titre -->
+          <mat-form-field appearance="fill" class="modern-field title-field">
+            <mat-label>
+              <mat-icon class="field-icon">title</mat-icon>
+              Titre du problème
+            </mat-label>
+            <input matInput 
+                   formControlName="titre" 
+                   placeholder="Ex: Problème de connexion réseau"
+                   maxlength="100"
+                   class="title-input">
+            <mat-hint align="end" class="char-counter">
+              {{ ticketForm.get('titre')?.value?.length || 0 }}/100
+            </mat-hint>
+            <mat-error *ngIf="ticketForm.get('titre')?.invalid && ticketForm.get('titre')?.touched">
+              {{ titreError }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Description -->
+          <mat-form-field appearance="fill" class="modern-field description-field">
+            <mat-label>
+              <mat-icon class="field-icon">description</mat-icon>
+              Description détaillée
+            </mat-label>
+            <textarea matInput 
+                      formControlName="description" 
+                      rows="6" 
+                      placeholder="Décrivez votre problème avec le maximum de détails possible...
+• Quand le problème s'est-il produit ?
+• Que faisiez-vous au moment du problème ?
+• Y a-t-il des messages d'erreur ?
+• Avez-vous essayé quelque chose ?"
+                      class="description-textarea">
+            </textarea>
+            <mat-error *ngIf="ticketForm.get('description')?.invalid && ticketForm.get('description')?.touched">
+              {{ descriptionError }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Type et Priorité -->
+          <div class="fields-row">
+            <mat-form-field appearance="fill" class="modern-field half-field">
+              <mat-label>
+                <mat-icon class="field-icon">category</mat-icon>
+                Type d'incident
+              </mat-label>
+              <mat-select formControlName="type">
+                <mat-option *ngFor="let type of types" [value]="type">
+                  <div class="type-option">
+                    <mat-icon class="type-icon">{{ getTypeIcon(type) }}</mat-icon>
+                    <span>{{ type }}</span>
+                  </div>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="ticketForm.get('type')?.invalid && ticketForm.get('type')?.touched">
+                {{ typeError }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="modern-field half-field">
+              <mat-label>
+                <mat-icon class="field-icon">priority_high</mat-icon>
+                Niveau de priorité
+              </mat-label>
+              <mat-select formControlName="priorite">
+                <mat-option *ngFor="let priorite of priorites" [value]="priorite">
+                  <div class="priority-option" [class]="'priority-' + priorite.toLowerCase()">
+                    <mat-icon class="priority-icon">{{ getPriorityIcon(priorite) }}</mat-icon>
+                    <span>{{ priorite }}</span>
+                    <div class="priority-indicator"></div>
+                  </div>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: File Upload (Create mode only) -->
+      <div class="form-step" *ngIf="formMode === 'create'">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <div class="step-info">
+            <h3 class="step-title">
+              <mat-icon>attach_file</mat-icon>
+              Pièce jointe
+            </h3>
+            <p class="step-description">Ajoutez des captures d'écran ou documents (optionnel)</p>
+          </div>
+        </div>
+        
+        <div class="step-content">
+          <div class="file-upload-zone" 
+               [class.has-file]="selectedFile"
+               (dragover)="onDragOver($event)"
+               (dragleave)="onDragLeave($event)"
+               (drop)="onDrop($event)">
+            
+            <div class="upload-content" *ngIf="!selectedFile">
+              <mat-icon class="upload-icon">cloud_upload</mat-icon>
+              <h4>Glissez-déposez votre fichier ici</h4>
+              <p>ou</p>
+              <button type="button" 
+                      mat-raised-button 
+                      color="primary"
+                      (click)="fileInput.click()"
+                      class="upload-button">
+                <mat-icon>add</mat-icon>
+                Choisir un fichier
+              </button>
+              <p class="upload-hint">Formats acceptés: PDF, DOC, DOCX, TXT, JPG, PNG (Max 10MB)</p>
+            </div>
+
+            <div class="file-preview" *ngIf="selectedFile">
+              <div class="file-info">
+                <mat-icon class="file-icon">{{ getFileIcon(selectedFile.type) }}</mat-icon>
+                <div class="file-details">
+                  <div class="file-name">{{ selectedFile.name }}</div>
+                  <div class="file-size">{{ formatFileSize(selectedFile.size) }}</div>
+                </div>
+                <button type="button" 
+                        mat-icon-button 
+                        color="warn"
+                        (click)="removeFile()"
+                        matTooltip="Supprimer le fichier">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+              
+              <div class="file-success">
+                <mat-icon class="success-icon">check_circle</mat-icon>
+                <span>Fichier prêt à être envoyé</span>
+              </div>
+            </div>
+
+            <input hidden
+                   #fileInput
+                   type="file"
+                   (change)="onFileSelected($event)"
+                   accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png">
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <!-- Actions avec design moderne -->
+  <mat-dialog-actions class="dialog-actions">
+    <div class="actions-container">
+      <button mat-raised-button
+              color="primary"
+              (click)="onSubmit()"
+              [disabled]="ticketForm.invalid || loading"
+              class="submit-button">
+        <mat-icon class="submit-icon">
+          {{ formMode === 'create' ? 'send' : 'save' }}
+        </mat-icon>
+        <span class="submit-text">
+          {{ formMode === 'create' ? 'Créer le ticket' : 'Enregistrer les modifications' }}
+        </span>
+        <div class="button-overlay" *ngIf="loading">
+          <mat-spinner diameter="20"></mat-spinner>
+        </div>
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

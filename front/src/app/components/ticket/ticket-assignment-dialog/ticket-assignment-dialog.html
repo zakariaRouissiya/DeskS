@@ -1,0 +1,234 @@
+<div class="assignment-dialog">
+  <!-- Header amélioré avec zone colorée -->
+  <div class="dialog-header">
+    <div class="header-content">
+      <div class="header-icon">
+        <mat-icon class="main-icon">assignment_ind</mat-icon>
+      </div>
+      <div class="header-text">
+        <h2 class="dialog-title">Assigner le ticket</h2>
+        <p class="dialog-subtitle">Sélectionnez un technicien pour traiter cette demande</p>
+      </div>
+    </div>
+    <button mat-icon-button class="close-btn" (click)="cancel()" matTooltip="Fermer">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  
+  <mat-dialog-content class="dialog-content">
+    <!-- Informations du ticket avec design premium -->
+    <div class="ticket-info-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <mat-icon>description</mat-icon>
+        </div>
+        <h3 class="section-title">Détails du ticket</h3>
+      </div>
+
+      <div class="ticket-cards-container">
+        <!-- Carte titre et priorité -->
+        <div class="ticket-card main-card">
+          <div class="card-header">
+            <div class="card-icon title-icon">
+              <mat-icon>assignment</mat-icon>
+            </div>
+            <div class="card-content">
+              <h4 class="ticket-title">{{ ticket.titre }}</h4>
+              <div class="priority-container">
+                <mat-chip class="priority-chip" [ngClass]="getPriorityClass(ticket.priorite)">
+                  <mat-icon matChipAvatar>{{ getPriorityIcon(ticket.priorite) }}</mat-icon>
+                  <span>{{ ticket.priorite }}</span>
+                </mat-chip>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cartes d'informations -->
+        <div class="info-cards-grid">
+          <div class="info-card creator-card">
+            <div class="info-card-icon">
+              <mat-icon>person</mat-icon>
+            </div>
+            <div class="info-card-content">
+              <span class="info-label">Créé par</span>
+              <span class="info-value">{{ getFullName(ticket.user) }}</span>
+            </div>
+          </div>
+
+          <div class="info-card date-card">
+            <div class="info-card-icon">
+              <mat-icon>schedule</mat-icon>
+            </div>
+            <div class="info-card-content">
+              <span class="info-label">Date de création</span>
+              <span class="info-value">{{ ticket.dateCreation | date:'dd/MM/yyyy à HH:mm' }}</span>
+            </div>
+          </div>
+
+          <div class="info-card status-card">
+            <div class="info-card-icon">
+              <mat-icon>info</mat-icon>
+            </div>
+            <div class="info-card-content">
+              <span class="info-label">Statut actuel</span>
+              <span class="info-value status-value">{{ ticket.statut }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte description -->
+        <div class="ticket-card description-card">
+          <div class="card-header">
+            <div class="card-icon description-icon">
+              <mat-icon>subject</mat-icon>
+            </div>
+            <h5 class="card-title">Description</h5>
+          </div>
+          <div class="card-body">
+            <p class="ticket-description">{{ ticket.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loader pendant le chargement -->
+    <div *ngIf="loading" class="loading-container">
+      <div class="loading-card">
+        <mat-spinner diameter="40" color="primary"></mat-spinner>
+        <div class="loading-text">
+          <h4>Chargement en cours...</h4>
+          <p>Récupération des techniciens disponibles</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulaire d'assignation -->
+    <div *ngIf="!loading" class="assignment-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <mat-icon>person_search</mat-icon>
+        </div>
+        <h3 class="section-title">Sélection du technicien</h3>
+      </div>
+
+      <form [formGroup]="assignmentForm" class="assignment-form">
+        <div class="form-card">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              <mat-icon class="field-icon">person_add</mat-icon>
+              Choisir un technicien
+            </mat-label>
+            <mat-select formControlName="technicianId" [disabled]="loading">
+              <mat-option value="">Sélectionner un technicien</mat-option>
+              <mat-option *ngFor="let tech of technicians" [value]="tech.id">
+                <div class="technician-option">
+                  <div class="technician-info">
+                    <div class="technician-avatar">
+                      <mat-icon>person</mat-icon>
+                    </div>
+                    <div class="technician-details">
+                      <span class="technician-name">{{ getFullName(tech) }}</span>
+                      <span class="technician-email">{{ tech.email }}</span>
+                    </div>
+                  </div>
+                  <div class="workload-indicator">
+                    <mat-chip [class]="getWorkloadClass(tech)" class="workload-chip">
+                      <mat-icon matChipAvatar>work</mat-icon>
+                      {{ getTechnicianWorkload(tech) }}
+                    </mat-chip>
+                  </div>
+                </div>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="assignmentForm.get('technicianId')?.hasError('required')">
+              <mat-icon class="error-icon">error</mat-icon>
+              Veuillez sélectionner un technicien
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Actions d'assignation -->
+          <div class="assignment-actions">
+            <button mat-flat-button 
+                    type="button" 
+                    (click)="autoAssign()" 
+                    [disabled]="loading || technicians.length === 0"
+                    matTooltip="Assigner automatiquement au technicien le moins chargé"
+                    class="auto-assign-btn">
+              <mat-icon>auto_awesome</mat-icon>
+              <span>Assignation automatique</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Message si aucun technicien -->
+    <div *ngIf="!loading && technicians.length === 0" class="no-technicians">
+      <div class="no-data-card">
+        <mat-icon class="no-data-icon">person_off</mat-icon>
+        <h4>Aucun technicien disponible</h4>
+        <p>Il n'y a actuellement aucun technicien disponible dans ce département.</p>
+      </div>
+    </div>
+
+    <!-- Statistiques des techniciens -->
+    <div class="workload-section" *ngIf="!loading && technicians.length > 0">
+      <div class="section-header">
+        <div class="section-icon">
+          <mat-icon>analytics</mat-icon>
+        </div>
+        <h3 class="section-title">Charge de travail actuelle</h3>
+      </div>
+
+      <div class="stats-container">
+        <div class="stats-grid">
+          <div *ngFor="let tech of technicians" class="tech-stat-card">
+            <div class="tech-card-header">
+              <div class="tech-avatar">
+                <mat-icon class="avatar-icon">person</mat-icon>
+              </div>
+              <div class="tech-info">
+                <span class="tech-name">{{ getFullName(tech) }}</span>
+                <span class="tech-email">{{ tech.email }}</span>
+              </div>
+              <div class="workload-badge" [ngClass]="getWorkloadClass(tech)">
+                <mat-icon class="badge-icon">work</mat-icon>
+                <span class="badge-text">{{ getTechnicianWorkload(tech) }}</span>
+              </div>
+            </div>
+            <div class="workload-visual">
+              <div class="workload-bar">
+                <div class="workload-fill" 
+                     [style.width.%]="getTechnicianWorkloadPercent(tech)"
+                     [ngClass]="getWorkloadClass(tech)"></div>
+              </div>
+              <span class="workload-text">{{ getTechnicianWorkload(tech) }} tickets</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions">
+    <div class="actions-container">
+      <button mat-stroked-button 
+              class="cancel-btn"
+              (click)="cancel()" 
+              [disabled]="loading">
+        <mat-icon>close</mat-icon>
+        <span>Annuler</span>
+      </button>
+      <button mat-flat-button 
+              color="primary" 
+              class="assign-btn"
+              (click)="assign()" 
+              [disabled]="loading || assignmentForm.invalid || technicians.length === 0">
+        <mat-icon *ngIf="loading">hourglass_empty</mat-icon>
+        <mat-icon *ngIf="!loading">assignment_turned_in</mat-icon>
+        <span>{{ loading ? 'Assignation...' : 'Assigner' }}</span>
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

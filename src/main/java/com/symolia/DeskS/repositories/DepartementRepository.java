@@ -14,4 +14,6 @@ public interface DepartementRepository extends JpaRepository<Departement, Long> 
     Optional<Departement> findByNomIgnoreCase(String nom);
 
     Page<Departement> findAll(Pageable pageable);
+    
+    Optional<Departement> findByNom(String nom);
 }
