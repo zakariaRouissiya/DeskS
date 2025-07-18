@@ -1,0 +1,164 @@
+:host {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modern-dialog-container {
+  width: 100%;
+  max-width: 600px; /* Largeur réduite pour une disposition en colonne unique */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.dialog-header {
+  background: #2563eb;
+  color: white;
+  margin: -24px -24px 10 -24px;
+  position: relative;
+  overflow: hidden;
+}
+.dialog-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%), 
+              linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%);
+  background-size: 20px 20px;
+  opacity: 0.3;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+.header-left { display: flex; align-items: center; gap: 16px; }
+.icon-wrapper {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+}
+.header-icon { font-size: 2rem; width: 2rem; height: 2rem; }
+.dialog-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 2px 0; }
+.dialog-subtitle { font-size: 0.9rem; margin: 0; opacity: 0.9; font-weight: 300; }
+.close-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 50px;
+  height: 50px;
+}
+.progress-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; z-index: 2; }
+
+/* Content Styles */
+.dialog-content { 
+  padding: 24px; 
+  background: #f8faff;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.modern-form { 
+  display: flex; /* Changé de 'grid' à 'flex' */
+  flex-direction: column; /* Empile les sections verticalement */
+  gap: 24px;
+}
+
+/* Step Styles */
+.form-step {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+  border: 1px solid #e6f2ff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.step-header {
+  background: #f8faff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #e6f2ff;
+}
+.step-number {
+  background: #2563eb;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+.step-info { flex: 1; }
+.step-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin: 0 0 4px 0;
+}
+.step-description { color: #64748b; margin: 0; font-size: 0.85rem; }
+.step-content { padding: 20px; flex-grow: 1; }
+
+/* Form Field Styles */
+.modern-field { width: 100%; margin-bottom: 16px; }
+.field-icon { margin-right: 8px; color: #2563eb; font-size: 1.1rem; }
+.fields-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.half-field { margin-bottom: 0; }
+
+/* Role Option */
+.role-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.role-icon { font-size: 1.2rem; }
+
+/* Actions */
+.dialog-actions {
+  background: #f8faff;
+  margin: 0 -24px -24px -24px;
+  padding: 16px 24px;
+  border-top: 1px solid #e6f2ff;
+}
+.actions-container { display: flex; justify-content: flex-end; gap: 12px; }
+.cancel-button { border-radius: 8px; padding: 8px 16px; }
+.submit-button {
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 15px;
+  margin-left: 5px;
+}
+.submit-icon { margin-right: 8px; }
+.button-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modern-form {
+    /* Cette règle n'est plus nécessaire car la disposition est déjà en colonne unique */
+  }
+}

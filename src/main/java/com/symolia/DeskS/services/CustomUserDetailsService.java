@@ -29,4 +29,9 @@ public class CustomUserDetailsService implements UserDetailsService {
                 List.of(new SimpleGrantedAuthority("ROLE_" + utilisateur.getRole().name()))
         );
     }
+    
+    public Utilisateur findByEmail(String email) {
+        return utilisateurRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé avec l'email: " + email));
+    }
 }

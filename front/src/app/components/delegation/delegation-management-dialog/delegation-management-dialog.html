@@ -1,0 +1,148 @@
+<div class="delegation-management-dialog">
+  <h2 mat-dialog-title>
+    <div class="title-section">
+      <mat-icon>assignment_ind</mat-icon>
+      <span>Gestion des délégations</span>
+    </div>
+    <button class="header-close-btn" (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </h2>
+
+  <mat-dialog-content>
+    <div class="delegation-content">
+      <div *ngIf="loading" class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Chargement des délégations...</p>
+      </div>
+
+      <div *ngIf="!loading && pendingDelegations.length === 0" class="empty-state">
+        <mat-icon class="empty-icon">inbox</mat-icon>
+        <h3>Aucune délégation en attente</h3>
+        <p>Il n'y a actuellement aucune demande de délégation à traiter.</p>
+        <button mat-raised-button (click)="loadPendingDelegations()">
+          <mat-icon>refresh</mat-icon>
+          <span>Actualiser</span>
+        </button>
+      </div>
+
+      <div *ngIf="!loading && pendingDelegations.length > 0" class="delegations-list">
+        <mat-card *ngFor="let delegation of pendingDelegations" class="delegation-card">
+          <mat-card-header>
+            <div mat-card-avatar class="delegation-avatar">
+              <mat-icon>forward</mat-icon>
+            </div>
+            <mat-card-title>{{ delegation.ticketTitre }}</mat-card-title>
+            <mat-card-subtitle>
+              Délégation demandée le {{ delegation.dateDemande | date:'dd/MM/yyyy à HH:mm' }}
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="delegation-info">
+              <div class="ticket-info">
+                <h4>
+                  <mat-icon>confirmation_number</mat-icon>
+                  Ticket #{{ delegation.ticketId }}
+                </h4>
+                <p class="ticket-title">{{ delegation.ticketTitre }}</p>
+              </div>
+
+              <div class="delegation-details">
+                <div class="detail-row">
+                  <div class="detail-item">
+                    <mat-icon class="detail-icon">person</mat-icon>
+                    <div class="detail-content">
+                      <span class="detail-label">De :</span>
+                      <span class="detail-value">
+                        {{ delegation.fromTechnician.prenom }} {{ delegation.fromTechnician.nom }}
+                      </span>
+                      <span class="detail-email">{{ delegation.fromTechnician.email }}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="detail-item">
+                    <mat-icon class="detail-icon">person_outline</mat-icon>
+                    <div class="detail-content">
+                      <span class="detail-label">Vers :</span>
+                      <span class="detail-value">
+                        {{ delegation.toTechnician.prenom }} {{ delegation.toTechnician.nom }}
+                      </span>
+                      <span class="detail-email">{{ delegation.toTechnician.email }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="detail-row">
+                  <div class="detail-item full-width">
+                    <mat-icon class="detail-icon">description</mat-icon>
+                    <div class="detail-content">
+                      <span class="detail-label">Justification :</span>
+                      <p class="justification-text">{{ delegation.justification }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="detail-row">
+                  <div class="detail-item">
+                    <mat-icon class="detail-icon">business</mat-icon>
+                    <div class="detail-content">
+                      <span class="detail-label">Département :</span>
+                      <span class="detail-value">{{ delegation.fromTechnician.departmentNom }}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="detail-item">
+                    <mat-icon class="detail-icon">flag</mat-icon>
+                    <div class="detail-content">
+                      <span class="detail-label">Statut :</span>
+                      <mat-chip [class]="getStatusClass(delegation.statut)" selected>
+                        <mat-icon matChipAvatar>{{ getStatusIcon(delegation.statut) }}</mat-icon>
+                        {{ getStatusLabel(delegation.statut) }}
+                      </mat-chip>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="manager-comment">
+                <mat-form-field appearance="outline" class="comment-field">
+                  <mat-label>Commentaire (optionnel pour approbation, obligatoire pour refus)</mat-label>
+                  <textarea 
+                    matInput 
+                    [(ngModel)]="commentaires[delegation.id]"
+                    rows="3"
+                    placeholder="Votre commentaire sur cette demande de délégation...">
+                  </textarea>
+                  <mat-hint>
+                    {{ (commentaires[delegation.id] || '').length }}/500 caractères
+                  </mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-raised-button 
+                    (click)="rejectDelegation(delegation)"
+                    [disabled]="isProcessing(delegation.id)"
+                    class="reject-btn">
+              <mat-icon *ngIf="!isProcessing(delegation.id)">cancel</mat-icon>
+              <mat-icon *ngIf="isProcessing(delegation.id)">hourglass_empty</mat-icon>
+              <span>Refuser</span>
+            </button>
+            
+            <button mat-raised-button 
+                    (click)="approveDelegation(delegation)"
+                    [disabled]="isProcessing(delegation.id)"
+                    class="approve-btn">
+              <mat-icon *ngIf="!isProcessing(delegation.id)">check_circle</mat-icon>
+              <mat-icon *ngIf="isProcessing(delegation.id)">hourglass_empty</mat-icon>
+              <span>Approuver</span>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,796 @@
+::ng-deep .cdk-overlay-pane {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delegation-management-dialog {
+  width: 100vw;
+  height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  box-shadow: none;
+  background: #f8fafc;
+  max-width: 100vw;
+  max-height: 100vh;
+  box-sizing: border-box;
+}
+
+mat-dialog-content {
+  overflow: hidden !important;
+  padding: 0 !important;
+  flex-grow: 1;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+.delegation-content {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden !important;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 transparent;
+}
+
+.delegation-content::-webkit-scrollbar {
+  width: 8px;
+  height: 0;
+}
+
+.delegation-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.delegation-content::-webkit-scrollbar-thumb {
+  background: #3b57d4;
+  border-radius: 4px;
+}
+
+.delegation-content::-webkit-scrollbar-thumb:hover {
+  background: #2d45a8;
+}
+
+.delegation-content::-webkit-scrollbar-horizontal {
+  display: none !important;
+  height: 0 !important;
+}
+
+* {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+mat-card,
+.ticket-info,
+.delegation-details,
+.manager-comment,
+.detail-row,
+.detail-item,
+.mat-mdc-card-actions,
+.delegation-card,
+.delegation-info,
+.delegations-list {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.detail-row {
+  flex-wrap: wrap !important;
+  word-wrap: break-word !important;
+  overflow-x: hidden !important;
+}
+
+.detail-item {
+  min-width: 0 !important;
+  word-break: break-word !important;
+  overflow-x: hidden !important;
+}
+
+.detail-value,
+.detail-email,
+.ticket-title,
+.justification-text {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
+}
+
+body, html {
+  overflow-x: hidden !important;
+}
+
+::ng-deep .mat-mdc-dialog-container {
+  overflow-x: hidden !important;
+}
+
+.delegation-management-dialog h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+  margin: 0;
+  padding: 20px 32px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #3b57d4 0%, #2d45a8 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.delegation-management-dialog h2 .title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delegation-management-dialog h2 mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.header-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.header-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  background: #f8fafc;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.loading-container mat-spinner {
+  margin-bottom: 24px;
+}
+
+.loading-container p {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 40px;
+  background: #f8fafc;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.empty-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: #cbd5e0;
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+
+.empty-state h3 {
+  color: #2d3748;
+  margin: 0 0 12px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.empty-state p {
+  color: #64748b;
+  margin: 0 0 32px 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.empty-state button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  background: #3b57d4;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.empty-state button:hover {
+  background: #2d45a8;
+  transform: translateY(-2px);
+}
+
+.delegations-list {
+  padding: 24px;
+  background: #f8fafc;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.delegation-card {
+  margin-bottom: 24px;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.delegation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.delegation-card:last-child {
+  margin-bottom: 0;
+}
+
+.delegation-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b57d4 0%, #2d45a8 100%);
+}
+
+.delegation-card .mat-mdc-card-header {
+  padding: 20px 24px 16px 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-bottom: 1px solid #e2e8f0;
+  box-sizing: border-box;
+}
+
+.delegation-avatar {
+  background: linear-gradient(135deg, #3b57d4 0%, #2d45a8 100%);
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(59, 87, 212, 0.3);
+  flex-shrink: 0;
+}
+
+.delegation-avatar mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.delegation-card .mat-mdc-card-title {
+  color: #1a202c;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delegation-card .mat-mdc-card-subtitle {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.delegation-info {
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.ticket-info {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #c7d2fe;
+  box-sizing: border-box;
+}
+
+.ticket-info h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px 0;
+  color: #3730a3;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ticket-info h4 mat-icon {
+  color: #5b21b6;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.ticket-title {
+  font-weight: 500;
+  margin: 0;
+  color: #2d3748;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.delegation-details {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.detail-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.detail-item.full-width {
+  flex: 1 1 100%;
+}
+
+.detail-icon {
+  color: #3b57d4;
+  margin-top: 2px;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.detail-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.detail-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  display: block;
+  font-weight: 600;
+  color: #1a202c;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.detail-email {
+  display: block;
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.justification-text {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin: 8px 0 0 0;
+  line-height: 1.6;
+  color: #2d3748;
+  font-size: 0.95rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.manager-comment {
+  margin-top: 24px;
+  padding: 20px;
+  background: #fefefe;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-sizing: border-box;
+}
+
+.comment-field {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comment-field textarea {
+  min-height: 80px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.6;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.mat-mdc-card-actions {
+  padding: 16px 24px 20px 24px;
+  gap: 12px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+.reject-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.reject-btn:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.approve-btn {
+  background: #10b981;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.approve-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.approve-btn:disabled,
+.reject-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.approve-btn mat-icon,
+.reject-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.delegation-status-en-attente {
+  background: #f59e0b;
+  color: white;
+  font-weight: 500;
+  border-radius: 16px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.delegation-status-approuve {
+  background: #10b981;
+  color: white;
+  font-weight: 500;
+  border-radius: 16px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.delegation-status-refuse {
+  background: #ef4444;
+  color: white;
+  font-weight: 500;
+  border-radius: 16px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mat-mdc-dialog-actions {
+  display: none;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.delegation-card {
+  animation: slideIn 0.3s ease-out;
+}
+
+.delegation-card:nth-child(even) {
+  animation-delay: 0.1s;
+}
+
+.delegation-card:nth-child(odd) {
+  animation-delay: 0.05s;
+}
+
+@media (max-width: 1200px) {
+  .delegation-management-dialog {
+    width: 98vw;
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .delegation-management-dialog {
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    border-radius: 0;
+  }
+  
+  .delegation-management-dialog h2 {
+    padding: 16px 20px;
+    font-size: 1.2rem;
+  }
+  
+  .delegations-list {
+    padding: 16px;
+  }
+  
+  .delegation-card {
+    margin-bottom: 16px;
+  }
+  
+  .delegation-info {
+    padding: 16px;
+  }
+  
+  .detail-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .detail-item {
+    flex-direction: row;
+    gap: 12px;
+  }
+  
+  .delegation-details {
+    padding: 16px;
+  }
+  
+  .manager-comment {
+    padding: 16px;
+  }
+  
+  .mat-mdc-card-actions {
+    padding: 16px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .reject-btn,
+  .approve-btn {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .delegation-management-dialog h2 {
+    padding: 12px 16px;
+    font-size: 1.1rem;
+  }
+  
+  .delegation-management-dialog h2 mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .delegations-list {
+    padding: 12px;
+  }
+  
+  .delegation-info {
+    padding: 12px;
+  }
+  
+  .delegation-details {
+    padding: 12px;
+  }
+  
+  .ticket-info {
+    padding: 12px;
+  }
+  
+  .detail-item {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .detail-icon {
+    margin-top: 0;
+  }
+  
+  .header-close-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .header-close-btn mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .delegation-content {
+    background: #1a202c;
+  }
+  
+  .delegations-list {
+    background: #1a202c;
+  }
+  
+  .delegation-card {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .delegation-card .mat-mdc-card-header {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    border-bottom-color: #4a5568;
+  }
+  
+  .delegation-card .mat-mdc-card-title {
+    color: #e2e8f0;
+  }
+  
+  .delegation-card .mat-mdc-card-subtitle {
+    color: #a0aec0;
+  }
+  
+  .ticket-info {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    border-color: #4a5568;
+  }
+  
+  .ticket-info h4 {
+    color: #90cdf4;
+  }
+  
+  .ticket-title {
+    color: #e2e8f0;
+  }
+  
+  .delegation-details {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .detail-value {
+    color: #e2e8f0;
+  }
+  
+  .detail-label {
+    color: #a0aec0;
+  }
+  
+  .detail-email {
+    color: #a0aec0;
+  }
+  
+  .justification-text {
+    background: #1a202c;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .manager-comment {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .mat-mdc-card-actions {
+    background: #2d3748;
+    border-top-color: #4a5568;
+  }
+}

@@ -1,0 +1,94 @@
+<div class="login-container">
+  <div class="login-content">
+    <div class="login-card animate__animated animate__fadeInUp">
+      <div class="login-header">
+        <div class="logo-container">
+          <img src="./logo.png" alt="Symolia Logo" class="company-logo" />
+        </div>
+        <h1 class="login-title">Bienvenue</h1>
+        <p class="login-subtitle">Connectez-vous à votre espace Symolia SM</p>
+      </div>
+
+      <form (ngSubmit)="login()" class="login-form" #loginForm="ngForm">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="modern-field">
+            <mat-label>Adresse email</mat-label>
+            <input 
+              matInput 
+              type="email" 
+              [(ngModel)]="email" 
+              name="email" 
+              required 
+              autocomplete="email"
+              #emailInput="ngModel"
+              placeholder="votre.email@entreprise.com"
+              (input)="onInputChange()"
+            />
+            <mat-icon matPrefix class="field-icon">alternate_email</mat-icon>
+            <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+              Veuillez saisir une adresse email valide
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="modern-field">
+            <mat-label>Mot de passe</mat-label>
+            <input 
+              matInput 
+              [type]="showPassword ? 'text' : 'password'" 
+              [(ngModel)]="password" 
+              name="password" 
+              required 
+              autocomplete="current-password"
+              #passwordInput="ngModel"
+              placeholder="••••••••"
+              (input)="onInputChange()"
+            />
+            <mat-icon matPrefix class="field-icon">lock_outline</mat-icon>
+            <button 
+              mat-icon-button 
+              matSuffix 
+              type="button" 
+              (click)="showPassword = !showPassword"
+              class="password-toggle"
+              [attr.aria-label]="showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+            >
+              <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+              Le mot de passe est requis
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="error" class="error-message animate__animated animate__shakeX">
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ error }}</span>
+        </div>
+
+        <button 
+          mat-raised-button 
+          type="submit" 
+          class="login-button"
+          [disabled]="isLoading || loginForm.invalid"
+          [class.loading]="isLoading"
+        >
+          <div class="button-content">
+            <mat-spinner *ngIf="isLoading" diameter="20" class="button-spinner"></mat-spinner>
+            <mat-icon *ngIf="!isLoading">login</mat-icon>
+            <span>{{ isLoading ? 'Connexion en cours...' : 'Se connecter' }}</span>
+          </div>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="particles">
+    <div class="particle" *ngFor="let p of particles; let i = index" 
+         [style.left.%]="p.x" 
+         [style.top.%]="p.y"
+         [style.animation-delay.s]="p.delay">
+    </div>
+  </div>
+</div>

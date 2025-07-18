@@ -1,5 +1,6 @@
 package com.symolia.DeskS.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.symolia.DeskS.enums.Priorite;
 import com.symolia.DeskS.enums.Statut;
 import jakarta.persistence.*;
@@ -12,8 +13,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "ticket")
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @AllArgsConstructor
 public class Ticket {
     @Id
@@ -37,29 +40,45 @@ public class Ticket {
     @Column(nullable = false)
     private LocalDateTime dateCreation;
 
+    private LocalDateTime dateResolution;
+
     private Duration tempsResolution;
 
     private String type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private Utilisateur user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     private Departement department;
 
-    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("ticket")
     private List<Commentaire> commentaires;
 
-    @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
-    private PieceJointe pieceJointe;
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("ticket")
+    private List<PieceJointe> piecesJointes;
+
+    public PieceJointe getPieceJointe() {
+        return (piecesJointes != null && !piecesJointes.isEmpty()) ? piecesJointes.get(0) : null;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "assigned_to_id")
+    @JoinColumn(name = "assigned_to_id", foreignKey = @ForeignKey(name = "fk_ticket_assigned_to"))
     private Utilisateur assignedTo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delegated_to_id")
     private Utilisateur delegatedTo;
+
+    public Utilisateur getDelegatedTo() {
+        return delegatedTo;
+    }
+
+    public void setDelegatedTo(Utilisateur delegatedTo) {
+        this.delegatedTo = delegatedTo;
+    }
 }

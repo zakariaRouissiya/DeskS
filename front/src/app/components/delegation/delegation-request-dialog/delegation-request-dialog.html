@@ -1,0 +1,180 @@
+<div class="delegation-dialog">
+  <div class="dialog-header">
+    <div class="header-content">
+      <div class="header-icon">
+        <mat-icon class="main-icon">transfer_within_a_station</mat-icon>
+      </div>
+      <div class="header-text">
+        <h2 class="dialog-title">Demande de délégation</h2>
+        <p class="dialog-subtitle">Transférez ce ticket à un autre technicien</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-content">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-icon">
+          <mat-icon>assignment</mat-icon>
+        </div>
+        <h3 class="section-title">Ticket à déléguer</h3>
+      </div>
+      
+      <div class="ticket-card">
+        <div class="ticket-header">
+          <div class="ticket-priority" [class]="'priority-' + (data.ticket.priorite || 'faible').toLowerCase()">
+            <mat-icon>{{ getPriorityIcon(data.ticket.priorite) }}</mat-icon>
+            <span>{{ data.ticket.priorite || 'Non définie' }}</span>
+          </div>
+          <div class="ticket-status" [class]="'status-' + (data.ticket.statut || 'ouvert').toLowerCase()">
+            {{ data.ticket.statut || 'Ouvert' }}
+          </div>
+        </div>
+        
+        <div class="ticket-content">
+          <h4 class="ticket-title">{{ data.ticket.titre || 'Titre non disponible' }}</h4>
+          <p class="ticket-description">{{ data.ticket.description || 'Description non disponible' }}</p>
+        </div>
+        
+        <div class="ticket-meta">
+          <div class="meta-item">
+            <mat-icon>person</mat-icon>
+            <span>{{ data.ticket.user?.prenom || 'N/A' }} {{ data.ticket.user?.nom || 'N/A' }}</span>
+          </div>
+          <div class="meta-item">
+            <mat-icon>schedule</mat-icon>
+            <span>{{ formatDate(data.ticket.dateCreation) }}</span>
+          </div>
+          <div class="meta-item">
+            <mat-icon>business</mat-icon>
+            <span>{{ data.ticket.department?.nom || data.ticket.user?.department?.nom || 'Département inconnu' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-icon">
+          <mat-icon>person_add</mat-icon>
+        </div>
+        <h3 class="section-title">Détails de la délégation</h3>
+      </div>
+      
+      <form [formGroup]="delegationForm" class="delegation-form">
+        <div class="form-field-container">
+          <mat-form-field appearance="outline" class="premium-field">
+            <mat-label>
+              <mat-icon class="field-icon">person</mat-icon>
+              Technicien destinataire
+            </mat-label>
+            <mat-select formControlName="toTechnicianId" class="technician-select">
+              <mat-option *ngFor="let technician of technicians" [value]="technician.id">
+                <div class="technician-option">
+                  <div class="technician-avatar">
+                    <mat-icon>person</mat-icon>
+                  </div>
+                  <div class="technician-info">
+                    <div class="technician-name">
+                      {{ technician.prenom }} {{ technician.nom }}
+                    </div>
+                    <div class="technician-details">
+                      <span class="department">{{ technician.department?.nom || 'Département inconnu' }}</span>
+                      <span class="workload" [class]="getWorkloadClass(technician.workload)">
+                        {{ getWorkloadText(technician.workload) }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="delegationForm.get('toTechnicianId')?.hasError('required')">
+              <mat-icon class="error-icon">error</mat-icon>
+              Veuillez sélectionner un technicien
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-field-container">
+          <mat-form-field appearance="outline" class="premium-field">
+            <mat-label>
+              <mat-icon class="field-icon">message</mat-icon>
+              Justification de la délégation
+            </mat-label>
+            <textarea 
+              matInput 
+              formControlName="justification" 
+              rows="4"
+              placeholder="Expliquez pourquoi vous souhaitez déléguer ce ticket à ce technicien...">
+            </textarea>
+            <mat-hint class="char-counter">
+              <mat-icon>text_fields</mat-icon>
+              {{ delegationForm.get('justification')?.value?.length || 0 }}/1000 caractères
+            </mat-hint>
+            <mat-error *ngIf="delegationForm.get('justification')?.hasError('required')">
+              <mat-icon class="error-icon">error</mat-icon>
+              La justification est obligatoire
+            </mat-error>
+            <mat-error *ngIf="delegationForm.get('justification')?.hasError('minlength')">
+              <mat-icon class="error-icon">error</mat-icon>
+              La justification doit contenir au moins 10 caractères
+            </mat-error>
+            <mat-error *ngIf="delegationForm.get('justification')?.hasError('maxlength')">
+              <mat-icon class="error-icon">error</mat-icon>
+              La justification ne peut pas dépasser 1000 caractères
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+
+    <div class="section-container" *ngIf="delegationForm.valid">
+      <div class="section-header">
+        <div class="section-icon">
+          <mat-icon>preview</mat-icon>
+        </div>
+        <h3 class="section-title">Aperçu de la délégation</h3>
+      </div>
+      
+      <div class="delegation-preview">
+        <div class="preview-item">
+          <mat-icon>arrow_forward</mat-icon>
+          <div class="preview-content">
+            <span class="preview-label">Vers :</span>
+            <span class="preview-value">{{ getSelectedTechnicianName() }}</span>
+          </div>
+        </div>
+        <div class="preview-item">
+          <mat-icon>schedule</mat-icon>
+          <div class="preview-content">
+            <span class="preview-label">Date :</span>
+            <span class="preview-value">{{ getCurrentDate() }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-actions">
+    <div class="actions-container">
+      <button 
+        mat-button 
+        class="cancel-btn" 
+        (click)="onCancel()" 
+        [disabled]="loading">
+        <mat-icon>close</mat-icon>
+        Annuler
+      </button>
+      
+      <button 
+        mat-raised-button 
+        class="submit-btn" 
+        (click)="onSubmit()" 
+        [disabled]="!delegationForm.valid || loading">
+        <mat-icon *ngIf="loading" class="loading-icon">refresh</mat-icon>
+        <mat-icon *ngIf="!loading">send</mat-icon>
+        {{ loading ? 'Envoi en cours...' : 'Envoyer la demande' }}
+      </button>
+    </div>
+  </div>
+</div>

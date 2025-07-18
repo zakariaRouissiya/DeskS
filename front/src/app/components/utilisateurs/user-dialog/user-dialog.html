@@ -1,0 +1,151 @@
+<div class="modern-dialog-container">
+  <!-- Header -->
+  <div class="dialog-header">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="icon-wrapper">
+          <mat-icon class="header-icon">
+            {{ isEditMode ? 'edit' : 'person_add' }}
+          </mat-icon>
+        </div>
+        <div class="header-text">
+          <h2 class="dialog-title">
+            {{ getDialogTitle() }}
+          </h2>
+          <p class="dialog-subtitle">
+            {{ isEditMode ? 'Mettez à jour les informations de l\'utilisateur' : 'Créez un nouvel utilisateur pour votre organisation' }}
+          </p>
+        </div>
+      </div>
+      <button mat-icon-button 
+              (click)="onCancel()"
+              class="close-button"
+              matTooltip="Fermer">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate" class="progress-bar"></mat-progress-bar>
+  </div>
+
+  <!-- Content -->
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="userForm" class="modern-form">
+      
+      <!-- Step 1: Informations Personnelles -->
+      <div class="form-step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <div class="step-info">
+            <h3 class="step-title">
+              <mat-icon>badge</mat-icon>
+              Identité de l'utilisateur
+            </h3>
+            <p class="step-description">Renseignez les informations personnelles.</p>
+          </div>
+        </div>
+        <div class="step-content">
+          <div class="fields-row">
+            <mat-form-field appearance="fill" class="modern-field half-field">
+              <mat-label>
+                <mat-icon class="field-icon">person</mat-icon>
+                Nom
+              </mat-label>
+              <input matInput formControlName="nom" required>
+              <mat-error *ngIf="userForm.get('nom')?.invalid && userForm.get('nom')?.touched">
+                {{ getFieldError('nom') }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="modern-field half-field">
+              <mat-label>
+                <mat-icon class="field-icon">person_outline</mat-icon>
+                Prénom
+              </mat-label>
+              <input matInput formControlName="prenom" required>
+              <mat-error *ngIf="userForm.get('prenom')?.invalid && userForm.get('prenom')?.touched">
+                {{ getFieldError('prenom') }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="fill" class="modern-field">
+            <mat-label>
+              <mat-icon class="field-icon">email</mat-icon>
+              Adresse email
+            </mat-label>
+            <input matInput formControlName="email" type="email" required>
+            <mat-error *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+              {{ getFieldError('email') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Step 2: Rôle et Affectation -->
+      <div class="form-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <div class="step-info">
+            <h3 class="step-title">
+              <mat-icon>work</mat-icon>
+              Rôle et Affectation
+            </h3>
+            <p class="step-description">Définissez les permissions et le département.</p>
+          </div>
+        </div>
+        <div class="step-content">
+          <mat-form-field appearance="fill" class="modern-field">
+            <mat-label>
+              <mat-icon class="field-icon">admin_panel_settings</mat-icon>
+              Rôle utilisateur
+            </mat-label>
+            <mat-select formControlName="role" required>
+              <mat-option *ngFor="let role of userRoles" [value]="role.value">
+                <div class="role-option">
+                  <mat-icon class="role-icon" [style.color]="role.color">{{ role.icon }}</mat-icon>
+                  <span>{{ role.label }}</span>
+                </div>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched">
+              {{ getFieldError('role') }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="modern-field">
+            <mat-label>
+              <mat-icon class="field-icon">business</mat-icon>
+              Département
+            </mat-label>
+            <mat-select formControlName="departementId" required>
+              <mat-option *ngFor="let dept of departements" [value]="dept.id">
+                {{ dept.nom }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="userForm.get('departementId')?.invalid && userForm.get('departementId')?.touched">
+              {{ getFieldError('departementId') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <!-- Actions -->
+  <mat-dialog-actions class="dialog-actions">
+    <div class="actions-container">
+      <button mat-raised-button
+              color="primary"
+              (click)="onSubmit()"
+              [disabled]="userForm.invalid || isLoading"
+              class="submit-button">
+        <mat-icon class="submit-icon">
+          {{ isEditMode ? 'save' : 'add' }}
+        </mat-icon>
+        <span class="submit-text">
+          {{ getSubmitButtonText() }}
+        </span>
+        <div class="button-overlay" *ngIf="isLoading">
+          <mat-spinner diameter="20"></mat-spinner>
+        </div>
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

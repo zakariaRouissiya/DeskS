@@ -1,0 +1,18 @@
+<div class="delete-comment-dialog">
+  <mat-icon class="warning-icon" color="warn">warning</mat-icon>
+  <h2>Confirmer la suppression</h2>
+  <p>Êtes-vous sûr de vouloir supprimer ce commentaire ? Cette action est irréversible.</p>
+  <div class="comment-preview">
+    <span [innerHTML]="data.commentaire.contenu"></span>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">
+      <mat-icon>close</mat-icon>
+      Annuler
+    </button>
+    <button mat-raised-button color="warn" (click)="confirm()">
+      <mat-icon>delete</mat-icon>
+      Supprimer
+    </button>
+  </mat-dialog-actions>
+</div>

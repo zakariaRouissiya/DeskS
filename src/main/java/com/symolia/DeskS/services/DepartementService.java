@@ -37,19 +37,13 @@ public class DepartementService {
         List<Departement> filteredDepartements;
         if (nom != null && !nom.isEmpty()) {
             filteredDepartements = allDepartements.getContent().stream()
-                    .filter(d -> d.getNom() != null && d.getNom().toString().toLowerCase().contains(nom.toLowerCase()))
+                    .filter(d -> d.getNom() != null && d.getNom().toLowerCase().contains(nom.toLowerCase()))
                     .collect(Collectors.toList());
         } else {
             filteredDepartements = allDepartements.getContent();
         }
 
-        Page<Departement> result = new PageImpl<>(
-                filteredDepartements,
-                pageable,
-                filteredDepartements.size()
-        );
-        logger.debug("Récupération réussie, total éléments : {}", result.getTotalElements());
-        return result;
+        return new PageImpl<>(filteredDepartements, pageable, filteredDepartements.size());
     }
 
     public Optional<Departement> getDepartementById(Long id) {
