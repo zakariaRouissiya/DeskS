@@ -150,6 +150,55 @@
           </form>
         </mat-card-content>
       </mat-card>
+
+      <!-- Analyse IA -->
+      <button mat-stroked-button color="accent"
+              (click)="getIaAnalysis()"
+              [disabled]="loadingIa"
+              style="margin-bottom: 16px;">
+        <mat-icon *ngIf="!loadingIa">smart_toy</mat-icon>
+        <mat-spinner *ngIf="loadingIa" diameter="20"></mat-spinner>
+        {{ loadingIa ? 'Analyse IA...' : 'Analyse IA du ticket' }}
+      </button>
+
+      <!-- Affichage de la réponse IA améliorée -->
+      <mat-card *ngIf="iaResponse" class="ia-card" style="margin-bottom: 24px;">
+        <mat-card-header>
+          <mat-icon mat-card-avatar color="accent">smart_toy</mat-icon>
+          <mat-card-title>Analyse IA du ticket</mat-card-title>
+          <button mat-icon-button matTooltip="Copier la réponse IA"
+                  (click)="copyIaResponse()" style="margin-left:8px;">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+          <mat-card-subtitle>Résumé expert généré automatiquement</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="ia-section" *ngIf="getSection('DIAGNOSTIC') as diag">
+            <h3><mat-icon color="primary">assignment</mat-icon> Diagnostic</h3>
+            <div [innerHTML]="diag"></div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="ia-section" *ngIf="getSection('NIVEAU DE CRITICITÉ') as critic">
+            <h3><mat-icon color="warn">priority_high</mat-icon> Niveau de criticité</h3>
+            <div [innerHTML]="critic"></div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="ia-section" *ngIf="getSection('PLAN D\'ACTION TECHNIQUE') as plan">
+            <h3><mat-icon color="primary">build</mat-icon> Plan d'action technique</h3>
+            <div [innerHTML]="plan"></div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="ia-section" *ngIf="getSection('INFORMATIONS COMPLÉMENTAIRES') as infos">
+            <h3><mat-icon color="primary">help</mat-icon> Informations complémentaires</h3>
+            <div [innerHTML]="infos"></div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="ia-section" *ngIf="getSection('RÉFÉRENCES & DOCUMENTATION') as refs">
+            <h3><mat-icon color="primary">menu_book</mat-icon> Références & documentation</h3>
+            <div [innerHTML]="refs"></div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </mat-dialog-content>
 </div>

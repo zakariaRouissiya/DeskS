@@ -1717,3 +1717,38 @@ mat-icon {
   width: 100%;
   margin-bottom: 12px;
 }
+
+.manager-actions-header {
+  position: absolute;
+  top: 24px;
+  right: 140px;
+  left: auto;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  z-index: 2;
+  margin: 120px -300px;
+}
+
+.validate-btn {
+  background-color: #219653 !important; 
+  color: #fff !important;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(33,150,83,0.08);
+}
+
+.reopen-btn {
+  background-color: #eb5757 !important;
+  color: #fff !important;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(235,87,87,0.08);
+}
+
+.closed-marker {
+  background: #219653;
+  color: #fff;
+}
+.reopened-marker {
+  background: #eb5757;
+  color: #fff;
+}

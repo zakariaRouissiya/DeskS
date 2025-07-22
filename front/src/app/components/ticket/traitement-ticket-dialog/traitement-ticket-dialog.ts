@@ -12,6 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDivider } from "@angular/material/divider";
 import { NgxEditorModule, Editor, Toolbar } from 'ngx-editor';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AiAgentService } from '../../../services/ai-agent.service';
 
 @Component({
   selector: 'app-traitement-ticket-dialog',
@@ -35,6 +36,8 @@ export class TraitementTicketDialog implements OnInit, OnDestroy {
   ticket: Ticket;
   sendingSolution = false;
   currentUser: any = null;
+  iaResponse: string | null = null;
+  loadingIa = false;
 
   editor!: Editor;
   toolbar: Toolbar = [
@@ -62,7 +65,8 @@ export class TraitementTicketDialog implements OnInit, OnDestroy {
     private readonly snackBar: MatSnackBar,
     private readonly ticketService: TicketService,
     private readonly commentaireService: CommentaireService,
-    private readonly authService: AuthentificationService
+    private readonly authService: AuthentificationService,
+    private readonly aiAgentService: AiAgentService
   ) {
     this.ticket = data.ticket;
     this.currentUser = this.authService.getCurrentUser();
@@ -91,17 +95,18 @@ export class TraitementTicketDialog implements OnInit, OnDestroy {
     };
     this.commentaireService.createCommentaire(this.ticket.id!, request).subscribe({
       next: () => {
-        this.ticketService.updateStatut(this.ticket.id!, 'RESOLU').subscribe({
-          next: () => {
-            this.sendingSolution = false;
-            this.snackBar.open('Solution enregistrée et ticket résolu', 'Fermer', { duration: 2000 });
-            this.dialogRef.close(true);
-          },
-          error: () => {
-            this.sendingSolution = false;
-            this.snackBar.open('Erreur lors du changement de statut', 'Fermer', { duration: 3000 });
-          }
-        });
+        this.ticketService.updateStatut(this.ticket.id!, 'RESOLU', this.currentUser.id)
+          .subscribe({
+            next: () => {
+              this.sendingSolution = false;
+              this.snackBar.open('Solution enregistrée et ticket résolu', 'Fermer', { duration: 2000 });
+              this.dialogRef.close(true);
+            },
+            error: () => {
+              this.sendingSolution = false;
+              this.snackBar.open('Erreur lors du changement de statut', 'Fermer', { duration: 3000 });
+            }
+          });
       },
       error: (error) => {
         console.error('Erreur lors de l\'enregistrement de la solution:', error);
@@ -188,5 +193,44 @@ export class TraitementTicketDialog implements OnInit, OnDestroy {
         this.snackBar.open('Erreur lors de l\'aperçu', 'Fermer', { duration: 3000 });
       }
     });
+  }
+
+  getIaAnalysis(): void {
+    if (!this.ticket?.id) return;
+    this.loadingIa = true;
+    this.iaResponse = null;
+    this.aiAgentService.analyseTicket(this.ticket.id).subscribe({
+      next: (response) => {
+        this.iaResponse = response;
+        this.loadingIa = false;
+      },
+      error: (err) => {
+        this.iaResponse = 'Erreur lors de la récupération de l\'analyse IA.';
+        this.loadingIa = false;
+      }
+    });
+  }
+
+  getSection(title: string): string | null {
+    if (!this.iaResponse) return null;
+    // Découpe la réponse en sections à partir des titres
+    const sections = this.iaResponse.split(/(?:📋|\n|^) ?\*\*(.*?)\*\*/g);
+    for (let i = 1; i < sections.length; i += 2) {
+      if (sections[i].trim().toUpperCase() === title.toUpperCase()) {
+        // Nettoie le markdown pour un affichage HTML correct
+        return sections[i + 1]
+          .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+          .replace(/^- (.*)$/gm, '<li>$1</li>')
+          .replace(/\n/g, '<br>');
+      }
+    }
+    return null;
+  }
+
+  copyIaResponse(): void {
+    if (!this.iaResponse) return;
+    navigator.clipboard.writeText(this.iaResponse)
+      .then(() => this.snackBar.open('Réponse IA copiée !', 'Fermer', { duration: 2000 }))
+      .catch(() => this.snackBar.open('Erreur lors de la copie', 'Fermer', { duration: 2000 }));
   }
 }

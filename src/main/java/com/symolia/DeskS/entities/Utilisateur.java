@@ -44,9 +44,10 @@ public class Utilisateur {
     private LocalDateTime dateInscription;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonIgnore 
     private List<Ticket> tickets = new ArrayList<>();
 
     @OneToMany(mappedBy = "auteur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore 
     private List<Commentaire> commentaires;
 }

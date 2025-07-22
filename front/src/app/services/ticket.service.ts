@@ -60,6 +60,8 @@ export interface Ticket {
   priorite: Priorite | string;
   dateCreation?: Date | string;
   dateResolution?: Date | string;
+  dateFermeture?: Date | string;     
+  dateReouverture?: Date | string;    
   tempsResolution?: string;
   type: string;
   user?: Utilisateur;
@@ -68,6 +70,8 @@ export interface Ticket {
   pieceJointe?: PieceJointe;
   assignedTo?: Utilisateur;
   delegatedTo?: Utilisateur;
+  closedBy?: Utilisateur;             
+  reopenedBy?: Utilisateur;           
 }
 
 export interface TicketResponseDTO {
@@ -78,6 +82,8 @@ export interface TicketResponseDTO {
   priorite: Priorite | string;
   dateCreation?: string;
   dateResolution?: string;
+  dateFermeture?: string;      
+  dateReouverture?: string;    
   type: string;
   user?: {
     id: number;
@@ -99,6 +105,8 @@ export interface TicketResponseDTO {
       nom: string;
     };
   };
+  closedBy?: Utilisateur;
+  reopenedBy?: Utilisateur;
   pieceJointe?: {
     id: number;
     nomDuFichier: string;
@@ -338,6 +346,8 @@ export class TicketService {
       priorite: dto.priorite,
       dateCreation: dto.dateCreation,
       dateResolution: dto.dateResolution,
+      dateFermeture: dto.dateFermeture,       
+      dateReouverture: dto.dateReouverture,
       type: dto.type,
       user: dto.user ? {
         id: dto.user.id,
@@ -353,6 +363,8 @@ export class TicketService {
         email: dto.assignedTo.email,
         department: dto.assignedTo.department
       } : undefined,
+      closedBy: dto.closedBy ? { ...dto.closedBy } : undefined,         
+      reopenedBy: dto.reopenedBy ? { ...dto.reopenedBy } : undefined, 
       department: dto.user?.department,
       pieceJointe: dto.pieceJointe ? {
         id: dto.pieceJointe.id,
@@ -372,10 +384,10 @@ export class TicketService {
     return throwError(() => new Error(errorMessage));
   }
 
-  updateStatut(ticketId: number, statut: string): Observable<Ticket> {
+  updateStatut(ticketId: number, statut: string, userId: number): Observable<Ticket> {
     return this.http.put<any>(
       `${this.baseUrl}/${ticketId}/statut`,
-      { statut },
+      { statut, userId },
       { headers: this.getHeaders() }
     ).pipe(
       map(response => response.ticket),

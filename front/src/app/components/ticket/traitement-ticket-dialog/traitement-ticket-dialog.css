@@ -16,8 +16,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
 }
 
 .header-content {
@@ -65,10 +63,15 @@
 .card-avatar {
   background: #2563eb !important;
   color: white !important;
-  font-size: 1.25rem !important;
-  width: 48px !important;
+  font-size: 24px !important; 
+  width: 48px !important;          
   height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
 }
+
 
 .attachment-avatar {
   background: #8b5cf6 !important;
@@ -309,4 +312,21 @@ ngx-editor {
 }
 .solution-editor {
   width: 700px;
+}
+
+.ia-card {
+  border-left: 5px solid #2563eb;
+  background: #f8fafc;
+}
+.ia-section {
+  margin-bottom: 18px;
+}
+.ia-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-size: 1.15rem;
+  color: #1e40af;
 }

@@ -493,7 +493,7 @@ export class TicketComponent implements OnInit, AfterViewInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-          if (result === 'assigned') {
+          if (result === 'statut-updated' || result === 'assigned') {
             this.loadTickets();
           }
         });

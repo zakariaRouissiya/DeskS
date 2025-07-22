@@ -1,5 +1,4 @@
 <div class="ticket-details-dialog">
-  <!-- Header -->
   <div class="dialog-header">
     <div class="header-content">
       <div class="header-left">
@@ -20,11 +19,9 @@
     </div>
   </div>
 
-  <!-- Content avec onglets -->
   <mat-dialog-content class="dialog-content">
     <mat-tab-group class="details-tabs" animationDuration="300ms">
       
-      <!-- Onglet Informations générales -->
       <mat-tab>
         <ng-template mat-tab-label>
           <mat-icon class="tab-icon">info</mat-icon>
@@ -33,7 +30,6 @@
         </ng-template>
         
         <div class="tab-content">
-          <!-- Titre et Description -->
           <mat-card class="info-card">
             <mat-card-header>
               <mat-icon mat-card-avatar class="card-avatar">title</mat-icon>
@@ -47,6 +43,16 @@
                   <span>{{ ticket.type }}</span>
                 </div>
               </div>
+               <div class="manager-actions-header" *ngIf="canValidateOrReopen() && isManager()">
+                <button mat-raised-button color="primary" class="validate-btn" (click)="validateTicket()">
+                  <mat-icon>check_circle</mat-icon>
+                  Valider et fermer le ticket
+                </button>
+                <button mat-raised-button color="warn" class="reopen-btn" (click)="reopenTicket()">
+                  <mat-icon>replay</mat-icon>
+                  Rouvrir le ticket
+                </button>
+              </div>
               <mat-divider class="section-divider"></mat-divider>
               <div class="ticket-description-section">
                 <h4>Description</h4>
@@ -55,7 +61,6 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Statut et Priorité -->
           <div class="status-priority-row">
             <mat-card class="status-card">
               <mat-card-header>
@@ -84,37 +89,7 @@
             </mat-card>
           </div>
 
-          <!-- Dates -->
-          <mat-card class="dates-card">
-            <mat-card-header>
-              <mat-icon mat-card-avatar class="card-avatar">schedule</mat-icon>
-              <mat-card-title>Informations temporelles</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <div class="dates-grid">
-                <div class="date-item">
-                  <mat-icon class="date-icon">event</mat-icon>
-                  <div class="date-info">
-                    <span class="date-label">Date de création</span>
-                    <span class="date-value">{{ ticket.dateCreation | date:'dd/MM/yyyy à HH:mm' }}</span>
-                    <span class="date-relative">{{ getTimeSince((ticket.dateCreation || '') + '') }}</span>
-                  </div>
-                </div>
-                
-                <div class="date-item" *ngIf="ticket.dateResolution">
-                  <mat-icon class="date-icon">event_available</mat-icon>
-                  <div class="date-info">
-                    <span class="date-label">Date de résolution</span>
-                    <span class="date-value">{{ ticket.dateResolution | date:'dd/MM/yyyy à HH:mm' }}</span>
-                    <span class="date-relative">{{ getTimeSince((ticket.dateResolution || '') + '') }}</span>
-                  </div>
-                </div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-
-          <!-- Pièce jointe -->
-          <mat-card class="attachment-card" *ngIf="ticket.pieceJointe">
+           <mat-card class="attachment-card" *ngIf="ticket.pieceJointe">
             <mat-card-header>
               <mat-icon mat-card-avatar class="card-avatar attachment-avatar">attach_file</mat-icon>
               <mat-card-title>Pièce jointe</mat-card-title>
@@ -164,7 +139,65 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Message si pas de pièce jointe -->
+          <mat-card class="dates-card">
+            <mat-card-header>
+              <mat-icon mat-card-avatar class="card-avatar">schedule</mat-icon>
+              <mat-card-title>Informations temporelles</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="dates-grid">
+                <div class="date-item" *ngIf="getSLA()">
+                  <mat-icon class="date-icon">timer</mat-icon>
+                  <div class="date-info">
+                    <span class="date-label">SLA (Temps de résolution)</span>
+                    <span class="date-value">{{ getSLA() }}</span>
+                  </div>
+                </div>
+                <div class="date-item">
+                  <mat-icon class="date-icon">event</mat-icon>
+                  <div class="date-info">
+                    <span class="date-label">Date de création</span>
+                    <span class="date-value">{{ ticket.dateCreation | date:'dd/MM/yyyy à HH:mm' }}</span>
+                    <span class="date-relative">{{ getTimeSince((ticket.dateCreation || '') + '') }}</span>
+                  </div>
+                </div>
+                
+                <div class="date-item" *ngIf="ticket.dateResolution">
+                  <mat-icon class="date-icon">event_available</mat-icon>
+                  <div class="date-info">
+                    <span class="date-label">Date de résolution</span>
+                    <span class="date-value">{{ ticket.dateResolution | date:'dd/MM/yyyy à HH:mm' }}</span>
+                    <span class="date-relative">{{ getTimeSince((ticket.dateResolution || '') + '') }}</span>
+                  </div>
+                </div>
+
+                <!-- Ticket rouvert -->
+                <div class="timeline-item" *ngIf="ticket.dateReouverture">
+                  <div class="timeline-marker reopened-marker">
+                    <mat-icon>replay</mat-icon>
+                  </div>
+                  <div class="timeline-content">
+                    <h5>Ticket rouvert</h5>
+                    <p>Réouvert par {{ ticket.reopenedBy?.prenom }} {{ ticket.reopenedBy?.nom }}</p>
+                    <span class="timeline-date">{{ ticket.dateReouverture | date:'dd/MM/yyyy à HH:mm' }}</span>
+                  </div>
+                </div>
+
+                <!-- Ticket fermé -->
+                <div class="timeline-item" *ngIf="ticket.dateFermeture">
+                  <div class="timeline-marker closed-marker">
+                    <mat-icon>lock</mat-icon>
+                  </div>
+                  <div class="timeline-content">
+                    <h5>Ticket fermé</h5>
+                    <p>Fermé par {{ ticket.closedBy?.prenom }} {{ ticket.closedBy?.nom }}</p>
+                    <span class="timeline-date">{{ ticket.dateFermeture | date:'dd/MM/yyyy à HH:mm' }}</span>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
           <mat-card class="no-attachment-card" *ngIf="!ticket.pieceJointe">
             <mat-card-content>
               <div class="no-attachment-content">
@@ -177,7 +210,6 @@
         </div>
       </mat-tab>
 
-      <!-- Onglet Assignation -->
       <mat-tab>
         <ng-template mat-tab-label>
           <mat-icon class="tab-icon">people</mat-icon>
@@ -191,7 +223,6 @@
         </ng-template>
         
         <div class="tab-content">
-          <!-- Créateur du ticket -->
           <mat-card class="person-card" *ngIf="ticket.user">
             <mat-card-header>
               <div mat-card-avatar class="person-avatar creator-avatar">
@@ -219,7 +250,6 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Personne assignée au ticket -->
           <mat-card class="person-card" *ngIf="ticket.assignedTo">
             <mat-card-header>
               <div mat-card-avatar class="person-avatar assigned-avatar">
@@ -249,7 +279,6 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Personne déléguée (si différente de l'assigné) -->
           <mat-card class="person-card" *ngIf="ticket.delegatedTo && ticket.delegatedTo.id !== ticket.assignedTo?.id">
             <mat-card-header>
               <div mat-card-avatar class="person-avatar delegated-avatar">
@@ -279,7 +308,6 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Message si pas d'assignation -->
           <mat-card class="no-assignment-card" *ngIf="!ticket.assignedTo && !ticket.delegatedTo">
             <mat-card-content>
               <div class="no-assignment-content">
@@ -290,7 +318,6 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Historique des assignations (si disponible) -->
           <mat-card class="assignment-history-card" *ngIf="hasAssignmentHistory()">
             <mat-card-header>
               <mat-icon mat-card-avatar class="card-avatar">history</mat-icon>
@@ -299,7 +326,6 @@
             </mat-card-header>
             <mat-card-content>
               <div class="assignment-timeline">
-                <!-- Création du ticket -->
                 <div class="timeline-item">
                   <div class="timeline-marker created-marker">
                     <mat-icon>add_circle</mat-icon>
@@ -311,7 +337,6 @@
                   </div>
                 </div>
 
-                <!-- Assignation initiale -->
                 <div class="timeline-item" *ngIf="ticket.assignedTo">
                   <div class="timeline-marker assigned-marker">
                     <mat-icon>assignment_ind</mat-icon>
@@ -323,7 +348,6 @@
                   </div>
                 </div>
 
-                <!-- Délégation -->
                 <div class="timeline-item" *ngIf="ticket.delegatedTo">
                   <div class="timeline-marker delegated-marker">
                     <mat-icon>forward</mat-icon>
@@ -335,7 +359,6 @@
                   </div>
                 </div>
 
-                <!-- Résolution -->
                 <div class="timeline-item" *ngIf="ticket.dateResolution">
                   <div class="timeline-marker resolved-marker">
                     <mat-icon>check_circle</mat-icon>
@@ -346,11 +369,32 @@
                     <span class="timeline-date">{{ ticket.dateResolution | date:'dd/MM/yyyy à HH:mm' }}</span>
                   </div>
                 </div>
+              <!-- Ticket rouvert -->
+              <div class="timeline-item" *ngIf="ticket.dateReouverture">
+                <div class="timeline-marker reopened-marker">
+                  <mat-icon>replay</mat-icon>
+                </div>
+                <div class="timeline-content">
+                  <h5>Ticket rouvert</h5>
+                  <p>Réouvert par {{ ticket.reopenedBy?.prenom }} {{ ticket.reopenedBy?.nom }}</p>
+                  <span class="timeline-date">{{ ticket.dateReouverture | date:'dd/MM/yyyy à HH:mm' }}</span>
+                </div>
               </div>
+              <!-- Ticket fermé -->
+              <div class="timeline-item" *ngIf="ticket.dateFermeture">
+                <div class="timeline-marker closed-marker">
+                  <mat-icon>lock</mat-icon>
+                </div>
+                <div class="timeline-content">
+                  <h5>Ticket fermé</h5>
+                  <p>Fermé par {{ ticket.closedBy?.prenom }} {{ ticket.closedBy?.nom }}</p>
+                  <span class="timeline-date">{{ ticket.dateFermeture | date:'dd/MM/yyyy à HH:mm' }}</span>
+                </div>
+              </div>
+            </div>
             </mat-card-content>
           </mat-card>
 
-          <!-- Si aucun créateur -->
           <mat-card class="no-assignment-card" *ngIf="!ticket.user">
             <mat-card-content>
               <div class="no-assignment-content">
@@ -363,8 +407,7 @@
         </div>
       </mat-tab>
 
-      <!-- Onglet Délégations - Visible pour TOUS les utilisateurs -->
-      <mat-tab>
+      <mat-tab *ngIf="!isEmployee()">
         <ng-template mat-tab-label>
           <mat-icon class="tab-icon">share</mat-icon>
           <span>Délégations</span>
@@ -375,15 +418,13 @@
                 class="mat-badge-wrapper">
           </span>
         </ng-template>
-        
+
         <div class="tab-content">
-          <!-- Chargement des délégations -->
           <div *ngIf="loadingDelegations" class="loading-container">
             <mat-spinner></mat-spinner>
             <p>Chargement des délégations...</p>
           </div>
 
-          <!-- Délégation actuelle (approuvée) -->
           <mat-card class="delegation-card current-delegation" *ngIf="getCurrentDelegation() && !loadingDelegations">
             <mat-card-header>
               <mat-icon mat-card-avatar class="card-avatar delegation-avatar current">share</mat-icon>
@@ -455,7 +496,6 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Délégation en attente -->
           <mat-card class="delegation-card pending-delegation" *ngIf="getPendingDelegation() && !loadingDelegations">
             <mat-card-header>
               <mat-icon mat-card-avatar class="card-avatar delegation-avatar pending">hourglass_empty</mat-icon>
@@ -519,7 +559,6 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Historique des délégations -->
           <mat-card class="delegation-history-card" *ngIf="hasDelegations() && !loadingDelegations">
             <mat-card-header>
               <mat-icon mat-card-avatar class="card-avatar">history</mat-icon>
@@ -583,7 +622,6 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Message si aucune délégation -->
           <mat-card class="no-delegation-card" *ngIf="!hasDelegations() && !loadingDelegations">
             <mat-card-content>
               <div class="no-delegation-content">
@@ -596,7 +634,6 @@
         </div>
       </mat-tab>
 
-      <!-- Onglet Chat/Commentaires -->
       <mat-tab>
         <ng-template mat-tab-label>
           <mat-icon class="tab-icon">chat</mat-icon>
@@ -610,10 +647,8 @@
         </ng-template>
         
         <div class="tab-content">
-          <!-- Zone de chat -->
           <div class="chat-container">
             
-            <!-- Header du chat -->
             <mat-card class="chat-header-card">
               <mat-card-header>
                 <mat-icon mat-card-avatar class="card-avatar chat-avatar">chat</mat-icon>
@@ -624,16 +659,13 @@
               </mat-card-header>
             </mat-card>
 
-            <!-- Loading des commentaires -->
             <div *ngIf="loadingCommentaires" class="loading-container">
               <mat-spinner></mat-spinner>
               <p>Chargement des commentaires...</p>
             </div>
 
-            <!-- Liste des commentaires -->
             <div class="comments-list" *ngIf="!loadingCommentaires">
               
-              <!-- Message si aucun commentaire -->
               <mat-card class="no-comments-card" *ngIf="!hasCommentaires()">
                 <mat-card-content>
                   <div class="no-comments-content">
@@ -644,7 +676,6 @@
                 </mat-card-content>
               </mat-card>
 
-              <!-- Commentaires -->
               <div class="comment-item" *ngFor="let commentaire of commentaires">
                 <mat-card class="comment-card">
                   <mat-card-header>
@@ -670,7 +701,6 @@
                       </div>
                     </mat-card-subtitle>
                     
-                    <!-- Menu d'actions -->
                     <button mat-icon-button 
                             [matMenuTriggerFor]="commentMenu" 
                             *ngIf="canEditComment(commentaire) || canDeleteComment(commentaire)"
@@ -696,7 +726,6 @@
                   </mat-card-header>
                   
                   <mat-card-content>
-                    <!-- Mode normal -->
                     <div class="comment-content" *ngIf="editingCommentId !== commentaire.id">
                       <div class="comment-text" [innerHTML]="commentaire.commentaire"></div>
                       <div class="comment-department" *ngIf="commentaire.auteur.department">
@@ -705,7 +734,6 @@
                       </div>
                     </div>
                     
-                    <!-- Mode édition -->
                     <div class="comment-edit-form" *ngIf="editingCommentId === commentaire.id">
                       <ngx-editor-menu [editor]="editEditor" [toolbar]="toolbar"></ngx-editor-menu>
                       <ngx-editor
@@ -736,7 +764,6 @@
               </div>
             </div>
 
-            <!-- Zone de saisie -->
             <mat-card class="comment-input-card" *ngIf="canSendComments()">
               <mat-card-content>
                 <div class="comment-input-section">
@@ -752,40 +779,38 @@
                     </div>
                   </div>
                   
-                  <mat-form-field class="comment-input-field" appearance="outline">
-                    <mat-label>Écrire un commentaire</mat-label>
-                    <textarea matInput 
-                              [(ngModel)]="newCommentaire"
-                              placeholder="Tapez votre commentaire..."
-                              rows="3"
-                              maxlength="1000"
-                              (keydown.ctrl.enter)="sendCommentaire()"></textarea>
-                    <mat-hint align="end">{{ newCommentaire.length }}/1000</mat-hint>
-                  </mat-form-field>
-                  
-                  <div class="comment-input-actions">
-                    <button mat-button 
-                            (click)="newCommentaire = ''"
-                            [disabled]="!newCommentaire.trim() || sendingComment"
-                            class="clear-btn">
-                      <mat-icon>clear</mat-icon>
-                      Effacer
-                    </button>
-                    <button mat-raised-button 
-                            color="primary"
-                            (click)="sendCommentaire()"
-                            [disabled]="!newCommentaire.trim() || sendingComment"
-                            class="send-btn">
-                      <mat-icon *ngIf="!sendingComment">send</mat-icon>
-                      <mat-spinner *ngIf="sendingComment" diameter="20"></mat-spinner>
-                      {{ sendingComment ? 'Envoi...' : 'Envoyer' }}
-                    </button>
+                  <div class="comment-input-section">
+                    <ngx-editor-menu [editor]="editEditor" [toolbar]="toolbar"></ngx-editor-menu>
+                    <ngx-editor
+                      [editor]="editEditor"
+                      [(ngModel)]="newCommentaire"
+                      [placeholder]="'Tapez votre commentaire...'"
+                      class="edit-comment-rich"
+                    ></ngx-editor>
+                    <mat-hint align="end">{{ newCommentaire?.length || 0 }}/1000</mat-hint>
+                    <div class="comment-input-actions">
+                      <button mat-button 
+                              (click)="newCommentaire = ''"
+                              [disabled]="!newCommentaire.trim() || sendingComment"
+                              class="clear-btn">
+                        <mat-icon>clear</mat-icon>
+                        Effacer
+                      </button>
+                      <button mat-raised-button 
+                              color="primary"
+                              (click)="sendCommentaire()"
+                              [disabled]="!newCommentaire.trim() || sendingComment"
+                              class="send-btn">
+                        <mat-icon *ngIf="!sendingComment">send</mat-icon>
+                        <mat-spinner *ngIf="sendingComment" diameter="20"></mat-spinner>
+                        {{ sendingComment ? 'Envoi...' : 'Envoyer' }}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </mat-card-content>
             </mat-card>
 
-            <!-- Message si l'utilisateur ne peut pas commenter -->
             <mat-card class="no-comment-permission-card" *ngIf="!canSendComments()">
               <mat-card-content>
                 <div class="no-comment-permission-content">

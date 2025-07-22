@@ -17,9 +17,13 @@ public class TicketResponseDTO {
     private Priorite priorite;
     private LocalDateTime dateCreation;
     private LocalDateTime dateResolution;
+    private LocalDateTime dateFermeture;    
+    private LocalDateTime dateReouverture;   
     private String type;
     private UserDTO user;
     private UserDTO assignedTo;
+    private UserDTO closedBy;
+    private UserDTO reopenedBy;
     private PieceJointeDTO pieceJointe;
     
     @Data

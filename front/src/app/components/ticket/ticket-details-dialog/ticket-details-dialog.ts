@@ -85,7 +85,7 @@ export class TicketDetailsDialog implements OnInit, OnDestroy {
     private readonly delegationService: DelegationService,
     private readonly commentaireService: CommentaireService,
     private readonly authService: AuthentificationService,
-    private readonly dialog: MatDialog // Ajoute MatDialog ici
+    private readonly dialog: MatDialog
   ) {
     this.ticket = data.ticket;
     this.currentUser = this.authService.getCurrentUser();
@@ -556,5 +556,57 @@ export class TicketDetailsDialog implements OnInit, OnDestroy {
     if (userRole === 'MANAGER_IT' || userRole === 'ADMINISTRATEUR') return true;
     
     return false;
+  }
+
+  isEmployee(): boolean {
+    return this.currentUser?.role === 'EMPLOYEE';
+  }
+
+  isManager(): boolean {
+    return this.currentUser?.role === 'MANAGER_IT' || this.currentUser?.role === 'ADMINISTRATEUR';
+  }
+
+  canValidateOrReopen(): boolean {
+    return this.isManager() && this.ticket.statut === 'RESOLU';
+  }
+
+  validateTicket(): void {
+    this.ticketService.updateStatut(this.ticket.id!, 'FERME', this.currentUser.id).subscribe({
+      next: (updated) => {
+        this.ticket.statut = 'FERME';
+        this.snackBar.open('Ticket validé et fermé', 'Fermer', { duration: 2000 });
+        this.dialogRef.close('statut-updated');
+      },
+      error: () => {
+        this.snackBar.open('Erreur lors de la validation', 'Fermer', { duration: 3000 });
+      }
+    });
+  }
+
+  reopenTicket(): void {
+    this.ticketService.updateStatut(this.ticket.id!, 'EN_COURS', this.currentUser.id).subscribe({
+      next: (updated) => {
+        this.ticket.statut = 'EN_COURS';
+        this.snackBar.open('Ticket rouvert', 'Fermer', { duration: 2000 });
+        this.dialogRef.close('statut-updated'); 
+      },
+      error: () => {
+        this.snackBar.open('Erreur lors de la réouverture', 'Fermer', { duration: 3000 });
+      }
+    });
+  }
+  getSLA(): string | null {
+    const { dateCreation, dateResolution, dateFermeture } = this.ticket;
+    if (dateCreation && (dateResolution || dateFermeture)) {
+      const start = new Date(dateCreation).getTime();
+      const end = new Date(dateFermeture || dateResolution || '').getTime();
+      if (!isNaN(start) && !isNaN(end) && end > start) {
+        const diffMs = end - start;
+        const hours = Math.floor(diffMs / 3600000);
+        const minutes = Math.floor((diffMs % 3600000) / 60000);
+        return `${hours}h ${minutes}min`;
+      }
+    }
+    return null;
   }
 }

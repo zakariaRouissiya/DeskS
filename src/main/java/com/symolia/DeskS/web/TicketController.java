@@ -512,7 +512,8 @@ public class TicketController {
     public ResponseEntity<?> updateTicketStatut(@PathVariable Long ticketId, @RequestBody Map<String, String> body) {
         try {
             String statut = body.get("statut");
-            Ticket updated = ticketService.updateStatut(ticketId, statut);
+            Long userId = Long.valueOf(body.get("userId"));
+            Ticket updated = ticketService.updateStatut(ticketId, statut, userId);
             Map<String, Object> result = new HashMap<>();
             result.put("success", true);
             result.put("ticket", updated);

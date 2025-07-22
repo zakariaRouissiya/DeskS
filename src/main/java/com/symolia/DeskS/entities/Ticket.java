@@ -1,5 +1,6 @@
 package com.symolia.DeskS.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.symolia.DeskS.enums.Priorite;
 import com.symolia.DeskS.enums.Statut;
@@ -55,11 +56,11 @@ public class Ticket {
     private Departement department;
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("ticket")
+    @JsonIgnore 
     private List<Commentaire> commentaires;
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("ticket")
+    @JsonIgnore
     private List<PieceJointe> piecesJointes;
 
     public PieceJointe getPieceJointe() {
@@ -73,6 +74,17 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delegated_to_id")
     private Utilisateur delegatedTo;
+
+    private LocalDateTime dateFermeture;
+    private LocalDateTime dateReouverture;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "closed_by_id")
+    private Utilisateur closedBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reopened_by_id")
+    private Utilisateur reopenedBy;
 
     public Utilisateur getDelegatedTo() {
         return delegatedTo;

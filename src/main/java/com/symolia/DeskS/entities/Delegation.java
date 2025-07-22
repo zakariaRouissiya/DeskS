@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import com.symolia.DeskS.enums.StatutDelegation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
 
@@ -24,6 +25,7 @@ public class Delegation {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticket_id", nullable = false)
+    @JsonIgnore 
     private Ticket ticket;
     
     @ManyToOne(fetch = FetchType.LAZY)

@@ -576,12 +576,26 @@ public class TicketService {
         
         return stats;
     }
-    public Ticket updateStatut(Long ticketId, String statut) {
+    public Ticket updateStatut(Long ticketId, String statut, Long userId) {
         Ticket ticket = ticketRepository.findById(ticketId)
             .orElseThrow(() -> new RuntimeException("Ticket introuvable"));
-        ticket.setStatut(Statut.valueOf(statut));
-        if (Statut.valueOf(statut) == Statut.RESOLU) {
+        Utilisateur user = utilisateurRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
+
+        Statut newStatut = Statut.valueOf(statut);
+
+        ticket.setStatut(newStatut);
+
+        if (newStatut == Statut.RESOLU) {
             ticket.setDateResolution(LocalDateTime.now());
+        }
+        if (newStatut == Statut.FERME) {
+            ticket.setDateFermeture(LocalDateTime.now());
+            ticket.setClosedBy(user);
+        }
+        if (newStatut == Statut.EN_COURS) {
+            ticket.setDateReouverture(LocalDateTime.now());
+            ticket.setReopenedBy(user);
         }
         return ticketRepository.save(ticket);
     }
