@@ -1,5 +1,8 @@
 <div class="ticket-dashboard">
   <header class="main-header">
+      <div class="header-logo">
+        <img src="./logo.png" alt="Logo" class="login-logo" />
+      </div>
     <div class="header-left">
       <h1 class="header-title">
         <mat-icon class="title-icon">confirmation_number</mat-icon>
@@ -97,6 +100,20 @@
       </mat-card-content>
     </mat-card>
 
+    <mat-card  class="stat-card stat-card-closed">
+      <mat-card-content>
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>lock</mat-icon>
+          </div>
+          <div class="stat-info">
+            <div class="stat-number">{{ getTicketsByStatus('FERME').length }}</div>
+            <div class="stat-label">Fermés</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
     <mat-card *ngIf="isManager" class="stat-card stat-card-unassigned">
       <mat-card-content>
         <div class="stat-content">
@@ -105,7 +122,7 @@
           </div>
           <div class="stat-info">
             <div class="stat-number">{{ unassignedTicketsCount }}</div>
-            <div class="stat-label">Non assignés</div>
+            <div class="stat-label">Tickets Non assignés</div>
           </div>
         </div>
       </mat-card-content>

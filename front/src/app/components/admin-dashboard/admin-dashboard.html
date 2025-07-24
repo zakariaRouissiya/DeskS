@@ -1,117 +1,156 @@
-<div class="dashboard-container sidebar-collapsed">
-  <aside class="sidebar">
+<mat-sidenav-container class="dashboard-root">
+  <mat-sidenav mode="side" opened class="sidebar mat-elevation-z2">
     <div class="sidebar-header">
       <img src="./logo.png" alt="Logo" class="login-logo" />
     </div>
-    <mat-nav-list class="nav-list">
-      <a mat-list-item class="nav-item active" (click)="navigateTo('/admin')">
-        <mat-icon class="nav-icon">dashboard</mat-icon>
-        <span class="nav-text">Tableau de bord</span>
+    <mat-nav-list>
+      <a mat-list-item class="sidebar-link" (click)="navigateTo('/admin')">
+        <mat-icon>dashboard</mat-icon>
+        <span>Tableau de bord</span>
       </a>
-      <a mat-list-item class="nav-item" (click)="navigateTo('/admin/utilisateurs')">
-        <mat-icon class="nav-icon">group</mat-icon>
-        <span class="nav-text">Utilisateurs</span>
+      <a mat-list-item class="sidebar-link active" (click)="navigateTo('/admin/utilisateurs')">
+        <mat-icon>group</mat-icon>
+        <span>Utilisateurs</span>
       </a>
-      <a mat-list-item class="nav-item" (click)="onManageDepartments()">
-        <mat-icon class="nav-icon">apartment</mat-icon>
-        <span class="nav-text">Départements</span>
-      </a>
-      <a mat-list-item class="nav-item">
-        <mat-icon class="nav-icon">analytics</mat-icon>
-        <span class="nav-text">Rapports</span>
+      <a mat-list-item class="sidebar-link" (click)="onManageDepartments()">
+        <mat-icon>apartment</mat-icon>
+        <span>Départements</span>
       </a>
     </mat-nav-list>
-  </aside>
+  </mat-sidenav>
 
-  <main class="main-content">
-    <header class="main-header">
-      <div class="header-left">
-        <h1 class="header-title">Tableau de bord</h1>
-        <p class="header-subtitle">Vue d'ensemble des activités et statistiques</p>
-      </div>
-      <div class="header-actions">
-        <button mat-icon-button (click)="openUserProfile()" matTooltip="Mon Profil">
-          <mat-icon>account_circle</mat-icon>
-        </button>
-        <button mat-icon-button (click)="logout()" matTooltip="Déconnexion">
-          <mat-icon>logout</mat-icon>
-        </button>
-      </div>
-    </header>
-
-    <section class="cards-section">
-      <div class="cards-grid">
-        <mat-card class="stat-card">
-          <div class="card-icon-container color-users">
-            <mat-icon>group</mat-icon>
+  <mat-sidenav-content class="dashboard-main">
+      <div class="dashboard-container">
+        <header class="main-header">
+          <div class="header-left">
+            <h1 class="header-title">Tableau de bord</h1>
+            <p class="header-subtitle">Vue d'ensemble des activités et statistiques</p>
           </div>
-          <mat-card-content>
-            <p class="stat-title">Utilisateurs Totaux</p>
-            <p class="stat-value">{{ stats.totalUsers || '0' }}</p>
-          </mat-card-content>
-        </mat-card>
+          <div class="header-actions">
+            <button mat-icon-button (click)="openUserProfile()" matTooltip="Mon Profil">
+              <mat-icon>account_circle</mat-icon>
+            </button>
+            <button mat-icon-button (click)="logout()" matTooltip="Déconnexion">
+              <mat-icon>logout</mat-icon>
+            </button>
+          </div>
+        </header>
 
-        <mat-card class="stat-card">
-          <div class="card-icon-container color-tickets">
+      <div *ngIf="loading" class="loading-container">
+        <mat-spinner diameter="60"></mat-spinner>
+        <p>Chargement du tableau de bord...</p>
+      </div>
+      <div *ngIf="errorMsg" class="error-container">
+        <mat-icon color="warn">error</mat-icon>
+        <h2>Erreur de chargement</h2>
+        <p>{{ errorMsg }}</p>
+        <button mat-raised-button color="primary" (click)="refresh()">Réessayer</button>
+      </div>
+
+      <ng-container *ngIf="!loading && !errorMsg">
+        <div class="stats-grid">
+          <mat-card class="stat-card gradient-blue">
             <mat-icon>confirmation_number</mat-icon>
-          </div>
-          <mat-card-content>
-            <p class="stat-title">Tickets Actifs</p>
-            <p class="stat-value">{{ stats.activeTickets || '0' }}</p>
-          </mat-card-content>
-        </mat-card>
+            <div>
+              <div class="stat-value">{{ globalStats.totalTickets || 0 }}</div>
+              <div class="stat-label">Total Tickets</div>
+            </div>
+          </mat-card>
+          <mat-card class="stat-card gradient-green">
+            <mat-icon>group</mat-icon>
+            <div>
+              <div class="stat-value">{{ globalStats.totalUsers || 0 }}</div>
+              <div class="stat-label">Utilisateurs Actifs</div>
+            </div>
+          </mat-card>
+          <mat-card class="stat-card gradient-purple">
+            <mat-icon>apartment</mat-icon>
+            <div>
+              <div class="stat-value">{{ globalStats.totalDepartments || 0 }}</div>
+              <div class="stat-label">Départements</div>
+            </div>
+          </mat-card>
+          <mat-card class="stat-card gradient-orange">
+            <mat-icon>timer</mat-icon>
+            <div>
+              <div class="stat-value">{{ avgResolutionTime }} min</div>
+              <div class="stat-label">Temps Moyen (SLA)</div>
+            </div>
+          </mat-card>
+        </div>
 
-        <mat-card class="stat-card">
-          <div class="card-icon-container color-incidents">
-            <mat-icon>report_problem</mat-icon>
-          </div>
-          <mat-card-content>
-            <p class="stat-title">Incidents Ouverts</p>
-            <p class="stat-value">{{ stats.openIncidents || '0' }}</p>
-          </mat-card-content>
-        </mat-card>
+        <div class="charts-row">
+          <mat-card class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Tickets par Statut</div>
+            </div>
+            <ngx-charts-pie-chart
+              [results]="ticketsByStatus"
+              [legend]="false"
+              [labels]="true"
+              [doughnut]="true"
+              [explodeSlices]="false"
+              [gradient]="false">
+            </ngx-charts-pie-chart>
+          </mat-card>
+          <mat-card class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Tickets par Priorité</div>
+            </div>
+            <ngx-charts-pie-chart
+              [results]="ticketsByPriority"
+              [legend]="false"
+              [labels]="true"
+              [doughnut]="true">
+            </ngx-charts-pie-chart>
+          </mat-card>
+          <mat-card class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">Utilisateurs par Rôle</div>
+            </div>
+            <ngx-charts-pie-chart
+              [results]="usersByRole"
+              [legend]="false"
+              [labels]="true"
+              [doughnut]="true">
+            </ngx-charts-pie-chart>
+          </mat-card>
+        </div>
 
-        <mat-card class="stat-card">
-          <div class="card-icon-container color-closed">
-            <mat-icon>check_circle</mat-icon>
-          </div>
-          <mat-card-content>
-            <p class="stat-title">Tickets Fermés</p>
-            <p class="stat-value">{{ stats.closedTickets || '0' }}</p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <mat-divider></mat-divider> 
-    </section>
-
-    <mat-card class="table-section mat-elevation-z2">
-      <h2 class="section-title">Utilisateurs récents</h2>
-      <div class="table-container">
-        <table mat-table [dataSource]="utilisateurs" class="dashboard-table">
-          <ng-container matColumnDef="nom">
-            <th mat-header-cell *matHeaderCellDef>Nom</th>
-            <td mat-cell *matCellDef="let user">{{ user.nom }}</td>
-          </ng-container>
-          <ng-container matColumnDef="prenom">
-            <th mat-header-cell *matHeaderCellDef>Prénom</th>
-            <td mat-cell *matCellDef="let user">{{ user.prenom }}</td>
-          </ng-container>
-          <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Email</th>
-            <td mat-cell *matCellDef="let user">{{ user.email }}</td>
-          </ng-container>
-          <ng-container matColumnDef="role">
-            <th mat-header-cell *matHeaderCellDef>Rôle</th>
-            <td mat-cell *matCellDef="let user">{{ user.role }}</td>
-          </ng-container>
-          <ng-container matColumnDef="department">
-            <th mat-header-cell *matHeaderCellDef>Département</th>
-            <td mat-cell *matCellDef="let user">{{ user.department?.nom || '-' }}</td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-    </mat-card>
-  </main>
-</div>
+        <div class="chart-pair-row">
+          <mat-card class="chart-card-department">
+            <div class="chart-header">
+              <div class="chart-title">Tickets par Département</div>
+            </div>
+            <ngx-charts-bar-vertical
+              [results]="ticketsByDepartment"
+              [xAxis]="true"
+              [yAxis]="true"
+              [legend]="false"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              xAxisLabel="Département"
+              yAxisLabel="Tickets">
+            </ngx-charts-bar-vertical>
+          </mat-card>
+          <mat-card class="chart-card-volume">
+            <div class="chart-header">
+              <div class="chart-title">Volume de Tickets</div>
+            </div>
+            <ngx-charts-area-chart
+              [results]="ticketVolumeData"
+              [xAxis]="true"
+              [yAxis]="true"
+              [legend]="false"
+              [autoScale]="true"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              xAxisLabel="Jour"
+              yAxisLabel="Tickets">
+            </ngx-charts-area-chart>
+          </mat-card>
+        </div>
+      </ng-container>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

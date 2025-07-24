@@ -197,7 +197,7 @@
   overflow: hidden;
   background: #ffffff;
   border: 1px solid #c7d2fe; /* Bleu clair direct */
-  max-width: 1400px;
+  max-width: 2000px;
   margin: 0 auto;
 }
 
@@ -1210,4 +1210,31 @@
 .filter-field {
   width: 180px;
   margin-right: 12px;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  margin-right: 32px;
+}
+
+.login-logo {
+  height: 78px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(99,102,241,0.08));
+  transition: transform 0.2s;
+}
+
+.login-logo:hover {
+  transform: scale(1.04) rotate(-2deg);
+}
+@media (max-width: 600px) {
+  .header-logo {
+    margin-right: 12px;
+  }
+  .login-logo {
+    height: 48px;
+    max-width: 100px;
+  }
 }

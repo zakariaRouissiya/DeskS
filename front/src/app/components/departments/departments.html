@@ -8,17 +8,13 @@
         <mat-icon>dashboard</mat-icon>
         <span>Tableau de bord</span>
       </a>
-      <a mat-list-item class="sidebar-link" (click)="navigateTo('/admin/utilisateurs')">
+      <a mat-list-item class="sidebar-link active" (click)="navigateTo('/admin/utilisateurs')">
         <mat-icon>group</mat-icon>
         <span>Utilisateurs</span>
       </a>
-      <a mat-list-item class="sidebar-link active">
+      <a mat-list-item class="sidebar-link">
         <mat-icon>apartment</mat-icon>
         <span>Départements</span>
-      </a>
-      <a mat-list-item class="sidebar-link">
-        <mat-icon>analytics</mat-icon>
-        <span>Rapports</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -26,8 +22,8 @@
   <mat-sidenav-content class="dashboard-main">
     <header class="main-header">
       <div class="header-left">
-        <h1 class="header-title">Gestion des départements</h1>
-        <p class="header-subtitle">Gérer et administrer les départements de l'organisation</p>
+        <h1 class="header-title">Gestion des utilisateurs</h1>
+        <p class="header-subtitle">Gérer et administrer les comptes utilisateurs du système</p>
       </div>
       <div class="header-actions">
         <button mat-icon-button (click)="openUserProfile()" matTooltip="Mon Profil">

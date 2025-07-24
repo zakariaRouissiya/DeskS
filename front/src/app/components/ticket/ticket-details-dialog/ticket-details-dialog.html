@@ -137,6 +137,16 @@
                 </div>
               </div>
             </mat-card-content>
+            
+          </mat-card>
+          <mat-card class="no-attachment-card" *ngIf="!ticket.pieceJointe">
+            <mat-card-content>
+              <div class="no-attachment-content">
+                <mat-icon class="no-attachment-icon">attach_file_off</mat-icon>
+                <h4>Aucune pièce jointe</h4>
+                <p>Ce ticket ne contient pas de fichier attaché.</p>
+              </div>
+            </mat-card-content>
           </mat-card>
 
           <mat-card class="dates-card">
@@ -170,40 +180,6 @@
                     <span class="date-relative">{{ getTimeSince((ticket.dateResolution || '') + '') }}</span>
                   </div>
                 </div>
-
-                <!-- Ticket rouvert -->
-                <div class="timeline-item" *ngIf="ticket.dateReouverture">
-                  <div class="timeline-marker reopened-marker">
-                    <mat-icon>replay</mat-icon>
-                  </div>
-                  <div class="timeline-content">
-                    <h5>Ticket rouvert</h5>
-                    <p>Réouvert par {{ ticket.reopenedBy?.prenom }} {{ ticket.reopenedBy?.nom }}</p>
-                    <span class="timeline-date">{{ ticket.dateReouverture | date:'dd/MM/yyyy à HH:mm' }}</span>
-                  </div>
-                </div>
-
-                <!-- Ticket fermé -->
-                <div class="timeline-item" *ngIf="ticket.dateFermeture">
-                  <div class="timeline-marker closed-marker">
-                    <mat-icon>lock</mat-icon>
-                  </div>
-                  <div class="timeline-content">
-                    <h5>Ticket fermé</h5>
-                    <p>Fermé par {{ ticket.closedBy?.prenom }} {{ ticket.closedBy?.nom }}</p>
-                    <span class="timeline-date">{{ ticket.dateFermeture | date:'dd/MM/yyyy à HH:mm' }}</span>
-                  </div>
-                </div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-
-          <mat-card class="no-attachment-card" *ngIf="!ticket.pieceJointe">
-            <mat-card-content>
-              <div class="no-attachment-content">
-                <mat-icon class="no-attachment-icon">attach_file_off</mat-icon>
-                <h4>Aucune pièce jointe</h4>
-                <p>Ce ticket ne contient pas de fichier attaché.</p>
               </div>
             </mat-card-content>
           </mat-card>
@@ -787,7 +763,7 @@
                       [placeholder]="'Tapez votre commentaire...'"
                       class="edit-comment-rich"
                     ></ngx-editor>
-                    <mat-hint align="end">{{ newCommentaire?.length || 0 }}/1000</mat-hint>
+                    <mat-hint align="end">{{ newCommentaire.length || 0 }}/1000</mat-hint>
                     <div class="comment-input-actions">
                       <button mat-button 
                               (click)="newCommentaire = ''"

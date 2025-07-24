@@ -197,7 +197,7 @@ public class TicketAiService {
         int totalProcedures = vectorStore.similaritySearch("procédure").size();
 
         String footer = String.format("""
-            \n📑 %d procédure(s) consultée(s) sur %d dans la base de connaissance
+            \n📚 Procédures pertinentes: %d / %d
             🎫 Ticket: %s • ⏱️ Analysé le: %s
             """,
             proceduresFound,
