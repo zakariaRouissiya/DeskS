@@ -1603,3 +1603,1341 @@
 2025-07-24 16:54:13 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
 2025-07-24 16:54:13 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=0
 2025-07-24 16:54:29 [http-nio-8080-exec-6] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:22:28 [restartedMain] INFO  com.symolia.DeskS.DeskSApplication - Starting DeskSApplication using Java 21.0.7 with PID 14724 (C:\Users\Extreme pc\Desktop\DeskS\target\classes started by Extreme pc in C:\Users\Extreme pc\Desktop\DeskS)
+2025-07-25 12:22:28 [restartedMain] DEBUG com.symolia.DeskS.DeskSApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2025-07-25 12:22:28 [restartedMain] INFO  com.symolia.DeskS.DeskSApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-25 12:22:29 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-25 12:22:29 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-25 12:22:38 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-25 12:22:38 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 419 ms. Found 6 JPA repository interfaces.
+2025-07-25 12:22:40 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-07-25 12:22:40 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-07-25 12:22:40 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-25 12:22:40 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2025-07-25 12:22:40 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-25 12:22:40 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 11340 ms
+2025-07-25 12:22:41 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-25 12:22:41 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.15.Final
+2025-07-25 12:22:41 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-25 12:22:42 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-25 12:22:42 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-07-25 12:22:43 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@42e25c2a
+2025-07-25 12:22:43 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-07-25 12:22:43 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-25 12:22:43 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-25 12:22:46 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-25 12:22:46 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-25 12:22:47 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-07-25 12:22:51 [restartedMain] INFO  o.s.a.v.pgvector.PgVectorStore - Using the vector table name: knowledge_vectors. Is empty: false
+2025-07-25 12:22:51 [restartedMain] INFO  o.s.a.v.pgvector.PgVectorStore - Initializing PGVectorStore schema for table: knowledge_vectors in schema: public
+2025-07-25 12:22:51 [restartedMain] INFO  o.s.a.v.pgvector.PgVectorStore - vectorTableValidationsEnabled false
+2025-07-25 12:22:52 [restartedMain] INFO  c.s.DeskS.config.SecurityConfig - JWT Secret Key length: 63
+2025-07-25 12:22:52 [restartedMain] INFO  c.s.DeskS.config.SecurityConfig - JWT Secret Key (first 10 chars): kP3t6WxZ9q
+2025-07-25 12:22:52 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-25 12:22:53 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-07-25 12:22:53 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-07-25 12:22:54 [restartedMain] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-25 12:22:55 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-07-25 12:22:55 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-07-25 12:22:55 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-07-25 12:22:55 [restartedMain] INFO  com.symolia.DeskS.DeskSApplication - Started DeskSApplication in 28.094 seconds (process running for 30.974)
+2025-07-25 12:22:56 [RMI TCP Connection(3)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-25 12:22:56 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-25 12:22:56 [RMI TCP Connection(3)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-07-25 12:25:41 [http-nio-8080-exec-3] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:25:43 [http-nio-8080-exec-9] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:27:14 [http-nio-8080-exec-2] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:27:17 [http-nio-8080-exec-3] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:27:20 [http-nio-8080-exec-1] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:27:36 [http-nio-8080-exec-9] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:27:46 [http-nio-8080-exec-3] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : admin@servicedesk.com
+2025-07-25 12:29:09 [http-nio-8080-exec-6] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:29:12 [http-nio-8080-exec-9] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:29:20 [http-nio-8080-exec-5] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:29:38 [http-nio-8080-exec-7] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:29:42 [http-nio-8080-exec-9] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 12:29:54 [http-nio-8080-exec-2] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 5
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 5
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:29:54 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:29:54 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 12:29:54 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 12:29:54 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=0
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Récupération des détails du ticket: 1
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération du ticket avec pièces jointes: 1
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket trouvé: 1
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Nombre de pièces jointes: 1
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Première pièce jointe: Capture d'écran 2025-07-10 123059 (1).png, URL: /uploads/attachments/Capture_d__cran_2025-07-10_123059__1__1753214573992_f71d8219.png
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket trouvé: Connexion Internet très lente au bureau
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Pièce jointe trouvée: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:30:15 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - DTO avec pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:30:15 [http-nio-8080-exec-4] INFO  c.s.DeskS.web.CommentaireController - Récupération des commentaires pour le ticket: 1
+2025-07-25 12:30:15 [http-nio-8080-exec-4] INFO  c.s.D.services.CommentaireService - Récupération des commentaires pour le ticket: 1
+2025-07-25 12:30:15 [http-nio-8080-exec-4] INFO  c.s.D.services.CommentaireService - Commentaires trouvés: 7
+2025-07-25 12:30:23 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.FileController - Aperçu demandé pour la pièce jointe ID: 1
+2025-07-25 12:30:25 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.FileController - Téléchargement demandé pour la pièce jointe ID: 1
+2025-07-25 12:30:25 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.FileController - Tentative de téléchargement du fichier: C:\Users\Extreme pc\Desktop\DeskS\uploads\attachments\Capture_d__cran_2025-07-10_123059__1__1753214573992_f71d8219.png
+2025-07-25 12:30:25 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.FileController - Téléchargement réussi - Fichier: Capture d'écran 2025-07-10 123059 (1).png, Type: image/png, Taille: 74570
+2025-07-25 12:31:01 [http-nio-8080-exec-7] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : e.emsi.pfa@gmail.com
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 3
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 3
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 3: 5
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 3: 5
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:31:01 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:17 [http-nio-8080-exec-8] INFO  c.s.DeskS.web.UtilisateursController - Récupération des utilisateurs du département 1 avec le rôle TECHNICIEN_SUPPORT
+2025-07-25 12:31:17 [http-nio-8080-exec-8] INFO  c.s.D.services.UtilisateurService - Recherche des utilisateurs avec le rôle TECHNICIEN_SUPPORT dans le département 1
+2025-07-25 12:31:17 [http-nio-8080-exec-8] INFO  c.s.DeskS.web.UtilisateursController - Utilisateurs trouvés: 1
+2025-07-25 12:31:17 [http-nio-8080-exec-8] INFO  c.s.DeskS.web.UtilisateursController - Utilisateur trouvé: Nabil Rouissiya - Département: IT
+2025-07-25 12:31:35 [http-nio-8080-exec-3] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : temok59067@hadvar.com
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets pour l'utilisateur: 4
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour l'utilisateur: 4
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 5: 0 pièce(s) jointe(s)
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 4: 0 pièce(s) jointe(s)
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 3: 1 pièce(s) jointe(s)
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 2: 1 pièce(s) jointe(s)
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 1: 1 pièce(s) jointe(s)
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés: 5
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 5 sans pièce jointe
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 4 sans pièce jointe
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 3 avec pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 2 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 1 avec pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:31:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - DTOs créés: 5
+2025-07-25 12:31:42 [http-nio-8080-exec-6] INFO  c.s.DeskS.web.UtilisateursController - Récupération des employés du département: 1
+2025-07-25 12:31:42 [http-nio-8080-exec-6] INFO  c.s.D.services.UtilisateurService - Recherche des utilisateurs avec le rôle EMPLOYEE dans le département 1
+2025-07-25 12:31:42 [http-nio-8080-exec-6] INFO  c.s.DeskS.web.UtilisateursController - Employés trouvés: 1
+2025-07-25 12:32:30 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Création d'un ticket avec pièce jointe - Utilisateur: 4, Fichier: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:30 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Création du ticket avec pièce jointe pour l'utilisateur: 4
+2025-07-25 12:32:30 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Création du ticket pour l'utilisateur: 4
+2025-07-25 12:32:30 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Utilisateur trouvé: Mehdi Rouissiya, Département: IT
+2025-07-25 12:32:30 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Département assigné au ticket: IT
+2025-07-25 12:32:30 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Ticket créé avec succès - ID: 7, Département: IT
+2025-07-25 12:32:30 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.EmailService - Envoi de notification de création de ticket 7 aux managers du département 1
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.EmailService - Email de création de ticket envoyé à: ziko.rouissiya02@gmail.com
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Début de sauvegarde de la pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Fichier sauvegardé à: C:\Users\Extreme pc\Desktop\DeskS\uploads\attachments\Capture-decran-2023-12-11-161704-1702308041.5075_1753446753057_b7125273.png
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - PieceJointe sauvegardée en DB - ID: 5, Nom: Capture-decran-2023-12-11-161704-1702308041.5075.png, Taille: 56981 bytes, URL: /uploads/attachments/Capture-decran-2023-12-11-161704-1702308041.5075_1753446753057_b7125273.png
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Pièce jointe sauvegardée avec succès: Capture-decran-2023-12-11-161704-1702308041.5075.png pour le ticket: 7
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération du ticket avec pièces jointes: 7
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Ticket trouvé: 7
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Nombre de pièces jointes: 0
+2025-07-25 12:32:33 [http-nio-8080-exec-8] WARN  c.s.DeskS.services.TicketService - Aucune pièce jointe trouvée pour le ticket: 7
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Aucun technicien assigné au ticket 7
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:33 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Ticket créé avec succès - ID: 7
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets pour l'utilisateur: 4
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour l'utilisateur: 4
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket 7: 1 pièce(s) jointe(s)
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket 5: 0 pièce(s) jointe(s)
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket 4: 0 pièce(s) jointe(s)
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket 3: 1 pièce(s) jointe(s)
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket 2: 1 pièce(s) jointe(s)
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket 1: 1 pièce(s) jointe(s)
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés: 6
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Aucun technicien assigné au ticket 7
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Ticket 7 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Ticket 5 sans pièce jointe
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Ticket 4 sans pièce jointe
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Ticket 3 avec pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Ticket 2 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Ticket 1 avec pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:32:33 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - DTOs créés: 6
+2025-07-25 12:32:43 [http-nio-8080-exec-1] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Aucun technicien assigné au ticket 7
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:32:43 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:32:43 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 12:32:43 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 12:32:43 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=0
+2025-07-25 12:32:50 [http-nio-8080-exec-2] INFO  c.s.DeskS.web.UtilisateursController - Récupération des utilisateurs du département 1 avec le rôle TECHNICIEN_SUPPORT
+2025-07-25 12:32:50 [http-nio-8080-exec-2] INFO  c.s.D.services.UtilisateurService - Recherche des utilisateurs avec le rôle TECHNICIEN_SUPPORT dans le département 1
+2025-07-25 12:32:50 [http-nio-8080-exec-2] INFO  c.s.DeskS.web.UtilisateursController - Utilisateurs trouvés: 1
+2025-07-25 12:32:50 [http-nio-8080-exec-2] INFO  c.s.DeskS.web.UtilisateursController - Utilisateur trouvé: Nabil Rouissiya - Département: IT
+2025-07-25 12:32:50 [http-nio-8080-exec-3] INFO  c.symolia.DeskS.web.TicketController - Récupération de la charge de travail pour le technicien: 3
+2025-07-25 12:32:50 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 12:32:50 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=0
+2025-07-25 12:32:50 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Calcul de la charge de travail pour le technicien: 3
+2025-07-25 12:32:50 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Charge de travail du technicien 3: 2 tickets EN_COURS
+2025-07-25 12:32:50 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Récupération de la charge de travail pour le technicien: 3
+2025-07-25 12:32:50 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 12:32:50 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=0
+2025-07-25 12:32:50 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Calcul de la charge de travail pour le technicien: 3
+2025-07-25 12:32:50 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Charge de travail du technicien 3: 2 tickets EN_COURS
+2025-07-25 12:33:01 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Assignation du ticket 7 au technicien 3
+2025-07-25 12:33:01 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Assignation du ticket 7 au technicien 3
+2025-07-25 12:33:01 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Ticket 7 assigné avec succès au technicien Nabil Rouissiya
+2025-07-25 12:33:01 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.EmailService - Envoi de notification d'assignation de ticket 7 au technicien e.emsi.pfa@gmail.com
+2025-07-25 12:33:03 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.EmailService - Email d'assignation de ticket envoyé à: e.emsi.pfa@gmail.com
+2025-07-25 12:33:03 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:33:03 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:33:03 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:33:03 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:03 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 12:33:03 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 12:33:03 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=3, OUVERT=0, RESOLU=0
+2025-07-25 12:33:10 [http-nio-8080-exec-7] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : e.emsi.pfa@gmail.com
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 3
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 3
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 3: 6
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 3: 6
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:33:10 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Récupération des détails du ticket: 7
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération du ticket avec pièces jointes: 7
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket trouvé: 7
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Nombre de pièces jointes: 1
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png, URL: /uploads/attachments/Capture-decran-2023-12-11-161704-1702308041.5075_1753446753057_b7125273.png
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket trouvé: Lenteur de connexion internet
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Pièce jointe trouvée: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:33:16 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - DTO avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:33:16 [http-nio-8080-exec-4] INFO  c.s.DeskS.web.CommentaireController - Récupération des commentaires pour le ticket: 7
+2025-07-25 12:33:16 [http-nio-8080-exec-4] INFO  c.s.D.services.CommentaireService - Récupération des commentaires pour le ticket: 7
+2025-07-25 12:33:16 [http-nio-8080-exec-4] INFO  c.s.D.services.CommentaireService - Commentaires trouvés: 0
+2025-07-25 12:33:29 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketAiService - Analyse du ticket ID: 7 - Titre: Lenteur de connexion internet
+2025-07-25 12:33:39 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.FileController - Aperçu demandé pour la pièce jointe ID: 5
+2025-07-25 12:33:44 [http-nio-8080-exec-5] INFO  c.symolia.DeskS.web.FileController - Téléchargement demandé pour la pièce jointe ID: 5
+2025-07-25 12:33:44 [http-nio-8080-exec-5] INFO  c.symolia.DeskS.web.FileController - Tentative de téléchargement du fichier: C:\Users\Extreme pc\Desktop\DeskS\uploads\attachments\Capture-decran-2023-12-11-161704-1702308041.5075_1753446753057_b7125273.png
+2025-07-25 12:33:44 [http-nio-8080-exec-5] INFO  c.symolia.DeskS.web.FileController - Téléchargement réussi - Fichier: Capture-decran-2023-12-11-161704-1702308041.5075.png, Type: image/png, Taille: 56981
+2025-07-25 12:33:47 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketAiService - Analyse générée avec succès pour le ticket: 7
+2025-07-25 12:34:40 [http-nio-8080-exec-7] INFO  c.s.DeskS.web.CommentaireController - Création d'un commentaire pour le ticket 7 par l'utilisateur 3
+2025-07-25 12:34:40 [http-nio-8080-exec-7] INFO  c.s.D.services.CommentaireService - Création d'un commentaire pour le ticket 7 par l'utilisateur 3
+2025-07-25 12:34:40 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.EmailService - Envoi de notification de commentaire au créateur du ticket 7
+2025-07-25 12:34:42 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.EmailService - Email de commentaire envoyé au créateur: temok59067@hadvar.com
+2025-07-25 12:34:42 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.EmailService - Envoi de notification de commentaire aux managers du département 1
+2025-07-25 12:34:44 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.EmailService - Email de commentaire envoyé au manager: ziko.rouissiya02@gmail.com
+2025-07-25 12:34:44 [http-nio-8080-exec-7] INFO  c.s.D.services.CommentaireService - Commentaire créé avec succès - ID: 12
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 3
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 3
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 3: 6
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 3: 6
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:34:44 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:51 [http-nio-8080-exec-4] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:34:52 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:52 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 12:34:52 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 12:34:52 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=1
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Récupération des détails du ticket: 7
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération du ticket avec pièces jointes: 7
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Ticket trouvé: 7
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Nombre de pièces jointes: 1
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png, URL: /uploads/attachments/Capture-decran-2023-12-11-161704-1702308041.5075_1753446753057_b7125273.png
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Ticket trouvé: Lenteur de connexion internet
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Pièce jointe trouvée: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:34:54 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - DTO avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:34:54 [http-nio-8080-exec-4] INFO  c.s.DeskS.web.CommentaireController - Récupération des commentaires pour le ticket: 7
+2025-07-25 12:34:54 [http-nio-8080-exec-4] INFO  c.s.D.services.CommentaireService - Récupération des commentaires pour le ticket: 7
+2025-07-25 12:34:54 [http-nio-8080-exec-4] INFO  c.s.D.services.CommentaireService - Commentaires trouvés: 1
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 12:35:03 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 12:35:03 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 12:35:03 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 12:35:03 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=0
+2025-07-25 13:06:03 [http-nio-8080-exec-7] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 13:06:03 [http-nio-8080-exec-5] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:06:03 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 13:06:03 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 13:06:03 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=0
+2025-07-25 13:07:38 [http-nio-8080-exec-8] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 13:07:39 [http-nio-8080-exec-1] DEBUG c.s.DeskS.web.DelegationController - Récupération de l'ID utilisateur pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 13:07:39 [http-nio-8080-exec-1] DEBUG c.s.DeskS.web.DelegationController - ID utilisateur trouvé: 2 pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 13:07:39 [http-nio-8080-exec-1] INFO  c.s.DeskS.web.DelegationController - Récupération des délégations en attente pour le manager 2
+2025-07-25 13:07:39 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.DelegationService - Récupération des délégations en attente pour le manager 2
+2025-07-25 13:07:39 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.DelegationService - Récupération des délégations en attente pour le département 1
+2025-07-25 13:07:40 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.DelegationService - Nombre de délégations en attente trouvées: 0
+2025-07-25 13:07:40 [http-nio-8080-exec-1] INFO  c.s.DeskS.web.DelegationController - Délégations en attente trouvées: 0
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 13:07:41 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:07:41 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 13:07:42 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 13:07:42 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=0
+2025-07-25 13:11:31 [http-nio-8080-exec-8] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : e.emsi.pfa@gmail.com
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 3
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 3
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 3: 6
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 3: 6
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 13:11:31 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:39 [http-nio-8080-exec-9] INFO  c.s.DeskS.web.CommentaireController - Création d'un commentaire pour le ticket 5 par l'utilisateur 3
+2025-07-25 13:11:39 [http-nio-8080-exec-9] INFO  c.s.D.services.CommentaireService - Création d'un commentaire pour le ticket 5 par l'utilisateur 3
+2025-07-25 13:11:39 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.EmailService - Envoi de notification de commentaire au créateur du ticket 5
+2025-07-25 13:11:42 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.EmailService - Email de commentaire envoyé au créateur: temok59067@hadvar.com
+2025-07-25 13:11:42 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.EmailService - Envoi de notification de commentaire aux managers du département 1
+2025-07-25 13:11:44 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.EmailService - Email de commentaire envoyé au manager: ziko.rouissiya02@gmail.com
+2025-07-25 13:11:44 [http-nio-8080-exec-9] INFO  c.s.D.services.CommentaireService - Commentaire créé avec succès - ID: 13
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 3
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 3
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 3: 6
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 3: 6
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 13:11:44 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:12:17 [http-nio-8080-exec-2] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 13:12:17 [http-nio-8080-exec-9] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 13:12:17 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 13:12:17 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 13:12:17 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 22:26:06 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h37m37s647ms407µs200ns).
+2025-07-25 22:26:26 [http-nio-8080-exec-8] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 22:26:28 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 22:26:29 [http-nio-8080-exec-7] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:26:29 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 22:26:29 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 22:26:29 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 22:57:07 [http-nio-8080-exec-6] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 22:57:08 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 22:57:08 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 22:57:08 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 22:57:08 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 23:11:15 [http-nio-8080-exec-7] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:11:16 [http-nio-8080-exec-3] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:11:20 [http-nio-8080-exec-9] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:11:36 [http-nio-8080-exec-3] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:12:11 [http-nio-8080-exec-7] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:12:13 [http-nio-8080-exec-10] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:12:41 [http-nio-8080-exec-6] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:12:58 [http-nio-8080-exec-1] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : admin@servicedesk.com
+2025-07-25 23:13:14 [http-nio-8080-exec-7] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:13:24 [http-nio-8080-exec-2] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:14:11 [http-nio-8080-exec-5] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:14:12 [http-nio-8080-exec-2] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:14:18 [http-nio-8080-exec-10] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:14:24 [http-nio-8080-exec-6] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : admin@servicedesk.com
+2025-07-25 23:16:17 [http-nio-8080-exec-10] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 6
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 6
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:16:17 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:16:18 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 23:16:18 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 23:16:18 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.symolia.DeskS.web.TicketController - Récupération des détails du ticket: 7
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.TicketService - Récupération du ticket avec pièces jointes: 7
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.TicketService - Ticket trouvé: 7
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.TicketService - Nombre de pièces jointes: 1
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.TicketService - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png, URL: /uploads/attachments/Capture-decran-2023-12-11-161704-1702308041.5075_1753446753057_b7125273.png
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.symolia.DeskS.web.TicketController - Ticket trouvé: Lenteur de connexion internet
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.symolia.DeskS.web.TicketController - Pièce jointe trouvée: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:16:25 [http-nio-8080-exec-4] INFO  c.symolia.DeskS.web.TicketController - DTO avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:16:26 [http-nio-8080-exec-9] INFO  c.s.DeskS.web.CommentaireController - Récupération des commentaires pour le ticket: 7
+2025-07-25 23:16:26 [http-nio-8080-exec-9] INFO  c.s.D.services.CommentaireService - Récupération des commentaires pour le ticket: 7
+2025-07-25 23:16:26 [http-nio-8080-exec-9] INFO  c.s.D.services.CommentaireService - Commentaires trouvés: 1
+2025-07-25 23:17:02 [http-nio-8080-exec-2] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:17:08 [http-nio-8080-exec-5] DEBUG c.s.D.services.DepartementService - Récupération des départements avec filtre nom : null
+2025-07-25 23:17:28 [http-nio-8080-exec-6] INFO  c.s.D.services.UtilisateurService - Début de la création d'un utilisateur avec email : opmail999@gmail.com
+2025-07-25 23:17:28 [http-nio-8080-exec-6] DEBUG c.s.D.services.UtilisateurService - Validation de l'utilisateur avec email : opmail999@gmail.com
+2025-07-25 23:17:28 [http-nio-8080-exec-6] DEBUG c.s.D.services.UtilisateurService - Validation réussie pour l'utilisateur avec email : opmail999@gmail.com
+2025-07-25 23:17:28 [http-nio-8080-exec-6] INFO  c.s.D.services.UtilisateurService - Utilisateur créé avec succès, ID : 8
+2025-07-25 23:18:57 [http-nio-8080-exec-4] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : opmail999@gmail.com
+2025-07-25 23:18:58 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 8
+2025-07-25 23:18:58 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 8
+2025-07-25 23:18:58 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 8: 0
+2025-07-25 23:18:58 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 8: 0
+2025-07-25 23:18:59 [http-nio-8080-exec-3] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : temok59067@hadvar.com
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets pour l'utilisateur: 4
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour l'utilisateur: 4
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Ticket 7: 1 pièce(s) jointe(s)
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Ticket 5: 0 pièce(s) jointe(s)
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Ticket 4: 0 pièce(s) jointe(s)
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Ticket 3: 1 pièce(s) jointe(s)
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Ticket 2: 1 pièce(s) jointe(s)
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Ticket 1: 1 pièce(s) jointe(s)
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés: 6
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Ticket 7 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Ticket 5 sans pièce jointe
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Ticket 4 sans pièce jointe
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Ticket 3 avec pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Ticket 2 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Ticket 1 avec pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:19:00 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - DTOs créés: 6
+2025-07-25 23:19:12 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 8
+2025-07-25 23:19:12 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 8
+2025-07-25 23:19:12 [http-nio-8080-exec-9] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 8: 0
+2025-07-25 23:19:12 [http-nio-8080-exec-9] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 8: 0
+2025-07-25 23:19:14 [http-nio-8080-exec-2] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : opmail999@gmail.com
+2025-07-25 23:19:35 [http-nio-8080-exec-6] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : temok59067@hadvar.com
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets pour l'utilisateur: 4
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour l'utilisateur: 4
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 7: 1 pièce(s) jointe(s)
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 5: 0 pièce(s) jointe(s)
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 4: 0 pièce(s) jointe(s)
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 3: 1 pièce(s) jointe(s)
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 2: 1 pièce(s) jointe(s)
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService - Ticket 1: 1 pièce(s) jointe(s)
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés: 6
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 7 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 5 sans pièce jointe
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 4 sans pièce jointe
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 3 avec pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 2 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - Ticket 1 avec pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:19:35 [http-nio-8080-exec-1] INFO  c.symolia.DeskS.web.TicketController - DTOs créés: 6
+2025-07-25 23:19:42 [http-nio-8080-exec-9] INFO  c.s.DeskS.web.UtilisateursController - Récupération des employés du département: 1
+2025-07-25 23:19:42 [http-nio-8080-exec-9] INFO  c.s.D.services.UtilisateurService - Recherche des utilisateurs avec le rôle EMPLOYEE dans le département 1
+2025-07-25 23:19:42 [http-nio-8080-exec-9] INFO  c.s.DeskS.web.UtilisateursController - Employés trouvés: 1
+2025-07-25 23:20:45 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Création d'un ticket avec pièce jointe - Utilisateur: 4, Fichier: taskly_class_diagram.png
+2025-07-25 23:20:45 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Création du ticket avec pièce jointe pour l'utilisateur: 4
+2025-07-25 23:20:45 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Création du ticket pour l'utilisateur: 4
+2025-07-25 23:20:45 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Utilisateur trouvé: Mehdi Rouissiya, Département: IT
+2025-07-25 23:20:45 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Département assigné au ticket: IT
+2025-07-25 23:20:45 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket créé avec succès - ID: 8, Département: IT
+2025-07-25 23:20:45 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.EmailService - Envoi de notification de création de ticket 8 aux managers du département 1
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.EmailService - Email de création de ticket envoyé à: ziko.rouissiya02@gmail.com
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Début de sauvegarde de la pièce jointe: taskly_class_diagram.png
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Fichier sauvegardé à: C:\Users\Extreme pc\Desktop\DeskS\uploads\attachments\taskly_class_diagram_1753485647341_71db3ada.png
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - PieceJointe sauvegardée en DB - ID: 6, Nom: taskly_class_diagram.png, Taille: 1876 bytes, URL: /uploads/attachments/taskly_class_diagram_1753485647341_71db3ada.png
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Pièce jointe sauvegardée avec succès: taskly_class_diagram.png pour le ticket: 8
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Récupération du ticket avec pièces jointes: 8
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket trouvé: 8
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Nombre de pièces jointes: 0
+2025-07-25 23:20:47 [http-nio-8080-exec-2] WARN  c.s.DeskS.services.TicketService - Aucune pièce jointe trouvée pour le ticket: 8
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Aucun technicien assigné au ticket 8
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:20:47 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Ticket créé avec succès - ID: 8
+2025-07-25 23:21:34 [http-nio-8080-exec-4] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : temok59067@hadvar.com
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets pour l'utilisateur: 4
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour l'utilisateur: 4
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket 8: 1 pièce(s) jointe(s)
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: taskly_class_diagram.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket 7: 1 pièce(s) jointe(s)
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket 5: 0 pièce(s) jointe(s)
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket 4: 0 pièce(s) jointe(s)
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket 3: 1 pièce(s) jointe(s)
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket 2: 1 pièce(s) jointe(s)
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Ticket 1: 1 pièce(s) jointe(s)
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService -   - Première pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés: 7
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Aucun technicien assigné au ticket 8
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket 8 avec pièce jointe: taskly_class_diagram.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket 7 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket 5 sans pièce jointe
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket 4 sans pièce jointe
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket 3 avec pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket 2 avec pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Ticket 1 avec pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:21:35 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - DTOs créés: 7
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Récupération des détails du ticket: 8
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Récupération du ticket avec pièces jointes: 8
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Ticket trouvé: 8
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Nombre de pièces jointes: 1
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Première pièce jointe: taskly_class_diagram.png, URL: /uploads/attachments/taskly_class_diagram_1753485647341_71db3ada.png
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Ticket trouvé: Probleme de connexion réseau très lente
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Pièce jointe trouvée: taskly_class_diagram.png
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Aucun technicien assigné au ticket 8
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:21:43 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - DTO avec pièce jointe: taskly_class_diagram.png
+2025-07-25 23:21:43 [http-nio-8080-exec-1] INFO  c.s.DeskS.web.CommentaireController - Récupération des commentaires pour le ticket: 8
+2025-07-25 23:21:43 [http-nio-8080-exec-1] INFO  c.s.D.services.CommentaireService - Récupération des commentaires pour le ticket: 8
+2025-07-25 23:21:43 [http-nio-8080-exec-1] INFO  c.s.D.services.CommentaireService - Commentaires trouvés: 0
+2025-07-25 23:22:03 [http-nio-8080-exec-2] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 7
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 7
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Aucun technicien assigné au ticket 8
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:22:03 [http-nio-8080-exec-6] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:04 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 23:22:04 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 23:22:04 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 23:22:04 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 8
+2025-07-25 23:22:04 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 8: EN_COURS=0, OUVERT=0, RESOLU=0
+2025-07-25 23:22:07 [http-nio-8080-exec-10] INFO  c.s.DeskS.web.UtilisateursController - Récupération des utilisateurs du département 1 avec le rôle TECHNICIEN_SUPPORT
+2025-07-25 23:22:07 [http-nio-8080-exec-10] INFO  c.s.D.services.UtilisateurService - Recherche des utilisateurs avec le rôle TECHNICIEN_SUPPORT dans le département 1
+2025-07-25 23:22:07 [http-nio-8080-exec-10] INFO  c.s.DeskS.web.UtilisateursController - Utilisateurs trouvés: 2
+2025-07-25 23:22:07 [http-nio-8080-exec-10] INFO  c.s.DeskS.web.UtilisateursController - Utilisateur trouvé: Nabil Rouissiya - Département: IT
+2025-07-25 23:22:07 [http-nio-8080-exec-10] INFO  c.s.DeskS.web.UtilisateursController - Utilisateur trouvé: Y Z - Département: IT
+2025-07-25 23:22:08 [http-nio-8080-exec-3] INFO  c.symolia.DeskS.web.TicketController - Récupération de la charge de travail pour le technicien: 8
+2025-07-25 23:22:08 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 8
+2025-07-25 23:22:08 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 8: EN_COURS=0, OUVERT=0, RESOLU=0
+2025-07-25 23:22:08 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Calcul de la charge de travail pour le technicien: 8
+2025-07-25 23:22:08 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Charge de travail du technicien 8: 0 tickets EN_COURS
+2025-07-25 23:22:08 [http-nio-8080-exec-2] INFO  c.symolia.DeskS.web.TicketController - Récupération de la charge de travail pour le technicien: 3
+2025-07-25 23:22:08 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 23:22:08 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 23:22:08 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Calcul de la charge de travail pour le technicien: 3
+2025-07-25 23:22:08 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.TicketService - Charge de travail du technicien 3: 1 tickets EN_COURS
+2025-07-25 23:22:08 [http-nio-8080-exec-5] INFO  c.symolia.DeskS.web.TicketController - Récupération de la charge de travail pour le technicien: 3
+2025-07-25 23:22:08 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 23:22:08 [http-nio-8080-exec-6] INFO  c.symolia.DeskS.web.TicketController - Récupération de la charge de travail pour le technicien: 8
+2025-07-25 23:22:08 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 8
+2025-07-25 23:22:08 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 23:22:08 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Calcul de la charge de travail pour le technicien: 3
+2025-07-25 23:22:08 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Charge de travail du technicien 3: 1 tickets EN_COURS
+2025-07-25 23:22:08 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 8: EN_COURS=0, OUVERT=0, RESOLU=0
+2025-07-25 23:22:08 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Calcul de la charge de travail pour le technicien: 8
+2025-07-25 23:22:08 [http-nio-8080-exec-6] INFO  c.s.DeskS.services.TicketService - Charge de travail du technicien 8: 0 tickets EN_COURS
+2025-07-25 23:22:32 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Assignation du ticket 8 au technicien 8
+2025-07-25 23:22:32 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Assignation du ticket 8 au technicien 8
+2025-07-25 23:22:32 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Ticket 8 assigné avec succès au technicien Y Z
+2025-07-25 23:22:32 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.EmailService - Envoi de notification d'assignation de ticket 8 au technicien opmail999@gmail.com
+2025-07-25 23:22:33 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.EmailService - Email d'assignation de ticket envoyé à: opmail999@gmail.com
+2025-07-25 23:22:33 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:22:33 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Y Z
+2025-07-25 23:22:33 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Y Z
+2025-07-25 23:22:33 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:22:33 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 7
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 7
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Y Z
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Y Z
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:22:34 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:22:34 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 23:22:34 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 23:22:34 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 23:22:34 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 8
+2025-07-25 23:22:34 [http-nio-8080-exec-7] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 8: EN_COURS=1, OUVERT=0, RESOLU=0
+2025-07-25 23:22:53 [http-nio-8080-exec-6] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : opmail999@gmail.com
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 8
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 8
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 8: 1
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 8: 1
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Y Z
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Y Z
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:22:54 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:23:12 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketAiService - Analyse du ticket ID: 8 - Titre: Probleme de connexion réseau très lente
+2025-07-25 23:23:27 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketAiService - Analyse générée avec succès pour le ticket: 8
+2025-07-25 23:24:17 [http-nio-8080-exec-9] INFO  c.s.DeskS.web.UtilisateursController - Récupération des utilisateurs du département 1 avec le rôle TECHNICIEN_SUPPORT
+2025-07-25 23:24:17 [http-nio-8080-exec-9] INFO  c.s.D.services.UtilisateurService - Recherche des utilisateurs avec le rôle TECHNICIEN_SUPPORT dans le département 1
+2025-07-25 23:24:17 [http-nio-8080-exec-9] INFO  c.s.DeskS.web.UtilisateursController - Utilisateurs trouvés: 2
+2025-07-25 23:24:17 [http-nio-8080-exec-9] INFO  c.s.DeskS.web.UtilisateursController - Utilisateur trouvé: Nabil Rouissiya - Département: IT
+2025-07-25 23:24:17 [http-nio-8080-exec-9] INFO  c.s.DeskS.web.UtilisateursController - Utilisateur trouvé: Y Z - Département: IT
+2025-07-25 23:24:17 [http-nio-8080-exec-5] INFO  c.symolia.DeskS.web.TicketController - Récupération de la charge de travail pour le technicien: 3
+2025-07-25 23:24:17 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 23:24:17 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 23:24:17 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Calcul de la charge de travail pour le technicien: 3
+2025-07-25 23:24:17 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.TicketService - Charge de travail du technicien 3: 1 tickets EN_COURS
+2025-07-25 23:24:56 [http-nio-8080-exec-1] INFO  c.s.DeskS.web.DelegationController - Création d'une demande de délégation par opmail999@gmail.com
+2025-07-25 23:24:56 [http-nio-8080-exec-1] DEBUG c.s.DeskS.web.DelegationController - Récupération de l'ID utilisateur pour l'email: opmail999@gmail.com
+2025-07-25 23:24:56 [http-nio-8080-exec-1] DEBUG c.s.DeskS.web.DelegationController - ID utilisateur trouvé: 8 pour l'email: opmail999@gmail.com
+2025-07-25 23:24:56 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.DelegationService - Création d'une demande de délégation pour le ticket 8 par le technicien 8
+2025-07-25 23:24:57 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.DelegationService - Demande de délégation créée avec succès, ID: 1
+2025-07-25 23:24:57 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.EmailService - Envoi de notification de demande de délégation 1 au manager
+2025-07-25 23:24:58 [http-nio-8080-exec-1] INFO  c.s.DeskS.services.EmailService - Email de demande de délégation envoyé à: ziko.rouissiya02@gmail.com
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets assignés au technicien: 8
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Récupération des tickets assignés au technicien: 8
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Tickets assignés trouvés pour le technicien 8: 1
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.symolia.DeskS.web.TicketController - Tickets assignés trouvés pour le technicien 8: 1
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Y Z
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Y Z
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:24:58 [http-nio-8080-exec-3] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:25 [http-nio-8080-exec-3] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 23:25:32 [http-nio-8080-exec-5] DEBUG c.s.DeskS.web.DelegationController - Récupération de l'ID utilisateur pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 23:25:32 [http-nio-8080-exec-5] DEBUG c.s.DeskS.web.DelegationController - ID utilisateur trouvé: 2 pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 23:25:32 [http-nio-8080-exec-5] INFO  c.s.DeskS.web.DelegationController - Récupération des délégations en attente pour le manager 2
+2025-07-25 23:25:32 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.DelegationService - Récupération des délégations en attente pour le manager 2
+2025-07-25 23:25:32 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.DelegationService - Récupération des délégations en attente pour le département 1
+2025-07-25 23:25:32 [http-nio-8080-exec-5] INFO  c.s.DeskS.services.DelegationService - Nombre de délégations en attente trouvées: 1
+2025-07-25 23:25:32 [http-nio-8080-exec-5] INFO  c.s.DeskS.web.DelegationController - Délégations en attente trouvées: 1
+2025-07-25 23:25:33 [http-nio-8080-exec-4] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 7
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 7
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Y Z
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Y Z
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:25:41 [http-nio-8080-exec-8] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:42 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 23:25:42 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 23:25:42 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=1, OUVERT=0, RESOLU=1
+2025-07-25 23:25:42 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 8
+2025-07-25 23:25:42 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 8: EN_COURS=1, OUVERT=0, RESOLU=0
+2025-07-25 23:25:42 [http-nio-8080-exec-3] DEBUG c.s.D.services.UtilisateurService - Recherche d'un utilisateur par email : ziko.rouissiya02@gmail.com
+2025-07-25 23:25:43 [http-nio-8080-exec-2] DEBUG c.s.DeskS.web.DelegationController - Récupération de l'ID utilisateur pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 23:25:43 [http-nio-8080-exec-2] DEBUG c.s.DeskS.web.DelegationController - ID utilisateur trouvé: 2 pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 23:25:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.web.DelegationController - Récupération des délégations en attente pour le manager 2
+2025-07-25 23:25:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.DelegationService - Récupération des délégations en attente pour le manager 2
+2025-07-25 23:25:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.DelegationService - Récupération des délégations en attente pour le département 1
+2025-07-25 23:25:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.services.DelegationService - Nombre de délégations en attente trouvées: 1
+2025-07-25 23:25:43 [http-nio-8080-exec-2] INFO  c.s.DeskS.web.DelegationController - Délégations en attente trouvées: 1
+2025-07-25 23:25:50 [http-nio-8080-exec-4] DEBUG c.s.DeskS.web.DelegationController - Récupération de l'ID utilisateur pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 23:25:50 [http-nio-8080-exec-4] DEBUG c.s.DeskS.web.DelegationController - ID utilisateur trouvé: 2 pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 23:25:50 [http-nio-8080-exec-4] INFO  c.s.DeskS.web.DelegationController - Tentative d'approbation de la délégation 1 par le manager 2
+2025-07-25 23:25:50 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.DelegationService - Approbation de la délégation 1 par le manager 2
+2025-07-25 23:25:50 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.DelegationService - Validation des permissions réussie pour le manager 2 sur le département IT
+2025-07-25 23:25:50 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.DelegationService - Délégation approuvée avec succès
+2025-07-25 23:25:50 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.EmailService - Envoi de notification de réponse de délégation 1 au technicien demandeur
+2025-07-25 23:25:51 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.EmailService - Email de réponse de délégation envoyé à: opmail999@gmail.com
+2025-07-25 23:25:51 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.EmailService - Envoi de notification de délégation acceptée au technicien destinataire e.emsi.pfa@gmail.com
+2025-07-25 23:25:52 [http-nio-8080-exec-4] INFO  c.s.DeskS.services.EmailService - Email de délégation acceptée envoyé à: e.emsi.pfa@gmail.com
+2025-07-25 23:25:53 [http-nio-8080-exec-8] DEBUG c.s.DeskS.web.DelegationController - Récupération de l'ID utilisateur pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 23:25:53 [http-nio-8080-exec-8] DEBUG c.s.DeskS.web.DelegationController - ID utilisateur trouvé: 2 pour l'email: ziko.rouissiya02@gmail.com
+2025-07-25 23:25:53 [http-nio-8080-exec-8] INFO  c.s.DeskS.web.DelegationController - Récupération des délégations en attente pour le manager 2
+2025-07-25 23:25:53 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.DelegationService - Récupération des délégations en attente pour le manager 2
+2025-07-25 23:25:53 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.DelegationService - Récupération des délégations en attente pour le département 1
+2025-07-25 23:25:53 [http-nio-8080-exec-8] INFO  c.s.DeskS.services.DelegationService - Nombre de délégations en attente trouvées: 0
+2025-07-25 23:25:53 [http-nio-8080-exec-8] INFO  c.s.DeskS.web.DelegationController - Délégations en attente trouvées: 0
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Récupération des tickets du département: 1
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Récupération des tickets avec pièces jointes pour le département: 1
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.DeskS.services.TicketService - Tickets trouvés pour le département 1: 7
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.symolia.DeskS.web.TicketController - Tickets trouvés pour le département 1: 7
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 8 ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: taskly_class_diagram.png
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 7 ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 5 ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 4 ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 3 ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-18 120656.png
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 2 ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture-decran-2023-12-11-161704-1702308041.5075.png
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === MAPPING TICKET 1 ===
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping assignedTo: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - AssignedTo mappé avec succès: Nabil Rouissiya
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - Mapping pièce jointe: Capture d'écran 2025-07-10 123059 (1).png
+2025-07-25 23:25:55 [http-nio-8080-exec-10] INFO  c.s.D.services.TicketMappingService - === FIN MAPPING ===
+2025-07-25 23:25:56 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Calcul des statistiques pour le département: 1
+2025-07-25 23:25:56 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 3
+2025-07-25 23:25:56 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 3: EN_COURS=2, OUVERT=0, RESOLU=1
+2025-07-25 23:25:56 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Récupération des détails de charge pour le technicien: 8
+2025-07-25 23:25:56 [http-nio-8080-exec-3] INFO  c.s.DeskS.services.TicketService - Détails charge technicien 8: EN_COURS=0, OUVERT=0, RESOLU=0

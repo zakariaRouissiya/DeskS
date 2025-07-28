@@ -1,0 +1,27 @@
+// Class Diagram - Taskly
+digraph {
+	fontsize=12 rankdir=LR
+	User [label="{User|+id: UUID\l+full_name: string\l+email: string\l+password_hash: string\l+role: string\l+created_at: DateTime\l}" shape=record]
+	Project [label="{Project|+id: UUID\l+owner_id: UUID\l+name: string\l+description: string\l+is_archived: bool\l+created_at: DateTime\l}" shape=record]
+	ProjectMember [label="{ProjectMember|+id: UUID\l+project_id: UUID\l+user_id: UUID\l+role: string\l}" shape=record]
+	TaskList [label="{TaskList|+id: UUID\l+project_id: UUID\l+name: string\l+position: int\l+created_at: DateTime\l}" shape=record]
+	Task [label="{Task|+id: UUID\l+list_id: UUID\l+title: string\l+description: string\l+due_date: DateTime\l+created_by: UUID\l+created_at: DateTime\l+position: int\l}" shape=record]
+	TaskAssignment [label="{TaskAssignment|+id: UUID\l+task_id: UUID\l+user_id: UUID\l}" shape=record]
+	TaskComment [label="{TaskComment|+id: UUID\l+task_id: UUID\l+author_id: UUID\l+content: string\l+created_at: DateTime\l}" shape=record]
+	Attachment [label="{Attachment|+id: UUID\l+task_id: UUID\l+file_url: string\l+file_name: string\l+uploaded_by: UUID\l+uploaded_at: DateTime\l}" shape=record]
+	ActivityLog [label="{ActivityLog|+id: UUID\l+project_id: UUID\l+user_id: UUID\l+action_type: string\l+details: JSON\l+created_at: DateTime\l}" shape=record]
+	Project -> User [label=owner_id]
+	ProjectMember -> Project [label=project_id]
+	ProjectMember -> User [label=user_id]
+	TaskList -> Project [label=project_id]
+	Task -> TaskList [label=list_id]
+	Task -> User [label=created_by]
+	TaskAssignment -> Task [label=task_id]
+	TaskAssignment -> User [label=user_id]
+	TaskComment -> Task [label=task_id]
+	TaskComment -> User [label=author_id]
+	Attachment -> Task [label=task_id]
+	Attachment -> User [label=uploaded_by]
+	ActivityLog -> Project [label=project_id]
+	ActivityLog -> User [label=user_id]
+}
